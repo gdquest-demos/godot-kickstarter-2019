@@ -64,7 +64,7 @@ enum Named {TYPE_1, TYPE_2, ANOTHER_TYPE}
 # instead of using functions to access them
 var snake_case_for_variables := 4.5
 var tile_size = 40
-var y := 5 setget _set_y, _set_x # where setters/getters start with `_`
+var y := 5 setget _set_y, _get_y # where setters/getters start with `_`
 
 # next define private/virtual functions
 func _init() -> void:
@@ -120,18 +120,46 @@ func good_return_func(health: int, param: float) -> Vector3:
   return some_out_value
 ```
 
-_note_ that there are these differences from [GDScript Style Guide](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/gdscript_styleguide.html):
-
-- use spaces instead of tabs: we use this because it's far more portable, easy to share and copy/paste (eg. copy/paste directly from github, to/from chat apps etc.). In short it's more consistent using spaces than tabs
-
 ### On the use of `null`
 
 `None`, `null`, `NULL`, etc. references could be the biggest mistake in the history of computing, coming from the man that invented it himself: [Null References: The Billion Dollar Mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare).
 
-For programming languages that depend on `null` such as GDScript it's impossible to get rid of `null` usage completely because a lot of its functionality relies on built-in functions that work/return `null` values. But why would we care about it? In simple terms, `null` is a value that behaves like any other value in any context which means that the compiler can't warn us about mistakes caused by `null` at compile time. Which in turn means that `null` exceptions will only be visible at runtime. This is bad and it should be avoided like plague.
+For programming languages that depend on `null` such as GDScript it's impossible to get rid of `null` usage completely because a lot of its functionality relies on built-in functions that work/return `null` values. But why would we care about it? In simple terms, `null` is a value that behaves like any other value in any context which means that the compiler can't warn us about mistakes caused by `null` at compile time. Which in turn means that `null` exceptions will only be visible at runtime. This is bad and it should be avoided like the plague.
 
-In general there are sensible option for initializing variables of certaing types withouth the need for `null`. For example, if a function returns a positive `int` number, then upon failure to calculate the desired return value, the function could return `-1` instead of `null` to signify the error.
+In general there are sensible option for initializing variables of certaing types without the need for `null`. For example, if a function returns a positive `int` number, then upon failure to calculate the desired return value, the function could return `-1` instead of `null` to signify the error.
 
-So the key takeaway is: **use `null` only if you're forced to**. Instead think about alternative ways of implementing a the same functionality using regular types.
+So the key takeaway is: **use `null` only if you're forced to**. Instead think about alternative ways of implementing the same functionality using regular types.
 
-### Typed GDScript
+### [Typed GDScript](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/static_typing.html)
+
+In this project we'll be using [Typed GDScript](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/static_typing.html). At the time of this writing static GDScript typing doesn't provide any perofrmance boosts or any other compiler features just yet, but we'll be using as a training exercise to get used to it, because things like JIT (Just In Time) compilation and other nice improvements are on the Godot roadmap.
+
+What typed GDScript provides right now is better code completion, and better warnings in the Godot text editor so even now it's quite a good improvement over dynamically typed GDScript.
+
+Be sure to check [Static typing in GDScript](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/static_typing.html) to get an idea of how static typing works.
+
+There's one main guideline to go by: **if the compiler can infer the type for you let it**.
+
+Normally we define typed variables like this:
+
+```gdscript
+var x : Vector2 = some_function_returning_Vector2(param1, param2)
+```
+
+but if `some_function_returning_Vector2` is also annotated with a return type:
+
+```gdscript
+func some_function_returning_Vector2(param1: int, param2: int) -> Vector2:
+  # do some work
+  return Vector2()
+```
+
+then Godot can infer the type for us so we can define the variable like so:
+
+```
+var x := some_function_returning_Vector2(param1, param2)
+```
+
+omitting the type after the colon. _note_ that we still use the collon in the assingment as in `:=`, it isn't a simple `=`. This instructs Godot to try and figure out the type, while using the simple `=` would revert to dynamic GDScript.
+
+_note_ that at the moment both Typed and Dynamic GDScript can be used in the same source code file, but we'll strive to use [Typed GDScript](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/static_typing.html) as much as possible.
