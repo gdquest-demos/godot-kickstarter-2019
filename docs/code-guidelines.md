@@ -90,12 +90,12 @@ func to_world(v: Vector2) -> Vector2:
 # so it's easy to understand
 func dont_user_return_in_middle_blocks(do_it: bool) -> Vector3:
   """
-  Use `return` only at the beginning or end of function. At the beginning we
+  Use `return` only at the beginning and end of functions. At the beginning we
   use it normally as a guard of some sorts in an `if` statement, while at the
   end we regularly use it to return the result.
 
   Don't use `return` in the middle of `if` statements in the main function
-  body. It only creates more confusion.
+  body. It only creates confusion.
   """
   var some_v := # initialization
   if condition(some_v):
@@ -122,8 +122,16 @@ func good_return_func(health: int, param: float) -> Vector3:
 
 _note_ that there are these differences from [GDScript Style Guide](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/gdscript_styleguide.html):
 
-- use spaces instead of tabs
+- use spaces instead of tabs: we use this because it's far more portable, easy to share and copy/paste (eg. copy/paste directly from github, to/from chat apps etc.). In short it's more consistent using spaces than tabs
 
-### Avoid `null`
+### On the use of `null`
+
+`None`, `null`, `NULL`, etc. references could be the biggest mistake in the history of computing, coming from the man that invented it himself: [Null References: The Billion Dollar Mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare).
+
+For programming languages that depend on `null` such as GDScript it's impossible to get rid of `null` usage completely because a lot of its functionality relies on built-in functions that work/return `null` values. But why would we care about it? In simple terms, `null` is a value that behaves like any other value in any context which means that the compiler can't warn us about mistakes caused by `null` at compile time. Which in turn means that `null` exceptions will only be visible at runtime. This is bad and it should be avoided like plague.
+
+In general there are sensible option for initializing variables of certaing types withouth the need for `null`. For example, if a function returns a positive `int` number, then upon failure to calculate the desired return value, the function could return `-1` instead of `null` to signify the error.
+
+So the key takeaway is: **use `null` only if you're forced to**. Instead think about alternative ways of implementing a the same functionality using regular types.
 
 ### Typed GDScript
