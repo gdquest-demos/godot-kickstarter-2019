@@ -138,28 +138,6 @@ What typed GDScript provides right now is better code completion, and better war
 
 Be sure to check [Static typing in GDScript](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/static_typing.html) to get an idea of how static typing works.
 
-There's one main guideline to go by: **if the compiler can infer the type for you let it**.
-
-Normally we define typed variables like this:
-
-```gdscript
-var x : Vector2 = some_function_returning_Vector2(param1, param2)
-```
-
-but if `some_function_returning_Vector2` is also annotated with a return type:
-
-```gdscript
-func some_function_returning_Vector2(param1: int, param2: int) -> Vector2:
-  # do some work
-  return Vector2()
-```
-
-then Godot can infer the type for us so we can define the variable like so:
-
-```
-var x := some_function_returning_Vector2(param1, param2)
-```
-
-omitting the type after the colon. _note_ that we still use the collon in the assingment as in `:=`, it isn't a simple `=`. This instructs Godot to try and figure out the type, while using the simple `=` would revert to dynamic GDScript.
+Although Godot can infer the type for you if you write something like `var x := some_function_returning_Vector2()`, instead of `var x : Vector2 = some_function_returning_Vector2()`, in the codebase we're working with we'll enforce types whenever we define variables `var x : SomeType = ...` for tow main reasons: to get acustomed to working with types and for documentation. It makes the code easier to follow if you can immediately see what the variable types are. After all, reading a code base is far more common than writing it so readability is really important.
 
 _note_ that at the moment both Typed and Dynamic GDScript can be used in the same source code file, but we'll strive to use [Typed GDScript](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/static_typing.html) as much as possible.
