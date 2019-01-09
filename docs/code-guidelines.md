@@ -8,6 +8,7 @@ In order of importance:
 
 1. [GDScript Style Guide](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/gdscript_styleguide.html)
 1. [Static typing in GDScript](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/static_typing.html)
+1. [Docs writing guidelines](http://docs.godotengine.org/en/latest/community/contributing/docs_writing_guidelines.html)
 1. [Boundaries - A talk by Gary Bernhardt from SCNA 2012](https://www.destroyallsoftware.com/talks/boundaries) & [Functional Core, Imperative Shell](https://www.destroyallsoftware.com/screencasts/catalog/functional-core-imperative-shell)
 1. [The Clean Architecture in Python](https://www.youtube.com/watch?v=DJtef410XaM)
 1. [Onion Architecture Without the Tears - Brendan Richards](https://www.youtube.com/watch?v=R2pW09tMCnE&t=1095s)
@@ -29,7 +30,8 @@ extends Node
 """
 A brief description of the class's role and functionality
 
-A longer description, if needed, possibly of multiple paragraphs. Properties and method names should be in backticks like so: `_process`, `x` etc.
+A longer description, if needed, possibly of multiple paragraphs. Properties
+and method names should be in backticks like so: `_process`, `x` etc.
 
 Notes
 -----
@@ -60,7 +62,7 @@ onready var timer : = $Timer
 onready var ysort : = $YSort
 ```
 
-After that, place exported variables, then constants, then enums. The enums' names should be in `CamelCase` while the values themselves should be in `ALL_CAPS_SNAKE_CASE`
+After that, place exported variables, then constants, then enums. The enums' names should be in `CamelCase` while the values themselves should be in `ALL_CAPS_SNAKE_CASE`.
 
 ```gdscript
 export(int) var number
@@ -71,12 +73,12 @@ const TARGET_POSITION : = Vector2(2, 56)
 enum TileTypes { EMPTY=-1, WALL, DOOR }
 ```
 
-Follow enums with member variables. Their names should use `snake_case`a. Define setters and getters when properties alter their behavior instead of using methods to access them. They should start with an `_` to indicate these are private methods, and use the names `_set_variable_name`,  `_get_variable_name`
+Follow enums with member variables. Their names should use `snake_case`. Define setters and getters when properties alter their behavior instead of using methods to access them. They should start with an `_` to indicate these are private methods, and use the names `_set_variable_name`,  `_get_variable_name`.
 
 ```
 var animation_length : = 1.5
 var tile_size : = 40
-var side_length : = 5 setget _set_side_length, _get_side_length # where setters/getters start with `_`
+var side_length : = 5 setget _set_side_length, _get_side_length
 ```
 
 Define private and virtual methods, starting with a leading `_`.
@@ -105,32 +107,49 @@ Use `return` only at the beginning and end of functions. If `return` is at the b
 ```gdscript
 func start_quest(id : String) -> Quest:
   """
-  Finds the quest corresponding to the `id` in the database and calls its start method.
+  Finds the quest corresponding to the `id` in the database and calls its start
+  method.
   Returns the Quest object so other nodes can connect to its signals.
   """
-  var quest : Quest = get_quest_from_database(id)
+  var quest : = get_quest_from_database(id)
   if not quest:
     return null
   quest.start()
   return quest
 ```
 
-Another example of **good** return statements:
-
-<!-- TODO: replace with a concrete example -->
+Another example of a function with **good** return statements:
 
 ```gdscript
-func good_return_func(health : int, param : float) -> Vector3:
-  if health < 0:
-    return Vector3()
+func _set_elements(elements: int) -> bool:
+  """
+  Sets up shadow scale, number of visual elements and instantiates as needed.
+  Returns true/false depending on success.
+  """
+  if not has_node("SkinViewport") or \
+     elements > ELEMENTS_MAX or \
+     not has_node("Shadow"):
+    return false
 
-  var some_out_value : = # initialize
-  if param_is_good(param):
-    some_out_value = calculate_out(param)
-  else:
-    some_out_value = # some calculation possibly depending on other factors
+  # if verification doesn't fail proceed with normal business
+  var skinviewport : = $SkinViewport
+  var skinviewport_staticbody : = $SkinViewport/StaticBody2D
+  for i in skinviewport.get_children():
+    if i != skinviewport_staticbbody:
+      i.queue_free()
 
-  return some_out_value
+  var interval : = INTERVAL
+  for i in range(elements):
+    var e : = Element.new()
+    e.node_a = "../StaticBody2D"
+    e.position = skinviewport_staticbody.position
+    e.position.x += rand_range(interval.x, interval.y)
+    interval = interval.rotated(PI/2)
+    skinviewport.add_child(e)
+
+  var shadow : = $Shadow
+  shadow.scale = SHADOW.scale * (1.0 + elements/6.0)
+  return true
 ```
 
 <!-- TODO: proof from here -->
@@ -153,6 +172,58 @@ What typed GDScript provides right now is better code completion, and better war
 
 Be sure to check [Static typing in GDScript](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/static_typing.html) to get an idea of how static typing works.
 
-Although Godot can infer the type for you if you write something like `var x := some_function_returning_Vector2()`, instead of `var x : Vector2 = some_function_returning_Vector2()`, in the codebase we're working with we'll enforce types whenever we define variables `var x : SomeType = ...` for tow main reasons: to get acustomed to working with types and for documentation. It makes the code easier to follow if you can immediately see what the variable types are. After all, reading a code base is far more common than writing it so readability is really important.
+Normally we define typed variables like this:
 
-_note_ that at the moment both Typed and Dynamic GDScript can be used in the same source code file, but we'll strive to use [Typed GDScript](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/static_typing.html) as much as possible.
+```gdscript
+var x : Vector2 = some_function_returning_Vector2(param1, param2)
+```
+
+but if `some_function_returning_Vector2` is also annotated with a return type:
+
+```gdscript
+func some_function_returning_Vector2(param1: int, param2: int) -> Vector2:
+  # do some work
+  return Vector2()
+```
+
+then Godot can infer the type for us so we can define the variable like so:
+
+```
+var v : = some_function_returning_Vector2(param1, param2)
+```
+
+omitting the type after the colon.
+
+_note_ that we still use the collon in the assignment, `: =`, it isn't a simple `=`. This instructs Godot to try and figure out the type, while using the simple `=` would revert to dynamically typed GDScript.
+_note_ that we use `: =` with space in between, rather than `:=`. Godot doesn't enforce type hining, but since we want to impose it on ourselves, `: =` is easier to spot in comparison with `=` if we forget to use the colon.
+
+Whenever we can we'll let Godot do the type inference for us. It's less error prone because the sistem keeps better track of types than we can and it forces us to have proper return values for all functions we use.
+
+Now we're not out of the woods yet. Since the static type system is mostly for better engine warnings and it isn't enforced, at times we need to help it out. The following snippet will make the problem clear:
+
+```gdscript
+var arr : = [1, 'test']
+var s : String = arr.pop_back()
+var i : int = arr.pop_back()
+```
+
+The `Array` type is a container that can keep a mixture of diffrent types, like in the above example where we have `int` & `String` stored in it. If we had written `var s : = arr.pop_back()` instead, then Godot would have complained because it can't figure out the return type of `pop_back` function. You can see this clearly in the documentation (press `F4` and search `pop_back`):
+
+```
+Variant pop_back()
+  Remove the last element of the array.
+```
+
+As you can see, the function returns the type `Variant`. This is a generic type that can hold any other Godot type. In times like these we have to help the type system by being explicit about it: `var s : String = arr.pop_back()`.
+
+When doing this we need to be extremely cautious since the following is also valid, doesn't produce any warnings/errors and it runs just fine even:
+
+```gdscript
+var arr : = [1, 'test']
+var s : int = arr.pop_back()
+var i : String = arr.pop_back()
+```
+
+Since the Godot type system is at its infancy and for the most part is a hiting system rather than a retular static type system, we do end up with these corner cases that we have to be careful about. So especially whenever working with Godot functions that return `Variant` we need to keep this in mind.
+
+In the above example, at runtime `s` will still hold a `String`, and `i` will still hold an int, but cheking them with `s is String`, `i is int` returns `false`. So the Godot static type system has strenghts, but also weaknesses that we have to be aware of.
