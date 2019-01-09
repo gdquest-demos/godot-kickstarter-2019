@@ -62,15 +62,15 @@ onready var timer : = $Timer
 onready var ysort : = $YSort
 ```
 
-After that, place exported variables, then constants, then enums. The enums' names should be in `CamelCase` while the values themselves should be in `ALL_CAPS_SNAKE_CASE`.
+After that enums, constants, and exported variables, in this order. The enums' names should be in `CamelCase` while the values themselves should be in `ALL_CAPS_SNAKE_CASE`. The reason for this order is that exported variables might depends on previously defined enums and constants.
 
 ```gdscript
-export(int) var number
+enum TileTypes { EMPTY=-1, WALL, DOOR }
 
 const MAX_TRIALS : = 3
 const TARGET_POSITION : = Vector2(2, 56)
 
-enum TileTypes { EMPTY=-1, WALL, DOOR }
+export(int) var number
 ```
 
 Follow enums with member variables. Their names should use `snake_case`. Define setters and getters when properties alter their behavior instead of using methods to access them. They should start with an `_` to indicate these are private methods, and use the names `_set_variable_name`, `_get_variable_name`.
