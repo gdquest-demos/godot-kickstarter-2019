@@ -57,7 +57,7 @@ signal talk_finished
 
 Place `onready` variables after signals, because we mostly use them to keep track of child nodes this class accesses. Having them at the top of the file makes it easier to keep track of dependencies.
 
-```
+```gdscript
 onready var timer : = $Timer
 onready var ysort : = $YSort
 ```
@@ -73,9 +73,9 @@ const TARGET_POSITION : = Vector2(2, 56)
 enum TileTypes { EMPTY=-1, WALL, DOOR }
 ```
 
-Follow enums with member variables. Their names should use `snake_case`. Define setters and getters when properties alter their behavior instead of using methods to access them. They should start with an `_` to indicate these are private methods, and use the names `_set_variable_name`,  `_get_variable_name`.
+Follow enums with member variables. Their names should use `snake_case`. Define setters and getters when properties alter their behavior instead of using methods to access them. They should start with an `_` to indicate these are private methods, and use the names `_set_variable_name`, `_get_variable_name`.
 
-```
+```gdscript
 var animation_length : = 1.5
 var tile_size : = 40
 var side_length : = 5 setget _set_side_length, _get_side_length
@@ -83,7 +83,7 @@ var side_length : = 5 setget _set_side_length, _get_side_length
 
 Define private and virtual methods, starting with a leading `_`.
 
-```
+```gdscript
 func _init() -> void:
   pass
 
@@ -95,7 +95,7 @@ Then define public methods. Include type hints for variables and the return type
 
 You can use a brief docstring, if need be, to describe what the function does and what it returns. To describe the return value in the docstring, start the sentence with `Returns`. Use the present tense and direct voice. See Godot's [documentation writing guidelines](http://docs.godotengine.org/en/latest/community/contributing/docs_writing_guidelines.html) for more information.
 
-```
+```gdscript
 func can_move(cell_coordinates : Vector2) -> bool:
   return grid[cell_coordinates] != TileTypes.WALL
 ```
