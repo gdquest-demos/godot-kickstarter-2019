@@ -104,6 +104,8 @@ Use `return` only at the beginning and end of functions. If `return` is at the b
 
 **Don't** return in the middle of the method. It makes it harder to track returned values. Here's an example of a **clean** and readable method:
 
+<!-- TODO: need to reexamine this function. It isn't a good example or even correct.
+
 ```gdscript
 func start_quest(id: String) -> Quest:
   """
@@ -112,13 +114,14 @@ func start_quest(id: String) -> Quest:
   Returns the Quest object so other nodes can connect to its signals.
   """
   var quest : = get_quest_from_database(id)
-  if not quest:
+  if not quest.empty():
     return null
   quest.start()
   return quest
 ```
 
 Another example of a function with **good** return statements:
+-->
 
 ```gdscript
 func _set_elements(elements: int) -> bool:
@@ -135,7 +138,7 @@ func _set_elements(elements: int) -> bool:
   var skin_viewport : = $SkinViewport
   var skin_viewport_staticbody : = $SkinViewport/StaticBody2D
   for node in skin_viewport.get_children():
-    nodef i != skin_viewport_staticbbody:
+    if node != skin_viewport_staticbbody:
       node.queue_free()
 
   var interval : = INTERVAL
@@ -149,8 +152,7 @@ func _set_elements(elements: int) -> bool:
     interval = interval.rotated(PI/2)
     skin_viewport.add_child(e)
 
-  var shadow : = $Shadow
-  shadow.scale = SHADOW.scale * (1.0 + elements/6.0)
+  $Shadow.scale = SHADOW.scale * (1.0 + elements/6.0)
   return true
 ```
 
@@ -211,7 +213,7 @@ Variant pop_back()
   Remove the last element of the array.
 ```
 
-`Variant` is a generic type that can hold any type Godot supports. That's why we have to explicitly write variable types in these cases: `var s : String = arr.pop_back()`.
+`Variant` is a generic type that can hold any type Godot supports. That's why we have to explicitly write variable types when dealing with these functions: `var s : String = arr.pop_back()`.
 
 In these cases, you must be careful as the following is also valid:
 
@@ -221,4 +223,4 @@ var s : int = arr.pop_back()
 var i : String = arr.pop_back()
 ```
 
-You will not get any error with this code. At runtime, `s` will surprinsingly still contain a `String`, and `i` will contain an int. But a type check like `s is String` or `i is int` will return `false`. That's a weakness of the current type system that we should keep in mind.
+You will not get any error with this code. At runtime, `s` will surprinsingly still contain a `String`, and `i` will contain an `int`. But a type check like `s is String` or `i is int` will return `false`. That's a weakness of the current type system that we should keep in mind.
