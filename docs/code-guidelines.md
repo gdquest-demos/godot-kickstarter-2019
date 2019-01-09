@@ -123,20 +123,20 @@ Another example of a function with **good** return statements:
 ```gdscript
 func _set_elements(elements: int) -> bool:
   """
-  Sets up shadow scale, number of visual elements and instantiates as needed.
-  Returns true/false depending on success.
+  Sets up the shadow scale, number of visual elements and instantiates as needed.
+  Returns true if the operation succeeds, else false
   """
   if not has_node("SkinViewport") or \
      elements > ELEMENTS_MAX or \
      not has_node("Shadow"):
     return false
 
-  # if verification doesn't fail proceed with normal business
-  var skinviewport : = $SkinViewport
-  var skinviewport_staticbody : = $SkinViewport/StaticBody2D
-  for i in skinviewport.get_children():
-    if i != skinviewport_staticbbody:
-      i.queue_free()
+  # If the check succeeds, proceed with the changes
+  var skin_viewport : = $SkinViewport
+  var skin_viewport_staticbody : = $SkinViewport/StaticBody2D
+  for node in skin_viewport.get_children():
+    nodef i != skin_viewport_staticbbody:
+      node.queue_free()
 
   var interval : = INTERVAL
   var r : = RandomNumberGenerator.new()
@@ -144,65 +144,59 @@ func _set_elements(elements: int) -> bool:
   for i in range(elements):
     var e : = Element.new()
     e.node_a = "../StaticBody2D"
-    e.position = skinviewport_staticbody.position
+    e.position = skin_viewport_staticbody.position
     e.position.x += r.randf_range(interval.x, interval.y)
     interval = interval.rotated(PI/2)
-    skinviewport.add_child(e)
+    skin_viewport.add_child(e)
 
   var shadow : = $Shadow
   shadow.scale = SHADOW.scale * (1.0 + elements/6.0)
   return true
 ```
 
-<!-- TODO: proof from here -->
+### Avoid `null` like the plague
 
-### On the use of `null`
+**Use `null` only if you're forced to**. Instead, think about alternatives to implement the same functionality with other types.
 
-`None`, `null`, `NULL`, etc. references could be the biggest mistake in the history of computing, coming from the man that invented it himself: [Null References: The Billion Dollar Mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare).
+`None`, `null`, `NULL`, etc. references could be the biggest mistake in the history of computing. Here's an explanation from the man who invented it himself: [Null References: The Billion Dollar Mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare).
 
-For programming languages that depend on `null` such as GDScript it's impossible to get rid of `null` usage completely because a lot of its functionality relies on built-in functions that work/return `null` values. But why would we care about it? In simple terms, `null` is a value that behaves like any other value in any context which means that the compiler can't warn us about mistakes caused by `null` at compile time. Which in turn means that `null` exceptions will only be visible at runtime. This is bad and it should be avoided like the plague.
+For programming languages that rely on `null`, such as GDScript, it's impossible to get rid of it completely: a lot of functionality relies on built-in functions that work with and return `null` values.
 
-In general there are sensible option for initializing variables of certaing types without the need for `null`. For example, if a function returns a positive `int` number, then upon failure to calculate the desired return value, the function could return `-1` instead of `null` to signify the error.
+`null` can behave like any other value in any context, so the compiler can't find errors caused by `null` at compile time. `null` exceptions are only visible at runtime. This makes it more likely to write code that will fail when someone plays the game and it should be avoided like the plague.
 
-So the key takeaway is: **use `null` only if you're forced to**. Instead think about alternative ways of implementing the same functionality using regular types.
+You can use other values to initialize variables of certain types. For example, if a function returns a positive `int` number, if it is not able to calculate the desired return value, the function could return `-1` to suggest there was an error.
 
-### [Typed GDScript](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/static_typing.html)
+### Use static types
 
-In this project we'll be using [Typed GDScript](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/static_typing.html). At the time of this writing static GDScript typing doesn't provide any perofrmance boosts or any other compiler features just yet, but we'll be using as a training exercise to get used to it, because things like JIT (Just In Time) compilation and other nice improvements are on the Godot roadmap.
+We use optional static typing with GDscript.
 
-What typed GDScript provides right now is better code completion, and better warnings in the Godot text editor so even now it's quite a good improvement over dynamically typed GDScript.
+At the time of writing, static GDScript typing doesn't provide any perofrmance boosts or any other compiler features yet. But it does bring better code completion and better error reporting and warnings, which are good improvements over dynamically typed GDScript. In the future, it should bring performance improvements as well.
 
-Be sure to check [Static typing in GDScript](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/static_typing.html) to get an idea of how static typing works.
+Be sure to check [Static typing in GDScript](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/static_typing.html) to get started with this language feature.
 
-Normally we define typed variables like this:
+Normally, you define typed variables like this:
 
 ```gdscript
 var x : Vector2 = some_function_returning_Vector2(param1, param2)
 ```
 
-but if `some_function_returning_Vector2` is also annotated with a return type:
+But if `some_function_returning_Vector2` is also annotated with a return type, Godot can infer the type for us so we only need to add a colon after the variable's name:
 
 ```gdscript
 func some_function_returning_Vector2(param1: int, param2: int) -> Vector2:
   # do some work
   return Vector2()
+
+var v : = some_function_returning_Vector2(param1, param2) # The type is Vector2
 ```
 
-then Godot can infer the type for us so we can define the variable like so:
+_Note_ how we still use the collon in the assignment: `: =`. It isn't just `=`. Without the colon, the variable's type would be dynamic.
 
-```
-var v : = some_function_returning_Vector2(param1, param2)
-```
+Use `: =` with a space between the colon and the equal sign, **not** `:=`. `: =` is easier to spot compared to `=`, in case someone forgets to use the colon.
 
-omitting the type after the colon.
+**Let Godot infer the type whenever you can**. It's less error prone because the system keeps better track of types than we humanly can. It also pushes us to have proper return values for all the functions and methods that we write.
 
-_note_ that we still use the collon in the assignment, `: =`, it isn't a simple `=`. This instructs Godot to try and figure out the type, while using the simple `=` would revert to dynamically typed GDScript.
-
-_note_ that we use `: =` with space in between, rather than `:=`. Godot doesn't enforce type hining, but since we want to impose it on ourselves, `: =` is easier to spot in comparison with `=` if we forget to use the colon.
-
-Whenever we can we'll let Godot do the type inference for us. It's less error prone because the sistem keeps better track of types than we can and it forces us to have proper return values for all functions we use.
-
-Now we're not out of the woods yet. Since the static type system is mostly for better engine warnings and it isn't enforced, at times we need to help it out. The following snippet will make the problem clear:
+Since the static type system mostly brings better warnings and it isn't enforced, sometimes we have to help it out. The following snippet will make the problem clear:
 
 ```gdscript
 var arr : = [1, 'test']
@@ -210,16 +204,16 @@ var s : String = arr.pop_back()
 var i : int = arr.pop_back()
 ```
 
-The `Array` type is a container that can keep a mixture of diffrent types, like in the above example where we have `int` & `String` stored in it. If we had written `var s : = arr.pop_back()` instead, then Godot would have complained because it can't figure out the return type of `pop_back` function. You can see this clearly in the documentation (press `F4` and search `pop_back`):
+The `Array` type is a container for multiple diffrent types. In the example above, we have both an `int` and a `String` stored in the array. If you only wrote `var s : = arr.pop_back()`, Godot would complain because it doesn't know what type the `pop_back` method returns. You will get the same issue with all built-in methods that return the engine's `Variant` type. Open the code reference with <kbd>F4</kbd> and search for the methods to see that:
 
 ```
 Variant pop_back()
   Remove the last element of the array.
 ```
 
-As you can see, the function returns the type `Variant`. This is a generic type that can hold any other Godot type. In times like these we have to help the type system by being explicit about it: `var s : String = arr.pop_back()`.
+`Variant` is a generic type that can hold any type Godot supports. That's why we have to explicitly write variable types in these cases: `var s : String = arr.pop_back()`.
 
-When doing this we need to be extremely cautious since the following is also valid, doesn't produce any warnings/errors and it runs just fine even:
+In these cases, you must be careful as the following is also valid:
 
 ```gdscript
 var arr : = [1, 'test']
@@ -227,6 +221,4 @@ var s : int = arr.pop_back()
 var i : String = arr.pop_back()
 ```
 
-Since the Godot type system is at its infancy and for the most part is a hiting system rather than a retular static type system, we do end up with these corner cases that we have to be careful about. So especially whenever working with Godot functions that return `Variant` we need to keep this in mind.
-
-In the above example, at runtime `s` will still hold a `String`, and `i` will still hold an int, but cheking them with `s is String`, `i is int` returns `false`. So the Godot static type system has strenghts, but also weaknesses that we have to be aware of.
+You will not get any error with this code. At runtime, `s` will surprinsingly still contain a `String`, and `i` will contain an int. But a type check like `s is String` or `i is int` will return `false`. That's a weakness of the current type system that we should keep in mind.
