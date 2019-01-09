@@ -1,6 +1,10 @@
 # Coding Guidelines
 
-This document describes GDScript coding style and best practices for organizing code base in order to keep sane when developing mid-to-large projects. This is influenced by a series of good-practice guides found in the wild taken especially from Python-related & functional programming presentations and talks as well as the official GDScript documentation (in order of importance):
+This document describes GDScript coding style and best practices to organize code base to keep sane when developing mid-to-large projects.
+
+The ideas exposed below take inspiration from good practices from different paradigms and languages, especially from Python and functional programming, as well as the official GDScript documentation.
+
+In order of importance:
 
 1. [GDScript Style Guide](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/gdscript_styleguide.html)
 1. [Static typing in GDScript](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/static_typing.html)
@@ -9,116 +13,127 @@ This document describes GDScript coding style and best practices for organizing 
 1. [Onion Architecture Without the Tears - Brendan Richards](https://www.youtube.com/watch?v=R2pW09tMCnE&t=1095s)
 1. [Domain Driven Design Through Onion Architecture](https://www.youtube.com/watch?v=pL9XeNjy_z4)
 
-This means that we there isn’t a very easy and clear way of transposing these ideas into an object orented setting such as when working with Godot, since it has its own way of handling interactions. The solution for creating modular and composable systems is managing boundaries, especially at the interaction of the system with the user/player. And this guideline tries to give an overview of useful ideas to manage this task.
+There isn’t a straightforward way of transposing these ideas into an object-oriented setting such as when working with Godot since it has its way of handling interactions.
+
+To create modular and composable systems, we have to manage boundaries: the places where different game systems interact with one another. Especially the interaction of the game systems with the user.
 
 ## Code Writing Style
 
-This section will exemplify how to write code through an annotated example:
+This section shows our programming style by example.
+
+<!-- TODO: Add a short but complete, real-world example -->
 
 ```gdscript
 extends Node
-"""
-Brief description of class functionality.
 
-Followed by longer description comprised of possibly multiple paragraphs
-where properties/methods specified in this docstring are enclosed in back
-ticks like so: `_process`, `x` etc. If there's specifics that aren't easily
-expressed in the main paragraphs a note section can be used.
+"""
+A brief description of the class's role and functionality
+
+A longer description, if needed, possibly of multiple paragraphs. Properties and method names should be in backticks like so: `_process`, `x` etc.
 
 Notes
 -----
-Where here we'll have some notes on specific things that aren't meant to go
-in the main paragraphs above.
+Specific things that don't fit the class's description above.
 
-Keep the line length lower than 100 characters
+Keep lines under 100 characters long
 """
+```
 
-# include class names only if necessary
-class_name NewNode
+Include `class_name` only if necessary: if you need to check for this type in other classes, or to be able to create the node in the create node dialogue.
 
-# signals go first and don't use parentheses unless necessary
-signal moved # use past tense to signify finished action
-signal talk_started(param1) # and append `_started` and `_finished`
-signal talk_finished # if the signal is for beginning/ending of action
+```gdscript
+class_name MyNode
+```
 
-# immediately followed by `onready` variables
-# because these are mostly used when accessing
-# other nodes so it's easy to keep track of
-# dependencies
-onready timer := $Timer
-onready other_node := $OtherNode
+Signals go first and don't use parentheses unless they pass function parameters. Use the past tense to name signals. Append `_started` or `_finished` if the signal corresponds to the beginning or the end of an action.
 
-# and then exports
+```gdscript
+signal moved
+signal talk_started(parameter_name)
+signal talk_finished
+```
+
+Place `onready` variables after signals, because we mostly use them to keep track of child nodes this class accesses. Having them at the top of the file makes it easier to keep track of dependencies.
+
+```
+onready var timer : = $Timer
+onready var ysort : = $YSort
+```
+
+After that, place exported variables, then constants, then enums. The enums' names should be in `CamelCase` while the values themselves should be in `ALL_CAPS_SNAKE_CASE`
+
+```gdscript
 export(int) var number
 
-# next const values
-const X := 3
-const Y := Vector2(2, 56)
+const MAX_TRIALS : = 3
+const TARGET_POSITION : = Vector2(2, 56)
 
-# next enums, which if named are written in CamelCase
-# while the values themselves are ALL_CAPS_SNAKE_CASE
-enum Named {TYPE_1, TYPE_2, ANOTHER_TYPE}
+enum TileTypes { EMPTY=-1, WALL, DOOR }
+```
 
-# followed by local variables and define setters/getters
-# when properties should depend or alter their behavior
-# instead of using functions to access them
-var snake_case_for_variables := 4.5
-var tile_size = 40
-var y := 5 setget _set_y, _get_y # where setters/getters start with `_`
+Follow enums with member variables. Their names should use `snake_case`a. Define setters and getters when properties alter their behavior instead of using methods to access them. They should start with an `_` to indicate these are private methods, and use the names `_set_variable_name`,  `_get_variable_name`
 
-# next define private/virtual functions
+```
+var animation_length : = 1.5
+var tile_size : = 40
+var side_length : = 5 setget _set_side_length, _get_side_length # where setters/getters start with `_`
+```
+
+Define private and virtual methods, starting with a leading `_`.
+
+```
 func _init() -> void:
-  # do some initialization here
   pass
 
 func _process(delta: float) -> void:
-  # do some processing here
   pass
+```
 
-# finally define regular functions
-func to_world(v: Vector2) -> Vector2:
-  """
-  A brief docstring of what the function does and its return value specified
-  via the :returns: tag. For example this conversion function :returns:
-  a Vector2 transformed to world coordinates.
-  """
-  var idx := # calculate indices
-  var new_v := # do some calculation with `idx`
-  return new_v
+Then define public methods. Include type hints for variables and the return type.
 
-# the following are a couple of ideas on structuring function logic
-# so it's easy to understand
-func dont_user_return_in_middle_blocks(do_it: bool) -> Vector3:
-  """
-  Use `return` only at the beginning and end of functions. At the beginning we
-  use it normally as a guard of some sorts in an `if` statement, while at the
-  end we regularly use it to return the result.
+You can use a brief docstring, if need be, to describe what the function does and what it returns. To describe the return value in the docstring, start the sentence with `Returns`. Use the present tense and direct voice. See Godot's [documentation writing guidelines](http://docs.godotengine.org/en/latest/community/contributing/docs_writing_guidelines.html) for more information.
 
-  Don't use `return` in the middle of `if` statements in the main function
-  body. It only creates confusion.
-  """
-  var some_v := # initialization
-  if condition(some_v):
-    var calculation := # some calculation that returns Vector3 for example
-    return calculation # this is a bad return
-  return Vector3()
+```
+func can_move(cell_coordinates : Vector2) -> bool:
+  return grid[cell_coordinates] != TileTypes.WALL
+```
 
-# this is a good organized function
-func good_return_func(health: int, param: float) -> Vector3:
-  # good return (guard)
+Use `return` only at the beginning and end of functions. If `return` is at the beginning, you can use it as a defense mechanism in an `if` statement.
+
+**Don't** return in the middle of the method. It makes it harder to track returned values. Here's an example of a **clean** and readable method:
+
+```gdscript
+func start_quest(id : String) -> Quest:
+  """
+  Finds the quest corresponding to the `id` in the database and calls its start method.
+  Returns the Quest object so other nodes can connect to its signals.
+  """
+  var quest : Quest = get_quest_from_database(id)
+  if not quest:
+    return null
+  quest.start()
+  return quest
+```
+
+Another example of **good** return statements:
+
+<!-- TODO: replace with a concrete example -->
+
+```gdscript
+func good_return_func(health : int, param : float) -> Vector3:
   if health < 0:
     return Vector3()
 
-  var some_out_value := # initialize
-  # do some work that potentially branches
+  var some_out_value : = # initialize
   if param_is_good(param):
     some_out_value = calculate_out(param)
   else:
     some_out_value = # some calculation possibly depending on other factors
 
-  # good return (at the end)
   return some_out_value
 ```
+
+<!-- TODO: proof from here -->
 
 ### On the use of `null`
 
