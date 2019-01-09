@@ -96,7 +96,7 @@ Then define public methods. Include type hints for variables and the return type
 You can use a brief docstring, if need be, to describe what the function does and what it returns. To describe the return value in the docstring, start the sentence with `Returns`. Use the present tense and direct voice. See Godot's [documentation writing guidelines](http://docs.godotengine.org/en/latest/community/contributing/docs_writing_guidelines.html) for more information.
 
 ```gdscript
-func can_move(cell_coordinates : Vector2) -> bool:
+func can_move(cell_coordinates: Vector2) -> bool:
   return grid[cell_coordinates] != TileTypes.WALL
 ```
 
@@ -105,7 +105,7 @@ Use `return` only at the beginning and end of functions. If `return` is at the b
 **Don't** return in the middle of the method. It makes it harder to track returned values. Here's an example of a **clean** and readable method:
 
 ```gdscript
-func start_quest(id : String) -> Quest:
+func start_quest(id: String) -> Quest:
   """
   Finds the quest corresponding to the `id` in the database and calls its start
   method.
@@ -139,11 +139,13 @@ func _set_elements(elements: int) -> bool:
       i.queue_free()
 
   var interval : = INTERVAL
+  var r : = RandomNumberGenerator.new()
+  r.randomize()
   for i in range(elements):
     var e : = Element.new()
     e.node_a = "../StaticBody2D"
     e.position = skinviewport_staticbody.position
-    e.position.x += rand_range(interval.x, interval.y)
+    e.position.x += r.randf_range(interval.x, interval.y)
     interval = interval.rotated(PI/2)
     skinviewport.add_child(e)
 
@@ -195,6 +197,7 @@ var v : = some_function_returning_Vector2(param1, param2)
 omitting the type after the colon.
 
 _note_ that we still use the collon in the assignment, `: =`, it isn't a simple `=`. This instructs Godot to try and figure out the type, while using the simple `=` would revert to dynamically typed GDScript.
+
 _note_ that we use `: =` with space in between, rather than `:=`. Godot doesn't enforce type hining, but since we want to impose it on ourselves, `: =` is easier to spot in comparison with `=` if we forget to use the colon.
 
 Whenever we can we'll let Godot do the type inference for us. It's less error prone because the sistem keeps better track of types than we can and it forces us to have proper return values for all functions we use.
