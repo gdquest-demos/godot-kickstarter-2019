@@ -224,3 +224,58 @@ var i : String = arr.pop_back()
 ```
 
 You will not get any error with this code. At runtime, `s` will surprinsingly still contain a `String`, and `i` will contain an `int`. But a type check like `s is String` or `i is int` will return `false`. That's a weakness of the current type system that we should keep in mind.
+
+### Write self-documenting code and use comments sparingly
+
+If you need comments to explain most of what your code does, you can most likely rewrite it to make it more transparent for everyone. When working together or other an extended period, code readability is essential for everyone to stay productive.
+
+Use clear variable names in plain English, and write full words. E.g. `character_position` and not `char_pos`. Same for method names.
+
+**Do not** repeat the same word in the method's name and its arguments. E.g. write `Inventory.add(item)`, not `Inventory.add_item(item)`. The same goes for signals. Don't repeat the class's name in signals, use plain verbs instead:
+
+```gdscript
+Extends Node
+class_name Event
+
+signal started
+signal completed
+```
+
+You *may* use short variable names inside of your methods, for local variables, to avoid repeating a type hint for instance. In the example below, the variable `e`, an instance of `Element`, only appears in 4 consecutive lines, so the code stays readable:
+
+```gdscript
+func _set_elements(elements: int) -> bool:
+...
+  for i in range(elements):
+    var e : = Element.new()
+    e.node_a = "../StaticBody2D"
+    e.position = skin_viewport_staticbody.position
+...
+```
+
+#### Use comments if they save time or add key explanations
+
+Your code should be **self-explanatory whenever possible**. But sometimes it's not: you may have a long block of code that you can't change, or have some strange code to work around an engine bug. In these cases, writing a short comment above the corresponding block can save everyone a lot of time, including your future self.
+
+In this example, the code involves transforming and multiplying matrices to calculate some position in Godot's 2d viewport. A one-line comment can capture what it does and avoid having to make sense of the calculations:
+
+```gdscript
+func drag_to(event_position: Vector2) -> void:
+  # Calculate the position of the mouse cursor relative to the RectExtents' center
+  var viewport_transform_inv := rect_extents.get_viewport().get_global_canvas_transform().affine_inverse()
+  var viewport_position: Vector2 = viewport_transform_inv.xform(event_position)
+  var transform_inv := rect_extents.get_global_transform().affine_inverse()
+  var target_position : Vector2 = transform_inv.xform(viewport_position.round())
+```
+
+Here's a comment that explains why a seemingly strange line of code is necessary so another developer doesn't remove it inadvertently, thinking it's a mistake:
+
+```gdscript
+extends BattlerAI
+
+func choose_action(actor : Battler, targets : Array = []):
+    # We use yield even though the  an action is instantaneous
+    # because the combat system expects this method to use a coroutine
+    yield(get_tree(), "idle_frame")
+    ...
+```
