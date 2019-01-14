@@ -1,19 +1,20 @@
 extends KinematicBody2D
 
-onready var area : = $Area2D
-onready var sprite : = $Sprite
-onready var timer : = $Timer
+onready var area : Area2D = $ActorDetector
+onready var sprite : Sprite = $Body
+onready var timer : Timer = $Timer
 
-export var damage : int = 5
-export var move_speed : float = 150.0
-export var attack_distance : float = 100.0
-export var min_move_distance : float = 80.0
+export var damage : = 5
+export var move_speed : = 250.0
+export var attack_distance : = 100.0
+export var min_move_distance : = 80.0
 
 var player : Player
 
 func _ready() -> void:
 	area.connect("body_entered", self, "_on_Area2D_body_entered")
 	set_physics_process(false)
+
 
 func _physics_process(delta : float) -> void:
 	var direction : = (player.global_position - global_position).normalized()
@@ -26,6 +27,7 @@ func _physics_process(delta : float) -> void:
 	if timer.is_stopped() and distance_to_player <= attack_distance:
 		player.take_damage(damage)
 		timer.start()
+
 
 func _on_Area2D_body_entered(body : PhysicsBody2D) -> void:
 	if not body is Player:

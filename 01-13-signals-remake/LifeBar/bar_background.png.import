@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/godette.png-e1f3f3e3eb7423558ea71213dd23d999.stex"
+path="res://.import/bar_background.png-c13834e07672c90c7de6b9dddb210037.stex"
 
 [deps]
 
-source_file="res://player/godette.png"
-dest_files=[ "res://.import/godette.png-e1f3f3e3eb7423558ea71213dd23d999.stex" ]
+source_file="res://LifeBar/bar_background.png"
+dest_files=[ "res://.import/bar_background.png-c13834e07672c90c7de6b9dddb210037.stex" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/health_bar.png-1ff8b319d73dc1f5a3aee0065ed0e7c1.stex"
+path="res://.import/grasslands.png-3980c6795393c4c47b9291eaf753831a.stex"
 
 [deps]
 
-source_file="res://interface/health_bar.png"
-dest_files=[ "res://.import/health_bar.png-1ff8b319d73dc1f5a3aee0065ed0e7c1.stex" ]
+source_file="res://Assets/tileset/grasslands.png"
+dest_files=[ "res://.import/grasslands.png-3980c6795393c4c47b9291eaf753831a.stex" ]
 
 [params]
 

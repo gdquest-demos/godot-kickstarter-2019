@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/porcupine.png-c75edea7d487257e237accf6cf4a12b0.stex"
+path="res://.import/shadow.png-faf30c48f1498a3a6657cb1815a5d825.stex"
 
 [deps]
 
-source_file="res://enemy/porcupine.png"
-dest_files=[ "res://.import/porcupine.png-c75edea7d487257e237accf6cf4a12b0.stex" ]
+source_file="res://Assets/shadow.png"
+dest_files=[ "res://.import/shadow.png-faf30c48f1498a3a6657cb1815a5d825.stex" ]
 
 [params]
 

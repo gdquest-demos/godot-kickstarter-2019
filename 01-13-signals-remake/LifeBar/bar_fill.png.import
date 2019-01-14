@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shadow.png-493c4635eca1ce8bdece629560617dc7.stex"
+path="res://.import/bar_fill.png-47ffdbebc7b86a760bca5c2d43415695.stex"
 
 [deps]
 
-source_file="res://player/shadow.png"
-dest_files=[ "res://.import/shadow.png-493c4635eca1ce8bdece629560617dc7.stex" ]
+source_file="res://LifeBar/bar_fill.png"
+dest_files=[ "res://.import/bar_fill.png-47ffdbebc7b86a760bca5c2d43415695.stex" ]
 
 [params]
 

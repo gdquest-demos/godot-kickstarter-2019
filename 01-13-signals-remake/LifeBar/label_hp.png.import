@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grasslands.png-0b98af598ccf32e113f20c66247cbae3.stex"
+path="res://.import/label_hp.png-b546781accc6fd499251ce87c955f76a.stex"
 
 [deps]
 
-source_file="res://tileset/grasslands.png"
-dest_files=[ "res://.import/grasslands.png-0b98af598ccf32e113f20c66247cbae3.stex" ]
+source_file="res://LifeBar/label_hp.png"
+dest_files=[ "res://.import/label_hp.png-b546781accc6fd499251ce87c955f76a.stex" ]
 
 [params]
 
