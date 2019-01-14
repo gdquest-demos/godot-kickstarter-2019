@@ -23,9 +23,15 @@ To create modular and composable systems, we have to manage boundaries: the plac
 This section shows our programming style by example.
 
 <!-- TODO: Add a short but complete, real-world example -->
+Start with the `extends` keyword if the class extends a built-in type.
+
+Then include `class_name`, but only if necessary. E.g. if you need to check for this type in other classes, or to be able to create the node in the create node dialogue.
+
+Following that you should have the class's docstring:
 
 ```gdscript
 extends Node
+class_name MyNode
 
 """
 A brief description of the class's role and functionality
@@ -41,12 +47,6 @@ Keep lines under 100 characters long
 """
 ```
 
-Include `class_name` only if necessary: if you need to check for this type in other classes, or to be able to create the node in the create node dialogue.
-
-```gdscript
-class_name MyNode
-```
-
 Signals go first and don't use parentheses unless they pass function parameters. Use the past tense to name signals. Append `_started` or `_finished` if the signal corresponds to the beginning or the end of an action.
 
 ```gdscript
@@ -57,9 +57,11 @@ signal talk_finished
 
 Place `onready` variables after signals, because we mostly use them to keep track of child nodes this class accesses. Having them at the top of the file makes it easier to keep track of dependencies.
 
+You should always include an explicit type for them: in some cases, Godot can't infer the type directly, and it gives us limited autocompletion when we use these variables.
+
 ```gdscript
-onready var timer : = $Timer
-onready var ysort : = $YSort
+onready var timer : Timer = $Timer
+onready var ysort : YSort = $YSort
 ```
 
 After that enums, constants, and exported variables, in this order. The enums' names should be in `CamelCase` while the values themselves should be in `ALL_CAPS_SNAKE_CASE`. The reason for this order is that exported variables might depends on previously defined enums and constants.
@@ -81,11 +83,12 @@ var tile_size : = 40
 var side_length : = 5 setget _set_side_length, _get_side_length
 ```
 
-Define private and virtual methods, starting with a leading `_`.
+Define private and virtual methods, starting with a leading `_`. Always leave 2 blanks lines between methods to visually distinguish methods and other code blocks.
 
 ```gdscript
 func _init() -> void:
   pass
+
 
 func _process(delta: float) -> void:
   pass
