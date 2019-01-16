@@ -75,15 +75,15 @@ const TARGET_POSITION : = Vector2(2, 56)
 export(int) var number
 ```
 
-Follow enums with member variables. Their names should use `snake_case`. Define setters and getters when properties alter their behavior instead of using methods to access them. They should start with an `_` to indicate these are private methods, and use the names `_set_variable_name`, `_get_variable_name`.
+Follow enums with member variables. Their names should use `snake_case`. Define setters and getters when properties alter their behavior instead of using methods to access them.
 
 ```gdscript
 var animation_length : = 1.5
 var tile_size : = 40
-var side_length : = 5 setget _set_side_length, _get_side_length
+var side_length : = 5 setget set_side_length, get_side_length
 ```
 
-Define private and virtual methods, starting with a leading `_`. Always leave 2 blanks lines between methods to visually distinguish methods and other code blocks.
+Define virtual methods from Godot (those starting with a leading `_`, e.g. `_ready`). Always leave 2 blanks lines between methods to visually distinguish methods and other code blocks.
 
 ```gdscript
 func _init() -> void:
@@ -94,7 +94,7 @@ func _process(delta: float) -> void:
   pass
 ```
 
-Then define public methods. Include type hints for variables and the return type.
+Then define public methods. Include type hints for variables and the return type. We don't use private variables as anyone can decide to use them and they show in the autocomplete list. If you want to hide functionality away from the user, have the node delegate the work to one of its children.
 
 You can use a brief docstring, if need be, to describe what the function does and what it returns. To describe the return value in the docstring, start the sentence with `Returns`. Use the present tense and direct voice. See Godot's [documentation writing guidelines](http://docs.godotengine.org/en/latest/community/contributing/docs_writing_guidelines.html) for more information.
 
