@@ -103,6 +103,24 @@ func can_move(cell_coordinates: Vector2) -> bool:
   return grid[cell_coordinates] != TileTypes.WALL
 ```
 
+For signal callbacks, we use Godot's convention,  `_on_NodeName_signal_name`:
+
+```gdscript
+func _on_Quest_started(which : Quest) -> void:
+  ...
+```
+
+If the object connects to itself though, you should remove `NodeName`:
+
+```gdscript
+extends Area2D
+class_name HitBox
+
+
+func _ready() -> void:
+  connect("area_entered", self, "_on_area_entered")
+```
+
 Use `return` only at the beginning and end of functions. If `return` is at the beginning, you can use it as a defense mechanism in an `if` statement.
 
 **Don't** return in the middle of the method. It makes it harder to track returned values. Here's an example of a **clean** and readable method:
