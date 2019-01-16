@@ -125,25 +125,6 @@ Use `return` only at the beginning and end of functions. If `return` is at the b
 
 **Don't** return in the middle of the method. It makes it harder to track returned values. Here's an example of a **clean** and readable method:
 
-<!-- TODO: need to reexamine this function. It isn't a good example or even correct.
-
-```gdscript
-func start_quest(id: String) -> Quest:
-  """
-  Finds the quest corresponding to the `id` in the database and calls its start
-  method.
-  Returns the Quest object so other nodes can connect to its signals.
-  """
-  var quest : = get_quest_from_database(id)
-  if not quest.empty():
-    return null
-  quest.start()
-  return quest
-```
-
-Another example of a function with **good** return statements:
--->
-
 ```gdscript
 func _set_elements(elements: int) -> bool:
   """
