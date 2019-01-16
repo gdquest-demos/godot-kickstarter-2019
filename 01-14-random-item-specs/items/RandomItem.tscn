@@ -2,27 +2,27 @@
 
 [ext_resource path="res://items/RandomItem.gd" type="Script" id=1]
 [ext_resource path="res://assets/weapons/stick.png" type="Texture" id=2]
-[ext_resource path="res://assets/weapons/blue.png" type="Texture" id=3]
-[ext_resource path="res://assets/weapons/green.png" type="Texture" id=4]
+[ext_resource path="res://assets/weapons/green.png" type="Texture" id=3]
+[ext_resource path="res://assets/weapons/blue.png" type="Texture" id=4]
 [ext_resource path="res://interface/item_tooltip/ItemToolTip.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
-"loop": true,
+"loop": false,
 "name": "normal",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "rare",
-"speed": 5.0
+"loop": false,
+"name": "legendary",
+"speed": 0.0
 }, {
 "frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "legendary",
-"speed": 5.0
+"loop": false,
+"name": "rare",
+"speed": 0.0
 } ]
 
 [node name="RandomItem" type="Node2D"]
@@ -30,10 +30,8 @@ script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "normal"
+animation = "legendary"
 
-[node name="Specs" type="Node" parent="."]
-
-[node name="ItemTooltip" parent="." instance=ExtResource( 5 )]
+[node name="Tooltip" parent="." instance=ExtResource( 5 )]
 visible = false
 

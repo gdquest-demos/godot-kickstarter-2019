@@ -1,20 +1,19 @@
 extends Node
 
-onready var spawn_pos : Position2D = $SpawnPos
+onready var anchor : Position2D = $Anchor
+onready var random_item_generator : Node = $RandomItemGenerator
 
-const SWORD_SCENE : = preload("res://items/Sword.tscn")
-
-var last_item
 
 func _ready() -> void:
-	_create_new_item(SWORD_SCENE)
+	randomize()
 
-func _create_new_item(scene : PackedScene) -> void:
-	if last_item:
-		last_item.queue_free()
+
+func replace_item():
+	var new_item : RandomItem = random_item_generator.generate_item()
 	yield(get_tree(), "idle_frame")
-	last_item = scene.instance()
-	spawn_pos.add_child(last_item)
+	anchor.replace_child(new_item)
+	new_item.show()
 
-func _on_GenerateItem_pressed():
-	_create_new_item(SWORD_SCENE)
+
+func _on_GenerateItemButton_pressed() -> void:
+	replace_item()

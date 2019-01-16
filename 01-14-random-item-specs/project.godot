@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://items/rarities/ItemRarity.gd"
 }, {
+"base": "Node2D",
+"class": "RandomItem",
+"language": "GDScript",
+"path": "res://items/RandomItem.gd"
+}, {
 "base": "Node",
 "class": "Spec",
 "language": "GDScript",
@@ -26,6 +31,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ItemRarity": "",
+"RandomItem": "",
 "Spec": "",
 "SpecResource": ""
 }
@@ -36,7 +42,11 @@ config/name="Random Item Specs"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+gdscript/warnings/enable=false
+
 [rendering]
 
-environment/default_clear_color=Color( 0.176471, 0.184314, 0.262745, 1 )
+environment/default_clear_color=Color( 0.682353, 0.8, 0.85098, 1 )
 environment/default_environment="res://default_env.tres"
