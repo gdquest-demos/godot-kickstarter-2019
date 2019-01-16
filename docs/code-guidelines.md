@@ -281,3 +281,38 @@ func choose_action(actor : Battler, targets : Array = []):
     yield(get_tree(), "idle_frame")
     ...
 ```
+
+
+## System Design and Interaction
+
+Often the most difficult part of programming is designing and managing systems. This is especially true in the game development world where we want to push the hardware to the limit, make use of parallelism & concurency, async and pretty much every tool in the box.
+
+*Dynamic Imperative Object Oriented* programming languages such as GDScript are very fast to prototype ideas in, but with this freedom there comes a price. It's very easy to create coupled systems that are hard to debug so we need some high-level guidelines to keep us from doing this. Decoupled systems are really nice because we can test them independently. The hallmark of these types of systems is that they don't care how the data is given to them, they can be viewed as black boxes that are given some data and produce some output (either visually or as return values). They don't know anything about the world outside of themselves and that's what makes them powerful.
+
+So how can we create decoupled systems in Godot?
+
+### The scene tree system
+
+The tree data structure on which Godot builds the main functionality of the engine, through the node system is a recursive data structure. What this means is: if we pick any node in the scene tree, this node together with all its children nodes can be viewed at any point in time as a complete tree in itself, an independent scene.
+
+![](./imgs/scene_tree.png)
+
+In the example above, each node: `Board`, `QuestSystem` etc. can be viewed as a completely separate scene. This gives us the following idea: the implementation should such that, if we try to run the any of the nodes at any depth level as an independent scene we should be able to do it without any errors.
+
+Take the `QuestSystem` for example. If we save it to a separate scene via `Save Branch as Scene`, we should be able to run this scene locally (`F6`) without any problems. It isn't expected to have the same exact behavior as when played as part of the main `Game` scene, because it could very well depend on other data, but it should still run without any errors:
+
+![](./imgs/orpg_quest_system.gif)
+
+*So the key takeaway here is that at each depth level in the scene tree, if we choose to save that tree branch as an independent scene, then we should be able to run it independently without any errors.*
+
+In practice this means that we should never have direct references to specific objects from one system to another. Instead we should rely on a parent node to do the routing of information and on signals. In the above chase, the `Game` node has a script attached to it to route some information between systems, while the systems themselves (eg. `QuestSystem`, `DialogSystem`, etc.) have no idea of the existance of other outside systems.
+
+### Godot signals
+
+Signal in Godot are the [Observer pattern](http://gameprogrammingpatterns.com/observer.html), a very useful tool indeed. Since Godot, like any respectable game engine, comes with all sorts of systems: physics, rendering, input etc. that run in multiple threads in parallel to squeeze every bit of hardware resource available, there's often times when direct function calls aren't the right way to intract with objects.
+
+But not just that. Say we have an animation that has random time speeds, so some times it finishes after 1 second, another time after 1.2 seconds etc. If we want to implement a behavior triggered when animation finishes it would be impossible if we didn't have a way to pass information around via signals.
+
+*So rely on signals when orchestrating time-dependent interactions.*
+
+In practice it's difficult to know exactly when to use functions and when to use signals, it can be a bit of trial & error loop, but with time and practice managing information passing will get easier.
