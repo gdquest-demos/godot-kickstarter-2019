@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://crafting/CraftingStation.gd" type="Script" id=1]
+[ext_resource path="res://crafting/items/IronIngot.tres" type="Resource" id=2]
+
+[node name="CraftingStation" type="Node"]
+script = ExtResource( 1 )
+craftable_items = [ ExtResource( 2 ) ]
+
