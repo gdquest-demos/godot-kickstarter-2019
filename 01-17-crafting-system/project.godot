@@ -13,15 +13,9 @@ _global_script_classes=[ {
 "class": "CraftingStation",
 "language": "GDScript",
 "path": "res://crafting/CraftingStation.gd"
-}, {
-"base": "Resource",
-"class": "Item",
-"language": "GDScript",
-"path": "res://crafting/items/Item.gd"
 } ]
 _global_script_class_icons={
-"CraftingStation": "",
-"Item": ""
+"CraftingStation": ""
 }
 
 [application]
