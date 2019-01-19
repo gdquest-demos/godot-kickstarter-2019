@@ -6,30 +6,29 @@ onready var sprite : Sprite = $Sprite
 
 export var move_speed : = 150.0
 export var jump_force : = 200.0
-export var acceleration : = 5.0
 export var gravity : = 25.0
 
-var movement_vector : = Vector2()
+var velocity : = Vector2()
 
 
 func _physics_process(delta : float) -> void:
-	var motion : = Vector2()
-	motion.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	
-	movement_vector.x = lerp(movement_vector.x, motion.x * move_speed, acceleration * delta)
-	
-	if not is_on_floor():
-		movement_vector.y += gravity
-	elif Input.get_action_strength("jump") != 0:
-		movement_vector.y = -jump_force
-	
-	_set_animation()
-	move_and_slide(movement_vector, Vector2(0, -1))
+	var direction : = Vector2()
+	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	velocity.x = move_speed * direction.x
 
-func _set_animation() -> void:
-	if abs(movement_vector.x) < 8:
+	if not is_on_floor():
+		velocity.y += gravity
+	elif Input.get_action_strength("jump") != 0:
+		velocity.y = -jump_force
+	
+	move_and_slide(velocity, Vector2(0, -1))
+	update_animation()
+
+
+func update_animation() -> void:
+	if abs(velocity.x) < 8 and animation_player.current_animation == "run":
 		animation_player.play("idle")
 	else:
+		sprite.flip_h = velocity.x < 0
 		if animation_player.current_animation != "run":
 			animation_player.play("run")
-		sprite.flip_h = movement_vector.x < 0
