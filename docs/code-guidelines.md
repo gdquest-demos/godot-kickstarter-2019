@@ -264,9 +264,9 @@ In this example, the code involves transforming and multiplying matrices to calc
 ```gdscript
 func drag_to(event_position: Vector2) -> void:
   # Calculate the position of the mouse cursor relative to the RectExtents' center
-  var viewport_transform_inv := rect_extents.get_viewport().get_global_canvas_transform().affine_inverse()
+  var viewport_transform_inverse := rect_extents.get_viewport().get_global_canvas_transform().affine_inverse()
   var viewport_position: Vector2 = viewport_transform_inv.xform(event_position)
-  var transform_inv := rect_extents.get_global_transform().affine_inverse()
+  var transform_inverse := rect_extents.get_global_transform().affine_inverse()
   var target_position : Vector2 = transform_inv.xform(viewport_position.round())
 ```
 
@@ -307,7 +307,7 @@ If we save `QuestSystem` using `Save Branch as Scene`, we should be able to run 
 
 ![](./imgs/orpg_quest_system.gif)
 
-In general, if we try to run the any of the nodes at any depth level as an independent scene we should be able to do it without any errors.
+In general, if we try to run any of the nodes at any depth level as an independent scene we should be able to do it without any errors.
 
 To do so you should never have direct references to specific objects from another system. Instead, you should rely on a parent node to route information and let the system connect to others via signals.
 
