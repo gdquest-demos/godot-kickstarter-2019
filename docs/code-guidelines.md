@@ -174,7 +174,7 @@ You can use other values to initialize variables of certain types. For example, 
 
 We use optional static typing with GDscript.
 
-At the time of writing, static GDScript typing doesn't provide any perofrmance boosts or any other compiler features yet. But it does bring better code completion and better error reporting and warnings, which are good improvements over dynamically typed GDScript. In the future, it should bring performance improvements as well.
+At the time of writing, static GDScript typing doesn't provide any performance boosts or any other compiler features yet. But it does bring better code completion and better error reporting and warnings, which are good improvements over dynamically typed GDScript. In the future, it should bring performance improvements as well.
 
 Be sure to check [Static typing in GDScript](http://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/static_typing.html) to get started with this language feature.
 
