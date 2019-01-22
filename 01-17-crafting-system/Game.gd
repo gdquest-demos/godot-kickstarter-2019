@@ -22,9 +22,15 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func craft_item():
+	var items_and_inventory : = crafting_station.craft(get_dict_from_json("res://crafting/items/SimpleSword.json"), inventory, 1)
+	inventory = items_and_inventory.inventory
+	pivot.add_child(items_and_inventory.items[0])
+	text_box.update_text(inventory)
+
+
+func get_dict_from_json(path : String) -> Dictionary:
 	var file = File.new()
-	file.open("res://crafting/items/Scimitar.json", file.READ)
+	file.open(path, file.READ)
 	var item = parse_json(file.get_as_text())
 	file.close()
-	pivot.add_child(crafting_station.craft(item, inventory, 1)[0])
-	text_box.update_text(inventory)
+	return item
