@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://player/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/robi.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/godette.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+extents = Vector2( 66.1447, 86.7697 )
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "player_two",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "player_one",
+"speed": 5.0
+} ]
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 247.187, 192.071 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+move_speed = 500.0
+player_two = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 2 )
+animation = "player_one"
+
