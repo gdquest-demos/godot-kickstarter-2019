@@ -6,17 +6,17 @@ Inventories are dictionaries: the keys represent items, and the amount available
 """
 
 
-func can_craft(item_to_craft : Dictionary, inventory : Dictionary, amount : int = 1) -> bool:
+func can_craft(item : Dictionary, inventory : Dictionary, amount : int = 1) -> bool:
 	"""
 	Returns true if a certain item can be crafted based on the inventory's content
 	"""
 	var can_craft : = true
-	if amount < 1 or item_to_craft.recipe.empty() or not inventory.has_all(item_to_craft.recipe.keys()):
+	if amount < 1 or item.recipe.empty() or not inventory.has_all(item.recipe.keys()):
 		can_craft = false
 	else:
-		var item_adjusted : = adjust_item_recipe(item_to_craft, amount)
-		for item in item_to_craft.recipe:
-			if item_adjusted.recipe[item] > inventory[item]:
+		var adjusted_item : = adjust_item_recipe(item, amount)
+		for ingredient in item.recipe:
+			if adjusted_item.recipe[ingredient] > inventory[ingredient]:
 				can_craft = false
 				break
 	return can_craft
@@ -26,7 +26,7 @@ func adjust_item_recipe(item : Dictionary, amount : int) -> Dictionary:
 	"""
 	Returns a new item with an adjusted recipe based on the amount of items to craft
 	"""
-	var adjusted_item : = item.duplicate()
+	var adjusted_item : = item.duplicate(true)
 	if amount > 1:
 		for ingredient in adjusted_item.recipe:
 			adjusted_item.recipe[ingredient] *= amount
@@ -41,7 +41,7 @@ func craft(item : Dictionary, inventory: Dictionary, amount : int = 1) -> Dictio
 	if amount < 0 or not can_craft(item, inventory, amount):
 		return { }
 	var crafted_items : = []
-	for i in amount :
+	for i in amount:
 		crafted_items.append(load(item.scene).instance())
 	var items_and_inventory = { 
 		"items": crafted_items,
@@ -52,13 +52,14 @@ func craft(item : Dictionary, inventory: Dictionary, amount : int = 1) -> Dictio
 
 func use(item : Dictionary, inventory: Dictionary, amount : int = 1) -> Dictionary:
 	"""
-	Removes the items required to craft items from in the inventory
+	Creates and returns a new inventory with used up resources required to craft item
 	"""
 	var used_inventory = inventory.duplicate()
-	if not inventory.has_all(item.recipe.keys()):
+	var ajusted_recipe = adjust_item_recipe(item, amount).recipe
+	if not inventory.has_all(ajusted_recipe.keys()):
 		return used_inventory
-	for ingredient in item.recipe:
-		used_inventory[ingredient] -= item.recipe[ingredient]
+	for ingredient in ajusted_recipe.keys():
+		used_inventory[ingredient] -= ajusted_recipe[ingredient]
 		if used_inventory[ingredient] == 0:
 			used_inventory.erase(ingredient)
 	return used_inventory
