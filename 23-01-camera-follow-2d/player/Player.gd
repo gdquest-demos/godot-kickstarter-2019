@@ -12,13 +12,15 @@ var actions : = {
 	"move_right": "move_right",
 }
 
+
 func _ready() -> void:
 	if player_two:
 		animated_sprite.play("player_two")
 		for action in actions:
 			actions[action] += "_2"
 
-func _physics_process(delta : float) -> void:
+
+func _physics_process(delta: float) -> void:
 	var motion : = Vector2()
 	motion.x = int(Input.get_action_strength(actions.move_right)) - int(Input.get_action_strength(actions.move_left))
 	motion.y = int(Input.get_action_strength(actions.move_down)) - int(Input.get_action_strength(actions.move_up))
