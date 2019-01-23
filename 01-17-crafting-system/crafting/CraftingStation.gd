@@ -6,7 +6,7 @@ Inventories are dictionaries: the keys represent items, and the amount available
 """
 
 
-func can_craft(item : Dictionary, inventory : Dictionary, amount : int = 1) -> bool:
+func can_craft(item: Dictionary, inventory: Dictionary, amount: int = 1) -> bool:
 	"""
 	Returns true if a certain item can be crafted based on the inventory's content
 	"""
@@ -22,7 +22,7 @@ func can_craft(item : Dictionary, inventory : Dictionary, amount : int = 1) -> b
 	return can_craft
 
 
-func adjust_item_recipe(item : Dictionary, amount : int) -> Dictionary:
+func adjust_item_recipe(item: Dictionary, amount: int) -> Dictionary:
 	"""
 	Returns a new item with an adjusted recipe based on the amount of items to craft
 	"""
@@ -33,7 +33,7 @@ func adjust_item_recipe(item : Dictionary, amount : int) -> Dictionary:
 	return adjusted_item
 
 
-func craft(item : Dictionary, inventory: Dictionary, amount : int = 1) -> Dictionary:
+func craft(item: Dictionary, inventory: Dictionary, amount: int = 1) -> Dictionary:
 	"""
 	Crafts the amount of items and consumes the required material from the inventory
 	Returns the newly created items and an updated inventory
@@ -50,7 +50,7 @@ func craft(item : Dictionary, inventory: Dictionary, amount : int = 1) -> Dictio
 	return items_and_inventory
 
 
-func use(item : Dictionary, inventory: Dictionary, amount : int = 1) -> Dictionary:
+func use(item: Dictionary, inventory: Dictionary, amount: int = 1) -> Dictionary:
 	"""
 	Creates and returns a new inventory with used up resources required to craft item
 	"""

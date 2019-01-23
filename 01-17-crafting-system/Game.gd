@@ -33,7 +33,7 @@ func craft_item():
 	notifier.text = "Crafted %s item(s)" % items_and_inventory.items.size()
 
 
-func get_dict_from_json(path : String) -> Dictionary:
+func get_dict_from_json(path: String) -> Dictionary:
 	var file = File.new()
 	file.open(path, file.READ)
 	var item = JSON.parse(file.get_as_text()).result
