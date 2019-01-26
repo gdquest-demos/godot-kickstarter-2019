@@ -1,0 +1,209 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://theme/gdquest.theme" type="Theme" id=1]
+[ext_resource path="res://components/Title.tscn" type="PackedScene" id=2]
+
+[node name="Styleguide" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 848.0
+margin_bottom = 512.0
+
+[node name="Column" type="VBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = -32.0
+margin_bottom = -32.0
+
+[node name="Title3" parent="Panel/Column" instance=ExtResource( 2 )]
+margin_top = 0.0
+margin_bottom = 31.0
+text = "Styleguide"
+
+[node name="Label" type="Label" parent="Panel/Column"]
+margin_top = 39.0
+margin_right = 752.0
+margin_bottom = 62.0
+text = "Normal paragraph text"
+
+[node name="Row" type="HBoxContainer" parent="Panel/Column"]
+margin_top = 70.0
+margin_right = 752.0
+margin_bottom = 110.0
+
+[node name="Button" type="Button" parent="Panel/Column/Row"]
+margin_right = 245.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+text = "Button"
+
+[node name="Button2" type="Button" parent="Panel/Column/Row"]
+margin_left = 253.0
+margin_right = 498.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+text = "Button"
+
+[node name="Button3" type="Button" parent="Panel/Column/Row"]
+margin_left = 506.0
+margin_right = 752.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+text = "Button"
+
+[node name="HSeparator" type="HSeparator" parent="Panel/Column"]
+margin_top = 118.0
+margin_right = 752.0
+margin_bottom = 122.0
+
+[node name="Title" parent="Panel/Column" instance=ExtResource( 2 )]
+margin_top = 130.0
+margin_bottom = 161.0
+
+[node name="Label2" type="Label" parent="Panel/Column"]
+margin_top = 169.0
+margin_right = 752.0
+margin_bottom = 192.0
+text = "Background"
+
+[node name="Row2" type="HBoxContainer" parent="Panel/Column"]
+margin_top = 200.0
+margin_right = 752.0
+margin_bottom = 240.0
+
+[node name="Color" type="ColorRect" parent="Panel/Column/Row2"]
+margin_right = 372.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+color = Color( 0, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="Panel/Column/Row2/Color"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_bottom = -1.0
+text = "Dark"
+valign = 1
+
+[node name="Color2" type="ColorRect" parent="Panel/Column/Row2"]
+margin_left = 380.0
+margin_right = 752.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+color = Color( 0.301961, 0.294118, 0.321569, 1 )
+
+[node name="Label" type="Label" parent="Panel/Column/Row2/Color2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_bottom = -1.0
+text = "Faint"
+valign = 1
+
+[node name="Label3" type="Label" parent="Panel/Column"]
+margin_top = 248.0
+margin_right = 752.0
+margin_bottom = 271.0
+text = "Theme"
+
+[node name="Row4" type="HBoxContainer" parent="Panel/Column"]
+margin_top = 279.0
+margin_right = 752.0
+margin_bottom = 319.0
+
+[node name="Color" type="ColorRect" parent="Panel/Column/Row4"]
+margin_right = 372.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+color = Color( 0.0352941, 0.65098, 0.792157, 1 )
+
+[node name="Label" type="Label" parent="Panel/Column/Row4/Color"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_bottom = -1.0
+text = "Primary"
+valign = 1
+
+[node name="Color2" type="ColorRect" parent="Panel/Column/Row4"]
+margin_left = 380.0
+margin_right = 752.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+color = Color( 0, 0.27451, 1, 1 )
+
+[node name="Label" type="Label" parent="Panel/Column/Row4/Color2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_bottom = -1.0
+text = "Secondary"
+valign = 1
+
+[node name="Row3" type="HBoxContainer" parent="Panel/Column"]
+editor/display_folded = true
+margin_top = 327.0
+margin_right = 752.0
+margin_bottom = 367.0
+
+[node name="Color" type="ColorRect" parent="Panel/Column/Row3"]
+margin_right = 245.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+color = Color( 0.172549, 0.713726, 0.219608, 1 )
+
+[node name="Label" type="Label" parent="Panel/Column/Row3/Color"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+text = "Success"
+valign = 1
+
+[node name="Color2" type="ColorRect" parent="Panel/Column/Row3"]
+margin_left = 253.0
+margin_right = 498.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+color = Color( 1, 0.607843, 0, 1 )
+
+[node name="Label" type="Label" parent="Panel/Column/Row3/Color2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+text = "Warning"
+valign = 1
+
+[node name="Color3" type="ColorRect" parent="Panel/Column/Row3"]
+margin_left = 506.0
+margin_right = 752.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+color = Color( 1, 0, 0.305882, 1 )
+
+[node name="Label" type="Label" parent="Panel/Column/Row3/Color3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+text = "Error"
+valign = 1
+

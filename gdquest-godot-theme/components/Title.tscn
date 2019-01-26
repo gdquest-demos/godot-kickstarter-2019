@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://theme/fonts/title.tres" type="DynamicFont" id=1]
+
+[node name="Title" type="Label"]
+margin_top = 118.0
+margin_right = 752.0
+margin_bottom = 149.0
+custom_fonts/font = ExtResource( 1 )
+text = "Color palette"
+
