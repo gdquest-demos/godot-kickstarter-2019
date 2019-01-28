@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://theme/gdquest.theme" type="Theme" id=1]
-[ext_resource path="res://components/Title.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Components/Title.tscn" type="PackedScene" id=2]
 
 [node name="Styleguide" type="Control"]
 anchor_right = 1.0
@@ -28,9 +28,9 @@ margin_bottom = -32.0
 [node name="Title3" parent="Panel/Column" instance=ExtResource( 2 )]
 margin_top = 0.0
 margin_bottom = 31.0
-text = "Styleguide"
+text = "Visual Reference"
 
-[node name="Label" type="Label" parent="Panel/Column"]
+[node name="Label4" type="Label" parent="Panel/Column"]
 margin_top = 39.0
 margin_right = 752.0
 margin_bottom = 62.0
@@ -206,4 +206,53 @@ anchor_bottom = 1.0
 margin_left = 16.0
 text = "Error"
 valign = 1
+
+[node name="Panel2" type="Panel" parent="."]
+margin_left = 880.0
+margin_top = 32.0
+margin_right = 1696.0
+margin_bottom = 512.0
+
+[node name="Column" type="VBoxContainer" parent="Panel2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = -32.0
+margin_bottom = -32.0
+
+[node name="Title3" parent="Panel2/Column" instance=ExtResource( 2 )]
+margin_top = 0.0
+margin_bottom = 31.0
+text = "Styleguide"
+
+[node name="Label3" type="Label" parent="Panel2/Column"]
+margin_top = 39.0
+margin_right = 752.0
+margin_bottom = 140.0
+text = "The project contains reusable UI components to create in-game debug tools efficiently.
+We're designing these tools both for debugging purposes and to visualize information for tutorials."
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="Panel2/Column"]
+margin_top = 148.0
+margin_right = 752.0
+margin_bottom = 152.0
+
+[node name="Title4" parent="Panel2/Column" instance=ExtResource( 2 )]
+margin_top = 160.0
+margin_bottom = 191.0
+text = "Design Principles"
+
+[node name="Label2" type="RichTextLabel" parent="Panel2/Column"]
+margin_top = 199.0
+margin_right = 752.0
+margin_bottom = 339.0
+rect_min_size = Vector2( 0, 140 )
+bbcode_enabled = true
+bbcode_text = "- [b]Simple[/b] and sober. We're going for a flat design that doesn't draw too much attention away from what's happening in the game.
+- [b]Informative[/b]. Colors, shape, and animations should be intentional and convey meaning."
+text = "- Simple and sober. We're going for a flat design that doesn't draw too much attention away from what's happening in the game.
+- Informative. Colors, shape, and animations should be intentional and convey meaning."
+scroll_active = false
 
