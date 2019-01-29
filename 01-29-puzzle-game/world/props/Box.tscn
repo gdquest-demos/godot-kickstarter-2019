@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://world/props/Box.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/sokoban_tilesheet.png" type="Texture" id=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id=2]
+
+extents = Vector2( 31.9014, 32.0195 )
+
+[node name="Box" type="RigidBody2D"]
+editor/display_folded = true
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+linear_damp = 63.55
+angular_damp = 0.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 448, 0, 64, 64 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
