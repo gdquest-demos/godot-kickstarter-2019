@@ -5,9 +5,11 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 
-extents = Vector2( 31.9014, 32.0195 )
+extents = Vector2( 31, 31 )
 
 [node name="Box" type="KinematicBody2D"]
+z_index = 1
+z_as_relative = false
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -13,9 +13,21 @@ _global_script_classes=[ {
 "class": "Box",
 "language": "GDScript",
 "path": "res://world/props/Box.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "GridBox",
+"language": "GDScript",
+"path": "res://world/props/grid_box/GridBox.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "PhysicsBox",
+"language": "GDScript",
+"path": "res://world/props/physics_box/PhysicsBox.gd"
 } ]
 _global_script_class_icons={
-"Box": ""
+"Box": "",
+"GridBox": "",
+"PhysicsBox": ""
 }
 
 [application]

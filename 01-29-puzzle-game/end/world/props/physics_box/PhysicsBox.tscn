@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://world/props/Box.tscn" type="PackedScene" id=1]
+[ext_resource path="res://world/props/physics_box/PhysicsBox.gd" type="Script" id=2]
+
+
+[node name="PhysicsBox" instance=ExtResource( 1 )]
+z_index = 0
+script = ExtResource( 2 )
+

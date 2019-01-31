@@ -3,4 +3,4 @@ class_name Box
 
 
 func push(velocity: Vector2) -> void:
-	move_and_slide(velocity, Vector2())
+	print("Push not implemented in %s" % filename)
