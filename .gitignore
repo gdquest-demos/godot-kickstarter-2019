@@ -6,6 +6,9 @@ export_presets.cfg
 # Mono-specific ignores
 .mono/
 
+# docs raw image files
+docs/imgs/raw
+
 # extra regular files
 .*
 *~
