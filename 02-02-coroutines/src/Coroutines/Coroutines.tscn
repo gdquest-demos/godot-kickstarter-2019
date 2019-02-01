@@ -1,0 +1,176 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/Coroutines/Coroutines.gd" type="Script" id=1]
+[ext_resource path="res://src/theme/gdquest.theme" type="Theme" id=2]
+[ext_resource path="res://src/Components/Title.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Components/Label.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/theme/fonts/Montserrat-Medium.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://src/theme/icons/play.svg" type="Texture" id=6]
+[ext_resource path="res://src/theme/icons/stop.svg" type="Texture" id=7]
+[ext_resource path="res://src/Coroutines/Character.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 26
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Label
+
+func _on_CoroutineExample_items_updated(items) -> void:
+	var string : = \"\"
+	for key in items:
+		string += \"%s: %s\" % [key, items[key]]
+		string += \"\\n\"
+	text = string
+"
+
+[node name="Coroutines" type="Node"]
+
+[node name="CoroutineExample" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="Interface" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -505.0
+margin_top = -315.0
+margin_right = 505.0
+margin_bottom = 315.0
+theme = ExtResource( 2 )
+
+[node name="Column" type="VBoxContainer" parent="Interface"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = -30.0
+margin_bottom = -30.0
+
+[node name="Row" type="HBoxContainer" parent="Interface/Column"]
+margin_right = 950.0
+margin_bottom = 570.0
+size_flags_vertical = 3
+
+[node name="Column" type="VBoxContainer" parent="Interface/Column/Row"]
+margin_right = 387.0
+margin_bottom = 570.0
+size_flags_horizontal = 3
+
+[node name="Title2" parent="Interface/Column/Row/Column" instance=ExtResource( 3 )]
+margin_right = 387.0
+margin_bottom = 39.0
+text = "INVENTORY"
+
+[node name="Label" parent="Interface/Column/Row/Column" instance=ExtResource( 4 )]
+margin_top = 47.0
+margin_right = 387.0
+margin_bottom = 570.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "Empty"
+script = SubResource( 2 )
+
+[node name="VSeparator" type="VSeparator" parent="Interface/Column/Row"]
+margin_left = 395.0
+margin_right = 399.0
+margin_bottom = 570.0
+
+[node name="Column2" type="VBoxContainer" parent="Interface/Column/Row"]
+margin_left = 407.0
+margin_right = 950.0
+margin_bottom = 570.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.4
+
+[node name="TextEdit" type="TextEdit" parent="Interface/Column/Row/Column2"]
+margin_right = 543.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 0, 400 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.2
+text = "func coroutine_example() -> void:
+	while active:
+		yield(get_tree().create_timer(1.0), \"timeout\")
+		items['potion'] += 1
+		emit_signal('items_updated', items)"
+syntax_highlighting = true
+show_line_numbers = true
+highlight_all_occurrences = true
+
+[node name="Row" type="HBoxContainer" parent="Interface/Column/Row/Column2"]
+margin_top = 408.0
+margin_right = 543.0
+margin_bottom = 468.0
+rect_min_size = Vector2( 0, 60 )
+
+[node name="PlayButton" type="Button" parent="Interface/Column/Row/Column2/Row"]
+margin_right = 267.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Interface/Column/Row/Column2/Row/PlayButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.5
+margin_top = -20.0
+margin_right = 40.5
+margin_bottom = 20.0
+custom_constants/separation = 0
+
+[node name="media-stop" type="TextureRect" parent="Interface/Column/Row/Column2/Row/PlayButton/HBoxContainer"]
+margin_right = 31.0
+margin_bottom = 40.0
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Interface/Column/Row/Column2/Row/PlayButton/HBoxContainer"]
+margin_left = 31.0
+margin_top = 4.0
+margin_right = 78.0
+margin_bottom = 35.0
+text = "Play"
+
+[node name="StopButton" type="Button" parent="Interface/Column/Row/Column2/Row"]
+margin_left = 275.0
+margin_right = 543.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Interface/Column/Row/Column2/Row/StopButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -54.0
+margin_top = -20.0
+margin_right = 34.0
+margin_bottom = 20.0
+
+[node name="media-stop" type="TextureRect" parent="Interface/Column/Row/Column2/Row/StopButton/HBoxContainer"]
+margin_right = 31.0
+margin_bottom = 40.0
+texture = ExtResource( 7 )
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Interface/Column/Row/Column2/Row/StopButton/HBoxContainer"]
+margin_left = 39.0
+margin_top = 4.0
+margin_right = 88.0
+margin_bottom = 35.0
+text = "Stop"
+align = 1
+
+[node name="Character" parent="." instance=ExtResource( 8 )]
+position = Vector2( 220, 250 )
+
+[connection signal="items_updated" from="CoroutineExample" to="Interface/Column/Row/Column/Label" method="_on_CoroutineExample_items_updated"]
+[connection signal="pressed" from="Interface/Column/Row/Column2/Row/PlayButton" to="CoroutineExample" method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="Interface/Column/Row/Column2/Row/StopButton" to="CoroutineExample" method="_on_StopButton_pressed"]
