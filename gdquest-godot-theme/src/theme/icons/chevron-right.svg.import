@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chevron-up.svg-244089025e44968e09eb6cad69f001e6.stex"
+path="res://.import/chevron-right.svg-b2ec0b431673923946cca3d455a5ba5e.stex"
 
 [deps]
 
-source_file="res://theme/icons/chevron-up.svg"
-dest_files=[ "res://.import/chevron-up.svg-244089025e44968e09eb6cad69f001e6.stex" ]
+source_file="res://src/theme/icons/chevron-right.svg"
+dest_files=[ "res://.import/chevron-right.svg-b2ec0b431673923946cca3d455a5ba5e.stex" ]
 
 [params]
 

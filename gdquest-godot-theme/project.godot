@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GDquest Godot Theme"
+run/main_scene="res://Styleguide.tscn"
 config/icon="res://icon.png"
 
 [display]
