@@ -63,9 +63,6 @@ tracks/0/keys = {
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 1 )
-move_speed = 250.0
-jump_force = 400.0
-gravity = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -84,10 +81,6 @@ playing = true
 anims/hit = SubResource( 4 )
 
 [node name="Shield" parent="." instance=ExtResource( 15 )]
-position = Vector2( -28.8836, 9.07938 )
-
-[node name="InvencibleTimer" type="Timer" parent="."]
-wait_time = 0.25
-one_shot = true
+position = Vector2( 28.884, 9.079 )
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]

@@ -1,33 +1,34 @@
 extends KinematicBody2D
 class_name Player
 
-onready var invencible_timer : Timer = $InvencibleTimer
 onready var animated_sprite : AnimatedSprite = $AnimatedSprite
 onready var animation_player : AnimationPlayer = $AnimationPlayer
 onready var shield : Node2D = $Shield
 
-export var move_speed : = 150.0
-export var jump_force : = 200.0
-export var gravity : = 25.0
+export var move_speed : = 300.0
+export var blocking_speed : = 150.0
+export var jump_force : = 500.0
+export var gravity : = 30.0
 
 var velocity : = Vector2()
 var blocking : = false
+var current_speed : = move_speed
 
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("defend"):
-		shield.appear(not animated_sprite.flip_h)
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("defend"):
 		blocking = true
-		move_speed *= 0.5
-	elif Input.is_action_just_released("defend"):
-		shield.disappear()
+		shield.visible = true
+		current_speed = blocking_speed
+	elif event.is_action_released("defend"):
 		blocking = false
-		move_speed *= 2
+		shield.visible = false
+		current_speed = move_speed
 
 
 func _physics_process(delta: float) -> void:
 	var direction : = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	velocity.x = move_speed * direction
+	velocity.x = current_speed * direction
 
 	if not is_on_floor():
 		velocity.y += gravity
@@ -36,11 +37,6 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide(velocity, Vector2.UP)
 	update_animation()
-
-
-func _on_HitBox_body_entered(body: PhysicsBody2D) -> void:
-	if body is Enemy:
-		take_damage(body.global_position)
 
 
 func update_animation() -> void:
@@ -61,18 +57,18 @@ func update_animation() -> void:
 		animated_sprite.flip_h = velocity.x < 0
 
 
-func take_damage(hit_origin: Vector2) -> void:
+func take_damage(attacker: Node2D) -> bool:
 	"""
 	Checks if the player can take damage and plays correct animations
 	"""
-	if not invencible_timer.is_stopped():
-		return
+	if blocking and is_shield_facing(attacker.global_position):
+		return false
 	
-	if blocking:
-		if global_position.x > hit_origin.x and shield.global_position.x < global_position.x:
-			return
-		if global_position.x < hit_origin.x and shield.global_position.x > global_position.x:
-			return
-	
-	invencible_timer.start()
 	animation_player.play("hit")
+	return true
+
+
+func is_shield_facing(hit_position: Vector2) -> bool:
+	var shield_direction : = sign(shield.global_position.x - global_position.x)
+	var hit_direction : = sign(global_position.x - hit_position.x)
+	return shield_direction != hit_direction

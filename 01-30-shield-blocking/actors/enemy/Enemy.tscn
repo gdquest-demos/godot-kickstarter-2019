@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemies/slimeWalk1.png" type="Texture" id=2]
@@ -28,6 +28,10 @@ extents = Vector2( 25.0098, 13.5762 )
 
 extents = Vector2( 175.601, 10 )
 
+[sub_resource type="RectangleShape2D" id=4]
+
+extents = Vector2( 32.2083, 10 )
+
 [node name="Enemy" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
@@ -46,4 +50,10 @@ script = ExtResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource( 3 )
 
+[node name="DamageBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBox"]
+shape = SubResource( 4 )
+
 [connection signal="player_found" from="DetectionArea" to="." method="_on_DetectionArea_player_found"]
+[connection signal="body_entered" from="DamageBox" to="." method="_on_DamageBox_body_entered"]
