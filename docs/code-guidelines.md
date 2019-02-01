@@ -302,7 +302,7 @@ We need some high-level guidelines to avoid producing coupled code. We can test 
 
 ### Every node and scene should run on its own
 
-**If we choose to save a branch as a scene, we should be able to run it on its own without any errors**. This is the golden rule to foolow. This behavior should be atainable at each level in the scene tree.
+**If we choose to save a branch as a scene, we should be able to run it on its own without any errors**. This is the golden rule to follow. This behavior should be attainable at each level in the scene tree.
 
 Godot's main functionality relies on its node tree, a recursive data structure: if we pick any node in the tree, this node, together with all of its children, is a complete tree in itself. You can see and think about it as an independent scene.
 
@@ -332,7 +332,7 @@ In the example above, the `Game` node has a script attached to it. This script s
 
 Godot's signals are the [Observer pattern](http://gameprogrammingpatterns.com/observer.html), a very useful tool that allows one node to react to a change in another, without storing it or having a direct reference to it.
 
-Godot comes with many systems like physics, rendering, or input that run in parallel threads to squeeze every bit of hardware resource available. Oftentimes direct function calls aren't the right way to intract with objects.
+Godot comes with many systems like physics, rendering, or input that run in parallel threads to squeeze every bit of hardware resource available. Oftentimes direct function calls aren't the right way to interact with objects.
 
 Also, we can't always predict when an event will occur. Say we have an animation with a random or a varying duration. Sometimes it ends after 1 second, sometimes after 1.2 seconds. Signals allow us to react to the animation right when it finishes, regardless of its duration.
 
@@ -343,7 +343,7 @@ So **rely on signals when orchestrating time-dependent interactions.**
 
 ### Reinforcing good habbit
 
-Through GDScript, Godot prefers a coding style that is loose and free of any burden. This can quickly lead to spagetti code since there's no mechanism by which Godot enforces nodes/scenes to be isolated. So it's up to us to keep track and implement this isolation.
+Through GDScript, Godot prefers a coding style that is loose and free of any burden. This can quickly lead to spaghetti code since there's no mechanism by which Godot enforces nodes/scenes to be isolated. So it's up to us to keep track and implement this isolation.
 
 <a name="fig3"></a>
 ![](./imgs/node_closeup.png)
@@ -363,14 +363,14 @@ It's very easy to imagine how even a simple scene tree like the one in [Fig. 4] 
 
 Fig. 4: _A relatively simple depiction of a Godot scene tree. The highlighted part represents a completely independent scene_
 
-The following are some good tips to keep in mind and try to follow whenver possible.
+The following are some good tips to keep in mind and try to follow whenever possible.
 
 We alredy went through this, but just to reinforce it even more - scenes should be independent and at any moment in our game development, if we choose to save a part of the node tree as a scene, **it should run by itself without any errors** (<kbd>F6</kbd>)
 
 <!-- TODO: show a concrete example -->
-Minimize changing the state of child nodes/scenes from parent nodes, unless the scene we're working with is logically built that way. For example, in [Fig. 4], in the highlighted node tree we see that the children nodes hold just data, but no custom behaviors that alters their state. The parent node in this case can access and poatentially change the state of its children. In this case, the entire scene can be viewed from the outseide like a black-box. All changes go through the parent node, with no direct access to the child nodes.
+Minimize changing the state of child nodes/scenes from parent nodes, unless the scene we're working with is logically built that way. For example, in [Fig. 4], in the highlighted node tree we see that the children nodes hold just data, but no custom behaviors that alters their state. The parent node in this case can access and potentially change the state of its children. In this case, the entire scene can be viewed from the outside like a black-box. All changes go through the parent node, with no direct access to the child nodes.
 
-The idea of the black-box node/scene is more general. We should always strive to enfroce it whenever possible. It's more strict than the simple idea of having independent scenes that can always run on their own. Scenes that are decoupled in this way, can still have their inner state be accessed by parent nodes and changed at run-time.
+The idea of the black-box node/scene is more general. We should always strive to enforce it whenever possible. It's more strict than the simple idea of having independent scenes that can always run on their own. Scenes that are decoupled in this way, can still have their inner state be accessed by parent nodes and changed at run-time.
 
 With the black-box, we extend this rule and strive not to change the state of child nodes/scenes from parent nodes or other systems except through signals.
 
@@ -446,7 +446,7 @@ func get_party_destination(path: Array) -> Vector2:
   return destination
 ```
 
-In the example above, reading through `party_command` withouth looking at the implementation of other functions we already have a pretty good idea about what it does. That's because we divided up the implementation into smaller functions and giving expressive names to these functions.
+In the example above, reading through `party_command` without looking at the implementation of other functions we already have a pretty good idea about what it does. That's because we divided up the implementation into smaller functions and giving expressive names to these functions.
 
 _Note_ how we are careful here to not alter any state of other nodes. We only access the state in order to perform validations. This is important! All state changes that happen, happen within the respective **black-boxes**.
 
@@ -460,9 +460,9 @@ For example, in the above, we could have had `Party` set up in such a way as to 
 
 3. Never alter state from a function that returns a concrete type (i.e. functions that don't return `-> void`).
 
-Again, refering to the code above, we can see that `prepare_path` and `get_party_destination` each return a concrete type: `-> Array`, respectively`-> Vector2`. They have no other purpose than to calculate the promissed return type and nothing more. They don't have any hidden agenda, don't alter anything, don't give commands to other functions that change state. They have a very precise "pure" job to do.
+Again, referring to the code above, we can see that `prepare_path` and `get_party_destination` each return a concrete type: `-> Array`, respectively`-> Vector2`. They have no other purpose than to calculate the promised return type and nothing more. They don't have any hidden agenda, don't alter anything, don't give commands to other functions that change state. They have a very precise "pure" job to do.
 
-We could have for example called `party_walk` from within `get_party_destination` and rewrite the code a bit to make that work, but we would essentially hide a behavior that doesn't have anything to do with returning or calculating a `Vector2`. This means that if we wouldn't follow along the implementation we woulnd't know what's happening. This entanglement of conerns is a potential error generator.
+We could have for example called `party_walk` from within `get_party_destination` and rewrite the code a bit to make that work, but we would essentially hide a behavior that doesn't have anything to do with returning or calculating a `Vector2`. This means that if we wouldn't follow along the implementation we wouldn't know what's happening. This entanglement of concerns is a potential error generator.
 
 Now, like before, this isn't a hard rule even though we say _never_. For example, there's a lot of times when we want to return a check, a `bool` value from within a function upon the successful execution of a behavior. The above `party_walk` function could be rewritten like this:
 
@@ -493,11 +493,11 @@ func party_walk(leader: Actor, path: Array) -> bool:
   return true
 ```
 
-Typically, returning `bool` values like this in order to validate a successful exectution is a decent idea. _So keep in mind once more, these are just guidelines!_
+Typically, returning `bool` values like this in order to validate a successful execution is a decent idea. _So keep in mind once more, these are just guidelines!_
 
 4. The following is potentially an interesting concept, but it isn't as important as the ones above: unify the signals signature. What this means is to declare signals like this: `signal walked(msg)` where `msg: Dictionary`.
 
-At the moment, there isn't a way to enforce the type on signal parameters even with static typed GDScript, ie. the following isn't valid: `signal walked(msg: Dictionary)`. But we could generally impose on ourselves to use signals only with a `Dictionary` type.
+At the moment, there isn't a way to enforce the type on signal parameters even with static typed GDScript, i.e. the following isn't valid: `signal walked(msg: Dictionary)`. But we could generally impose on ourselves to use signals only with a `Dictionary` type.
 
 This has some advantages and disadvantages. The primary disadvantage is that static typed GDScript won't be as helpful since `Dictinoary` is a bag of mixed data types essentially.
 
@@ -511,7 +511,7 @@ func connect_signals() -> void:
   board.connect("encountered", party, "_on_signal")
 ```
 
-While `Party` would implment the connected function:
+While `Party` would implement the connected function:
 
 ```gdscript
 func _on_signal(msg: Dictionary) -> void:
