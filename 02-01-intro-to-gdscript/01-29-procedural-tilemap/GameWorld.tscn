@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://GameWorld.gd" type="Script" id=1]
 [ext_resource path="res://Assets/TileSet.png" type="Texture" id=2]
-[ext_resource path="res://Assets/SourceCodePro-Bold.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="TileSet" id=1]
 
@@ -295,11 +294,6 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="DynamicFont" id=3]
-
-size = 12
-font_data = ExtResource( 3 )
-
 [node name="GameWorld" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -309,29 +303,20 @@ cell_size = Vector2( 32, 32 )
 format = 1
 
 [node name="Panel" type="Panel" parent="."]
-editor/display_folded = true
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 262.0
+margin_right = 276.0
 margin_bottom = 40.0
 custom_styles/panel = SubResource( 2 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -175.0
-margin_top = -9.0
-margin_right = 175.0
-margin_bottom = 9.0
+[node name="Label" type="Label" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/bold_font = SubResource( 3 )
-bbcode_enabled = true
-bbcode_text = "[center][b]Press Left-Click to regenerate[/b][/center]"
-text = "Press Left-Click to regenerate"
-scroll_active = false
+text = "Click or press enter to draw a new map"
+align = 1
+valign = 1
 
