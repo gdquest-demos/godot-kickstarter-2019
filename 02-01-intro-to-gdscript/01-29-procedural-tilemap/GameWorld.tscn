@@ -3,6 +3,7 @@
 [ext_resource path="res://GameWorld.gd" type="Script" id=1]
 [ext_resource path="res://Assets/TileSet.png" type="Texture" id=2]
 
+
 [sub_resource type="TileSet" id=1]
 
 0/name = "Outer01"

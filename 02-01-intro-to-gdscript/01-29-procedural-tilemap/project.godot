@@ -20,13 +20,16 @@ _global_script_class_icons={
 
 [application]
 
-config/name="godot-intro-gdscript-exercise"
+config/name="Intro to GDScript: Procedural Tilemap"
 run/main_scene="res://GameWorld.tscn"
 config/icon="res://icon.png"
 
 [display]
 
+window/size/width=1280
+window/size/height=720
 window/stretch/mode="2d"
+window/stretch/aspect="expand"
 
 [input]
 
