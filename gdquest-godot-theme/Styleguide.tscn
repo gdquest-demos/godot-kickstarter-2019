@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/theme/gdquest.theme" type="Theme" id=1]
 [ext_resource path="res://src/Components/Title.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/theme/fonts/default_font_bold.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/Components/text_edit/TextEdit.tscn" type="PackedScene" id=4]
 
 [node name="Styleguide" type="Control"]
 anchor_right = 1.0
@@ -11,44 +13,61 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
 margin_left = 32.0
 margin_top = 32.0
 margin_right = 848.0
-margin_bottom = 512.0
+margin_bottom = 832.0
 
-[node name="Column" type="VBoxContainer" parent="Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+margin_right = 816.0
+margin_bottom = 802.0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+custom_constants/margin_bottom = 32
+
+[node name="Column" type="VBoxContainer" parent="Panel/MarginContainer"]
 margin_left = 32.0
 margin_top = 32.0
-margin_right = -32.0
-margin_bottom = -32.0
+margin_right = 784.0
+margin_bottom = 770.0
 
-[node name="Title3" parent="Panel/Column" instance=ExtResource( 2 )]
+[node name="VisualReference" type="VBoxContainer" parent="Panel/MarginContainer/Column"]
+margin_right = 752.0
+margin_bottom = 118.0
+
+[node name="Title3" parent="Panel/MarginContainer/Column/VisualReference" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
 margin_top = 0.0
-margin_bottom = 31.0
+margin_right = 752.0
+margin_bottom = 36.0
 text = "Visual Reference"
 
-[node name="Label4" type="Label" parent="Panel/Column"]
-margin_top = 39.0
+[node name="Label4" type="Label" parent="Panel/MarginContainer/Column/VisualReference"]
+margin_top = 44.0
 margin_right = 752.0
-margin_bottom = 62.0
+margin_bottom = 70.0
 text = "Normal paragraph text"
 
-[node name="Row" type="HBoxContainer" parent="Panel/Column"]
-margin_top = 70.0
+[node name="Row" type="HBoxContainer" parent="Panel/MarginContainer/Column/VisualReference"]
+editor/display_folded = true
+margin_top = 78.0
 margin_right = 752.0
-margin_bottom = 110.0
+margin_bottom = 118.0
 
-[node name="Button" type="Button" parent="Panel/Column/Row"]
+[node name="Button" type="Button" parent="Panel/MarginContainer/Column/VisualReference/Row"]
 margin_right = 245.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
 text = "Button"
 
-[node name="Button2" type="Button" parent="Panel/Column/Row"]
+[node name="Button2" type="Button" parent="Panel/MarginContainer/Column/VisualReference/Row"]
 margin_left = 253.0
 margin_right = 498.0
 margin_bottom = 40.0
@@ -56,7 +75,7 @@ rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
 text = "Button"
 
-[node name="Button3" type="Button" parent="Panel/Column/Row"]
+[node name="Button3" type="Button" parent="Panel/MarginContainer/Column/VisualReference/Row"]
 margin_left = 506.0
 margin_right = 752.0
 margin_bottom = 40.0
@@ -64,34 +83,47 @@ rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
 text = "Button"
 
-[node name="HSeparator" type="HSeparator" parent="Panel/Column"]
-margin_top = 118.0
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/Column"]
+margin_top = 126.0
 margin_right = 752.0
-margin_bottom = 122.0
+margin_bottom = 130.0
 
-[node name="Title" parent="Panel/Column" instance=ExtResource( 2 )]
-margin_top = 130.0
-margin_bottom = 161.0
-
-[node name="Label2" type="Label" parent="Panel/Column"]
-margin_top = 169.0
+[node name="ColorPalette" type="VBoxContainer" parent="Panel/MarginContainer/Column"]
+margin_top = 138.0
 margin_right = 752.0
-margin_bottom = 192.0
+margin_bottom = 386.0
+
+[node name="Title" parent="Panel/MarginContainer/Column/ColorPalette" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 752.0
+margin_bottom = 36.0
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/Column/ColorPalette"]
+margin_top = 44.0
+margin_right = 752.0
+margin_bottom = 70.0
+custom_fonts/font = ExtResource( 3 )
 text = "Background"
 
-[node name="Row2" type="HBoxContainer" parent="Panel/Column"]
-margin_top = 200.0
+[node name="Row2" type="HBoxContainer" parent="Panel/MarginContainer/Column/ColorPalette"]
+editor/display_folded = true
+margin_top = 78.0
 margin_right = 752.0
-margin_bottom = 240.0
+margin_bottom = 118.0
 
-[node name="Color" type="ColorRect" parent="Panel/Column/Row2"]
+[node name="Color" type="ColorRect" parent="Panel/MarginContainer/Column/ColorPalette/Row2"]
 margin_right = 372.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
 color = Color( 0, 0, 0, 1 )
 
-[node name="Label" type="Label" parent="Panel/Column/Row2/Color"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/Column/ColorPalette/Row2/Color"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
@@ -99,7 +131,7 @@ margin_bottom = -1.0
 text = "Dark"
 valign = 1
 
-[node name="Color2" type="ColorRect" parent="Panel/Column/Row2"]
+[node name="Color2" type="ColorRect" parent="Panel/MarginContainer/Column/ColorPalette/Row2"]
 margin_left = 380.0
 margin_right = 752.0
 margin_bottom = 40.0
@@ -107,7 +139,7 @@ rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
 color = Color( 0.301961, 0.294118, 0.321569, 1 )
 
-[node name="Label" type="Label" parent="Panel/Column/Row2/Color2"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/Column/ColorPalette/Row2/Color2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
@@ -115,33 +147,33 @@ margin_bottom = -1.0
 text = "Faint"
 valign = 1
 
-[node name="Label3" type="Label" parent="Panel/Column"]
-margin_top = 248.0
+[node name="Label3" type="Label" parent="Panel/MarginContainer/Column/ColorPalette"]
+margin_top = 126.0
 margin_right = 752.0
-margin_bottom = 271.0
+margin_bottom = 152.0
+custom_fonts/font = ExtResource( 3 )
 text = "Theme"
 
-[node name="Row4" type="HBoxContainer" parent="Panel/Column"]
-margin_top = 279.0
+[node name="Row4" type="HBoxContainer" parent="Panel/MarginContainer/Column/ColorPalette"]
+margin_top = 160.0
 margin_right = 752.0
-margin_bottom = 319.0
+margin_bottom = 200.0
 
-[node name="Color" type="ColorRect" parent="Panel/Column/Row4"]
+[node name="Color" type="ColorRect" parent="Panel/MarginContainer/Column/ColorPalette/Row4"]
 margin_right = 372.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
 color = Color( 0.0352941, 0.65098, 0.792157, 1 )
 
-[node name="Label" type="Label" parent="Panel/Column/Row4/Color"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/Column/ColorPalette/Row4/Color"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
-margin_bottom = -1.0
 text = "Primary"
 valign = 1
 
-[node name="Color2" type="ColorRect" parent="Panel/Column/Row4"]
+[node name="Color2" type="ColorRect" parent="Panel/MarginContainer/Column/ColorPalette/Row4"]
 margin_left = 380.0
 margin_right = 752.0
 margin_bottom = 40.0
@@ -149,35 +181,34 @@ rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
 color = Color( 0, 0.27451, 1, 1 )
 
-[node name="Label" type="Label" parent="Panel/Column/Row4/Color2"]
+[node name="Label4" type="Label" parent="Panel/MarginContainer/Column/ColorPalette/Row4/Color2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_bottom = -1.0
+margin_left = 20.0
 text = "Secondary"
 valign = 1
 
-[node name="Row3" type="HBoxContainer" parent="Panel/Column"]
+[node name="Row3" type="HBoxContainer" parent="Panel/MarginContainer/Column/ColorPalette"]
 editor/display_folded = true
-margin_top = 327.0
+margin_top = 208.0
 margin_right = 752.0
-margin_bottom = 367.0
+margin_bottom = 248.0
 
-[node name="Color" type="ColorRect" parent="Panel/Column/Row3"]
+[node name="Color" type="ColorRect" parent="Panel/MarginContainer/Column/ColorPalette/Row3"]
 margin_right = 245.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
 color = Color( 0.172549, 0.713726, 0.219608, 1 )
 
-[node name="Label" type="Label" parent="Panel/Column/Row3/Color"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/Column/ColorPalette/Row3/Color"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
 text = "Success"
 valign = 1
 
-[node name="Color2" type="ColorRect" parent="Panel/Column/Row3"]
+[node name="Color2" type="ColorRect" parent="Panel/MarginContainer/Column/ColorPalette/Row3"]
 margin_left = 253.0
 margin_right = 498.0
 margin_bottom = 40.0
@@ -185,14 +216,14 @@ rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
 color = Color( 1, 0.607843, 0, 1 )
 
-[node name="Label" type="Label" parent="Panel/Column/Row3/Color2"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/Column/ColorPalette/Row3/Color2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
 text = "Warning"
 valign = 1
 
-[node name="Color3" type="ColorRect" parent="Panel/Column/Row3"]
+[node name="Color3" type="ColorRect" parent="Panel/MarginContainer/Column/ColorPalette/Row3"]
 margin_left = 506.0
 margin_right = 752.0
 margin_bottom = 40.0
@@ -200,12 +231,57 @@ rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 3
 color = Color( 1, 0, 0.305882, 1 )
 
-[node name="Label" type="Label" parent="Panel/Column/Row3/Color3"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/Column/ColorPalette/Row3/Color3"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
 text = "Error"
 valign = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/MarginContainer/Column"]
+margin_top = 394.0
+margin_right = 752.0
+margin_bottom = 398.0
+
+[node name="CodeBlock2" type="VBoxContainer" parent="Panel/MarginContainer/Column"]
+margin_top = 406.0
+margin_right = 752.0
+margin_bottom = 730.0
+
+[node name="Title2" parent="Panel/MarginContainer/Column/CodeBlock2" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 752.0
+margin_bottom = 36.0
+text = "Code block"
+
+[node name="TextEdit" parent="Panel/MarginContainer/Column/CodeBlock2" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 44.0
+margin_right = 752.0
+margin_bottom = 324.0
+rect_min_size = Vector2( 0, 280 )
+text = "tool
+extends TextEdit
+\"\"\"
+Adds syntax highlighting for common GDScript keywords on
+top of TextEdit's defaults
+\"\"\"
+
+export var class_color : = Color(0.6, 0.6, 1.0)
+export var member_color : = Color(0.6, 1.0, 0.6)
+export var keyword_color : = Color(1.0, 0.6, 0.6)
+export var quotes_color : = Color(1.0, 1.0, 0.6)
+export var comments_color : = Color(\"959595\")
+
+func _ready() -> void:
+	_add_keywords_highlighting()
+"
 
 [node name="Panel2" type="Panel" parent="."]
 margin_left = 880.0
@@ -222,32 +298,44 @@ margin_right = -32.0
 margin_bottom = -32.0
 
 [node name="Title3" parent="Panel2/Column" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
 margin_top = 0.0
-margin_bottom = 31.0
+margin_right = 752.0
+margin_bottom = 36.0
 text = "Styleguide"
 
 [node name="Label3" type="Label" parent="Panel2/Column"]
-margin_top = 39.0
+margin_top = 44.0
 margin_right = 752.0
-margin_bottom = 140.0
+margin_bottom = 157.0
 text = "The project contains reusable UI components to create in-game debug tools efficiently.
 We're designing these tools both for debugging purposes and to visualize information for tutorials."
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="Panel2/Column"]
-margin_top = 148.0
+margin_top = 165.0
 margin_right = 752.0
-margin_bottom = 152.0
+margin_bottom = 169.0
 
 [node name="Title4" parent="Panel2/Column" instance=ExtResource( 2 )]
-margin_top = 160.0
-margin_bottom = 191.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 177.0
+margin_right = 752.0
+margin_bottom = 213.0
 text = "Design Principles"
 
 [node name="Label2" type="RichTextLabel" parent="Panel2/Column"]
-margin_top = 199.0
+margin_top = 221.0
 margin_right = 752.0
-margin_bottom = 339.0
+margin_bottom = 361.0
 rect_min_size = Vector2( 0, 140 )
 bbcode_enabled = true
 bbcode_text = "- [b]Simple[/b] and sober. We're going for a flat design that doesn't draw too much attention away from what's happening in the game.
