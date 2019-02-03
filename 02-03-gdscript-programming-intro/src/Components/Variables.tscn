@@ -1,0 +1,213 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Components/Title.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Components/text_edit/TextEdit.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/icons/box-open.svg" type="Texture" id=3]
+[ext_resource path="res://Assets/icons/tag.svg" type="Texture" id=4]
+[ext_resource path="res://Assets/icons/tags.svg" type="Texture" id=5]
+
+[node name="Variables" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Lesson" type="Panel" parent="."]
+margin_right = 797.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+
+[node name="Column" type="VBoxContainer" parent="Lesson"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 20.0
+margin_right = -25.0
+margin_bottom = -20.0
+size_flags_horizontal = 3
+
+[node name="Column" type="VBoxContainer" parent="Lesson/Column"]
+margin_right = 747.0
+margin_bottom = 416.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.6
+
+[node name="Title" parent="Lesson/Column/Column" instance=ExtResource( 1 )]
+margin_top = 0.0
+margin_right = 747.0
+margin_bottom = 36.0
+text = "Variables"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Lesson/Column/Column"]
+margin_top = 40.0
+margin_right = 747.0
+margin_bottom = 222.0
+rect_min_size = Vector2( 0, 80 )
+size_flags_vertical = 3
+bbcode_enabled = true
+bbcode_text = "Variables are [b]symbols[/b] or tags that represent a [b]value[/b]: a number, a text string, a Sprite, an Area, or any other Object (e.g. any Node in Godot).
+
+You can see variables in two complementary ways:
+1. [b]Labels[/b] you assign to values.
+2. [b]Containers[/b] for instances of a type"
+text = "Variables are symbols or tags that represent a value: a number, a text string, a Sprite, an Area, or any other Object (e.g. any Node in Godot).
+
+You can see variables in two complementary ways:
+1. Labels you assign to values.
+2. Containers for instances of a type"
+
+[node name="TextEdit" parent="Lesson/Column/Column" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 226.0
+margin_right = 747.0
+margin_bottom = 408.0
+size_flags_vertical = 3
+text = "var variable_name : type = value
+
+var character_name : str = \"Godette\"
+var max_health : int = 100
+var health : = max_health # Infered type"
+highlight_current_line = true
+show_line_numbers = true
+highlight_all_occurrences = true
+comments_color = Color( 0.298039, 0.298039, 0.298039, 1 )
+
+[node name="HSeparator" type="HSeparator" parent="Lesson/Column/Column"]
+margin_top = 412.0
+margin_right = 747.0
+margin_bottom = 416.0
+
+[node name="Column2" type="VBoxContainer" parent="Lesson/Column"]
+margin_top = 420.0
+margin_right = 747.0
+margin_bottom = 680.0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Lesson/Column/Column2"]
+margin_right = 747.0
+margin_bottom = 14.0
+text = "In the example below, both variables will point to the same object in the computer's memory:"
+autowrap = true
+
+[node name="TextEdit2" parent="Lesson/Column/Column2" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 747.0
+margin_bottom = 118.0
+rect_min_size = Vector2( 0, 100 )
+text = "var resource : = Resource.new()
+var same_resource : = resource"
+highlight_current_line = true
+show_line_numbers = true
+highlight_all_occurrences = true
+comments_color = Color( 0.298039, 0.298039, 0.298039, 1 )
+
+[node name="Notes" type="Panel" parent="."]
+margin_left = 801.0
+margin_right = 1280.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Notes"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 20.0
+margin_right = -30.0
+margin_bottom = -20.0
+
+[node name="Control" type="Control" parent="Notes/VBoxContainer"]
+margin_right = 419.0
+margin_bottom = 416.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.6
+
+[node name="box-open2" type="TextureRect" parent="Notes/VBoxContainer/Control"]
+modulate = Color( 0.329412, 0.733333, 1, 1 )
+margin_left = 45.0
+margin_top = 247.0
+margin_right = 155.0
+margin_bottom = 335.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="tags" type="TextureRect" parent="Notes/VBoxContainer/Control"]
+modulate = Color( 0.333333, 0.713726, 0.227451, 1 )
+margin_left = 157.0
+margin_top = 250.0
+margin_right = 242.0
+margin_bottom = 318.0
+rect_rotation = -89.9999
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="Label2" type="Label" parent="Notes/VBoxContainer/Control"]
+margin_left = 242.0
+margin_top = 190.0
+margin_right = 392.0
+margin_bottom = 216.0
+text = "variable_name"
+
+[node name="Label4" type="Label" parent="Notes/VBoxContainer/Control"]
+margin_left = 27.0
+margin_top = 345.0
+margin_right = 164.0
+margin_bottom = 371.0
+text = "value"
+align = 1
+
+[node name="Control2" type="Control" parent="Notes/VBoxContainer"]
+margin_top = 420.0
+margin_right = 419.0
+margin_bottom = 680.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="box-open2" type="TextureRect" parent="Notes/VBoxContainer/Control2"]
+modulate = Color( 0.329412, 0.733333, 1, 1 )
+margin_left = 45.0
+margin_top = 57.0
+margin_right = 155.0
+margin_bottom = 145.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="tags" type="TextureRect" parent="Notes/VBoxContainer/Control2"]
+modulate = Color( 0.333333, 0.713726, 0.227451, 1 )
+margin_left = 157.0
+margin_top = 57.0
+margin_right = 242.0
+margin_bottom = 125.0
+rect_rotation = -89.9999
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="Label2" type="Label" parent="Notes/VBoxContainer/Control2"]
+margin_left = 237.0
+margin_top = -21.0
+margin_right = 371.0
+margin_bottom = 5.0
+text = "resource"
+
+[node name="Label3" type="Label" parent="Notes/VBoxContainer/Control2"]
+margin_left = 237.0
+margin_top = 9.0
+margin_right = 390.0
+margin_bottom = 35.0
+text = "same_resource"
+
+[node name="Label4" type="Label" parent="Notes/VBoxContainer/Control2"]
+margin_left = 27.0
+margin_top = 157.0
+margin_right = 164.0
+margin_bottom = 183.0
+text = "Resource"
+align = 1
+
