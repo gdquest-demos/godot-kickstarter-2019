@@ -21,7 +21,7 @@ margin_bottom = 832.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 margin_right = 816.0
-margin_bottom = 802.0
+margin_bottom = 800.0
 custom_constants/margin_right = 32
 custom_constants/margin_top = 32
 custom_constants/margin_left = 32
@@ -31,7 +31,7 @@ custom_constants/margin_bottom = 32
 margin_left = 32.0
 margin_top = 32.0
 margin_right = 784.0
-margin_bottom = 770.0
+margin_bottom = 768.0
 
 [node name="VisualReference" type="VBoxContainer" parent="Panel/MarginContainer/Column"]
 margin_right = 752.0
