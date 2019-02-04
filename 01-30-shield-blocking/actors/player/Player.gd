@@ -18,10 +18,8 @@ var current_speed : = move_speed
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("defend"):
 		self.blocking = true
-		current_speed = blocking_speed
 	elif event.is_action_released("defend"):
 		self.blocking = false
-		current_speed = move_speed
 
 
 func _physics_process(delta: float) -> void:
@@ -79,3 +77,4 @@ func is_shield_facing(hit_position: Vector2) -> bool:
 func set_blocking(value: bool) -> void:
 	blocking = value
 	shield.visible = value
+	current_speed = blocking_speed if value else move_speed
