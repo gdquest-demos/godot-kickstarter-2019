@@ -1,7 +1,5 @@
 extends Node2D
 
-onready var collision_shape : CollisionShape2D = $StaticBody2D/CollisionShape2D
-
 var initial_position : Vector2
 
 

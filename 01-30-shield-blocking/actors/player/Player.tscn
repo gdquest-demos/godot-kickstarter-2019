@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://actors/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/player/p1_stand.png" type="Texture" id=2]
@@ -20,11 +20,7 @@
 
 extents = Vector2( 31.7147, 46.3952 )
 
-[sub_resource type="RectangleShape2D" id=2]
-
-extents = Vector2( 34.6738, 50.7469 )
-
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
@@ -43,7 +39,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 
 resource_name = "hit"
 length = 0.2
@@ -67,20 +63,14 @@ script = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="HitBox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource( 2 )
-
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 3 )
+frames = SubResource( 2 )
 animation = "idle"
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/hit = SubResource( 4 )
+anims/hit = SubResource( 3 )
 
 [node name="Shield" parent="." instance=ExtResource( 15 )]
 position = Vector2( 28.884, 9.079 )
 
-[connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
