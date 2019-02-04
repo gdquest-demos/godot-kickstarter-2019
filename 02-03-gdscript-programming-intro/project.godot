@@ -8,20 +8,15 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Node2D",
-"class": "GameWorld",
-"language": "GDScript",
-"path": "res://src/GameWorld.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"GameWorld": ""
+
 }
 
 [application]
 
 config/name="Intro to programming with GDScript"
-run/main_scene="res://src/GameWorld.tscn"
+run/main_scene="res://src/Slideshow.tscn"
 config/icon="res://icon.png"
 
 [display]

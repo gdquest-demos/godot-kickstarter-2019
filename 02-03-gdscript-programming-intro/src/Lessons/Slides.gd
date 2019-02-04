@@ -1,7 +1,10 @@
-extends Node
+tool
+extends CanvasItem
 
 
 onready var _camera : Camera2D = $Camera2D
+
+export var add_titles : = true
 
 var index_active : = 0 setget set_index_active 
 
@@ -33,10 +36,40 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _ready() -> void:
+	_reset_slides()
+	get_tree().connect("tree_changed", self, '_reset_slides')
+	# Draw connecting lines
+	if Engine.editor_hint:
+		update()
+
+	if add_titles:
+		_prepend_number_to_titles()
+
+
+"""
+Stores an ordered list of children that are slides
+connects to them to redraw helper lines when moving or resizing
+the slides
+"""
+func _reset_slides() -> void:
+	for slide in _slide_nodes:
+		slide.disconnect('item_rect_changed', self, 'update')
+	
+	_slide_nodes = []
 	for child in get_children():
 		if not child is Control:
 			continue
 		_slide_nodes.append(child)
+		child.connect('item_rect_changed', self, 'update')
+	_slide_current = _slide_nodes[index_active]
+
+
+"""
+Finds title nodes and prepends 1., 2., etc.
+to their text property
+Only on _ready
+"""
+func _prepend_number_to_titles() -> void:
 	var index : = 1
 	for slide in _slide_nodes:
 		var title : Label = slide.find_node("Title")
@@ -44,5 +77,13 @@ func _ready() -> void:
 			continue
 		title.text = "%01d. %s" % [index, title.text]
 		index += 1
-		
-	_slide_current = _slide_nodes[index_active]
+
+
+"""
+Draws a line connecting the slides' center, to indicate the move order
+"""
+func _draw() -> void:
+	var points : = PoolVector2Array()
+	for slide in _slide_nodes:
+		points.append(slide.rect_position + slide.rect_size / 2)
+	draw_polyline(points, Color("aa888888"), 2.0, true)
