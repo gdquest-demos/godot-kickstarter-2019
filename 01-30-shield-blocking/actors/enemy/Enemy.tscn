@@ -57,3 +57,4 @@ shape = SubResource( 4 )
 
 [connection signal="player_found" from="DetectionArea" to="." method="_on_DetectionArea_player_found"]
 [connection signal="body_entered" from="DamageBox" to="." method="_on_DamageBox_body_entered"]
+[connection signal="body_exited" from="DamageBox" to="." method="_on_DamageBox_body_exited"]

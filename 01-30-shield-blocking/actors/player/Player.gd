@@ -11,18 +11,16 @@ export var jump_force : = 500.0
 export var gravity : = 30.0
 
 var velocity : = Vector2()
-var blocking : = false
+var blocking : = false setget set_blocking
 var current_speed : = move_speed
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("defend"):
-		blocking = true
-		shield.visible = true
+		self.blocking = true
 		current_speed = blocking_speed
 	elif event.is_action_released("defend"):
-		blocking = false
-		shield.visible = false
+		self.blocking = false
 		current_speed = move_speed
 
 
@@ -57,18 +55,27 @@ func update_animation() -> void:
 		animated_sprite.flip_h = velocity.x < 0
 
 
-func take_damage(attacker: Node2D) -> bool:
+func take_damage(attacker: Node2D, knock_back_force: Vector2 = Vector2()) -> void:
 	"""
 	Checks if the player can take damage and plays correct animations
 	"""
 	if blocking and is_shield_facing(attacker.global_position):
-		return false
-	
+		return
+	knock_back(knock_back_force)
 	animation_player.play("hit")
-	return true
+
+
+func knock_back(force: Vector2) -> void:
+	move_and_slide(force, Vector2.UP)
+	velocity.y = force.y
 
 
 func is_shield_facing(hit_position: Vector2) -> bool:
 	var shield_direction : = sign(shield.global_position.x - global_position.x)
 	var hit_direction : = sign(global_position.x - hit_position.x)
 	return shield_direction != hit_direction
+
+
+func set_blocking(value: bool) -> void:
+	blocking = value
+	shield.visible = value
