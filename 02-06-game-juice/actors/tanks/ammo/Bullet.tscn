@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://actors/tanks/ammo/Bullet.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/bulletParticle.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/bulletBlue2_outline.png" type="Texture" id=3]
+
+[sub_resource type="Gradient" id=5]
+
+colors = PoolColorArray( 0.804688, 0.804688, 0.804688, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=6]
+
+gradient = SubResource( 5 )
+
+[sub_resource type="Curve" id=2]
+
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.05229, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 3 )
+color_ramp = SubResource( 6 )
+
+[sub_resource type="RectangleShape2D" id=1]
+
+extents = Vector2( 9, 7 )
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource( 1 )
+move_speed = 750.0
+
+[node name="Particles2D" type="Particles2D" parent="." groups=[
+"particles",
+]]
+emitting = false
+amount = 15
+local_coords = false
+process_material = SubResource( 4 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+rotation = 1.5708
+texture = ExtResource( 3 )
+

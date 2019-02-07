@@ -1,0 +1,125 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://interface/JuiceControls.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "slide_in"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("ControlList:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -115, -0.248825, -66.8136, 0.178649, 47.9701, 12.2293, -0.0950871, 91.6281, 0.245548, -236.615 ),
+"times": PoolRealArray( 0, 0.291436 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("ControlList:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 50, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "slide_out"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("ControlList:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 12.2293, -0.249689, -108.441, 0.142013, 61.6771, -114.753, -0.319427, 170.519, 0.249531, -133.207 ),
+"times": PoolRealArray( 0, 0.295552 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("ControlList:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 50, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[node name="JuiceControls" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="ControlList" type="VBoxContainer" parent="."]
+anchor_bottom = 1.0
+margin_left = -114.753
+margin_top = 50.0
+margin_right = -13.7529
+margin_bottom = -50.0
+custom_constants/separation = 15
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CameraShake" type="Button" parent="ControlList"]
+margin_right = 106.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "Camera Shake"
+
+[node name="FrameFreeze" type="Button" parent="ControlList"]
+margin_top = 35.0
+margin_right = 106.0
+margin_bottom = 55.0
+toggle_mode = true
+text = "Frame Freeze"
+
+[node name="Tweening" type="Button" parent="ControlList"]
+margin_top = 70.0
+margin_right = 106.0
+margin_bottom = 90.0
+toggle_mode = true
+text = "Tweening"
+
+[node name="FX" type="Button" parent="ControlList"]
+margin_top = 105.0
+margin_right = 106.0
+margin_bottom = 125.0
+toggle_mode = true
+text = "Visual FX"
+
+[node name="Particles" type="Button" parent="ControlList"]
+margin_top = 140.0
+margin_right = 106.0
+margin_bottom = 160.0
+toggle_mode = true
+text = "Particles"
+
+[node name="FastSpawn" type="Button" parent="ControlList"]
+margin_top = 175.0
+margin_right = 106.0
+margin_bottom = 195.0
+toggle_mode = true
+text = "Fast Spawn"
+
+[node name="WeakEnemies" type="Button" parent="ControlList"]
+margin_top = 210.0
+margin_right = 106.0
+margin_bottom = 230.0
+toggle_mode = true
+text = "Weak Enemies"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/slide_in = SubResource( 1 )
+anims/slide_out = SubResource( 2 )
+
+[connection signal="pressed" from="ControlList/CameraShake" to="." method="_on_CameraShake_pressed"]
+[connection signal="pressed" from="ControlList/FrameFreeze" to="." method="_on_FrameFreeze_pressed"]
+[connection signal="pressed" from="ControlList/FX" to="." method="_on_FX_pressed"]
+[connection signal="pressed" from="ControlList/Particles" to="." method="_on_Particles_pressed"]
+[connection signal="pressed" from="ControlList/FastSpawn" to="." method="_on_FastSpawn_pressed"]
