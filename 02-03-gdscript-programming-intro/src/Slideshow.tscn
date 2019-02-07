@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/Lessons/Slides.gd" type="Script" id=1]
 [ext_resource path="res://src/Lessons/Variables.tscn" type="PackedScene" id=2]
@@ -7,6 +7,12 @@
 [ext_resource path="res://src/Lessons/Constants.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Lessons/Operators.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Lessons/ComparingValues.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Lessons/Conditions1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Lessons/Conditions2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Lessons/ListsOfValues.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Lessons/Loops.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Lessons/Objects.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Lessons/Classes.tscn" type="PackedScene" id=13]
 
 [node name="Slides" type="Control"]
 script = ExtResource( 1 )
@@ -51,4 +57,40 @@ margin_left = 5120.0
 margin_top = 1152.0
 margin_right = 6400.0
 margin_bottom = 1872.0
+
+[node name="Conditions1" parent="." instance=ExtResource( 8 )]
+margin_left = 3328.0
+margin_top = 2304.0
+margin_right = 4608.0
+margin_bottom = 3024.0
+
+[node name="Conditions2" parent="." instance=ExtResource( 9 )]
+margin_left = 5120.0
+margin_top = 2304.0
+margin_right = 6400.0
+margin_bottom = 3024.0
+
+[node name="ListsOfValues" parent="." instance=ExtResource( 10 )]
+margin_left = 6912.0
+margin_top = 2304.0
+margin_right = 8192.0
+margin_bottom = 3024.0
+
+[node name="Loops" parent="." instance=ExtResource( 11 )]
+margin_left = 8704.0
+margin_top = 2304.0
+margin_right = 9984.0
+margin_bottom = 3024.0
+
+[node name="Objects" parent="." instance=ExtResource( 12 )]
+margin_left = 3328.0
+margin_top = 3456.0
+margin_right = 4608.0
+margin_bottom = 4176.0
+
+[node name="Classes" parent="." instance=ExtResource( 13 )]
+margin_left = 5120.0
+margin_top = 3456.0
+margin_right = 6400.0
+margin_bottom = 4176.0
 

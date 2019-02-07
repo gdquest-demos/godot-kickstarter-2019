@@ -83,6 +83,8 @@ func _prepend_number_to_titles() -> void:
 Draws a line connecting the slides' center, to indicate the move order
 """
 func _draw() -> void:
+	if not Engine.editor_hint:
+		return
 	var points : = PoolVector2Array()
 	for slide in _slide_nodes:
 		points.append(slide.rect_position + slide.rect_size / 2)

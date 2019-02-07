@@ -113,5 +113,8 @@
     "weakref",
     "wrapf",
     "wrapi",
-    "yield"
+    "yield",
+    "String",
+    "int",
+    "float",
 ]

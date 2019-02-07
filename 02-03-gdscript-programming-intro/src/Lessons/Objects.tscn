@@ -1,0 +1,138 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/theme/gdquest.theme" type="Theme" id=1]
+[ext_resource path="res://src/Components/Title.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/icons/godot/icon_sprite.svg" type="Texture" id=3]
+[ext_resource path="res://Assets/icons/godot/icon_camera.svg" type="Texture" id=4]
+[ext_resource path="res://Assets/icons/godot/icon_tile_map.svg" type="Texture" id=5]
+[ext_resource path="res://Assets/icons/godot/icon_timer.svg" type="Texture" id=6]
+[ext_resource path="res://src/Components/text_edit/TextEdit.tscn" type="PackedScene" id=7]
+
+[node name="Objects" type="HBoxContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -960.0
+margin_top = -540.0
+margin_right = 320.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 1280, 720 )
+theme = ExtResource( 1 )
+
+[node name="BodyPanel" type="Panel" parent="."]
+margin_right = 795.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+
+[node name="Column" type="VBoxContainer" parent="BodyPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 20.0
+margin_right = -25.0
+margin_bottom = -16.0
+size_flags_horizontal = 3
+
+[node name="Column" type="VBoxContainer" parent="BodyPanel/Column"]
+margin_right = 745.0
+margin_bottom = 684.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.6
+
+[node name="Title" parent="BodyPanel/Column/Column" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 745.0
+margin_bottom = 36.0
+text = "Objects"
+
+[node name="Label" type="Label" parent="BodyPanel/Column/Column"]
+margin_top = 44.0
+margin_right = 745.0
+margin_bottom = 389.0
+size_flags_vertical = 1
+text = "In object-oriented programming languages like GDScript, we have a tool to bundle variables and functions together in a reusable, self-contained package: objects.
+
+In computer programming, objects are small machines that you design to solve a small problem.
+You can design many of these machines and make them work together to solve more and more complex problems.
+
+For example, a Sprite that displays on the screen is an object. A game character will generally be a collection of multiple objects: one to make it move, several Sprites, an object to play sounds..."
+autowrap = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BodyPanel/Column/Column"]
+editor/display_folded = true
+margin_top = 397.0
+margin_right = 745.0
+margin_bottom = 525.0
+alignment = 1
+
+[node name="icon_sprite" type="TextureRect" parent="BodyPanel/Column/Column/HBoxContainer"]
+margin_left = 104.0
+margin_right = 232.0
+margin_bottom = 128.0
+texture = ExtResource( 3 )
+
+[node name="icon_camera" type="TextureRect" parent="BodyPanel/Column/Column/HBoxContainer"]
+margin_left = 240.0
+margin_right = 368.0
+margin_bottom = 128.0
+texture = ExtResource( 4 )
+
+[node name="icon_tile_map" type="TextureRect" parent="BodyPanel/Column/Column/HBoxContainer"]
+margin_left = 376.0
+margin_right = 504.0
+margin_bottom = 128.0
+texture = ExtResource( 5 )
+
+[node name="icon_timer" type="TextureRect" parent="BodyPanel/Column/Column/HBoxContainer"]
+margin_left = 512.0
+margin_right = 640.0
+margin_bottom = 128.0
+texture = ExtResource( 6 )
+
+[node name="Label2" type="Label" parent="BodyPanel/Column/Column"]
+margin_top = 533.0
+margin_right = 745.0
+margin_bottom = 588.0
+size_flags_vertical = 1
+text = "You build objects from a class through instantiation, a process that takes a plan and produces a concrete object you can work with:"
+autowrap = true
+
+[node name="TextEdit" parent="BodyPanel/Column/Column" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 596.0
+margin_right = 745.0
+margin_bottom = 649.0
+rect_min_size = Vector2( 0, 53 )
+text = "var object : = Object.new()"
+
+[node name="NotesPanel" type="Panel" parent="."]
+margin_left = 803.0
+margin_right = 1280.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="Label3" type="Label" parent="NotesPanel"]
+modulate = Color( 0.584314, 0.584314, 0.584314, 1 )
+margin_left = 29.0
+margin_top = 176.0
+margin_right = 446.0
+margin_bottom = 304.0
+size_flags_vertical = 1
+text = "Contrary to what too many object-oriented programming beginner tutorial say, they are not meant to be like objects in the real-world."
+autowrap = true
+
+[node name="Label4" type="Label" parent="NotesPanel"]
+modulate = Color( 0.584314, 0.584314, 0.584314, 1 )
+margin_left = 29.0
+margin_top = 64.0
+margin_right = 446.0
+margin_bottom = 206.0
+size_flags_vertical = 1
+text = "We call an object's variables and constants its state, and its functions are the object's behavior."
+autowrap = true
+

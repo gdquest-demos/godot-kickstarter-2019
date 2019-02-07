@@ -11,6 +11,9 @@
 [node name="VariableTypes" type="HBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -640.0
+margin_bottom = -360.0
+rect_min_size = Vector2( 1280, 720 )
 theme = ExtResource( 1 )
 
 [node name="BodyPanel" type="Panel" parent="."]
@@ -24,12 +27,12 @@ anchor_bottom = 1.0
 margin_left = 25.0
 margin_top = 20.0
 margin_right = -25.0
-margin_bottom = -20.0
+margin_bottom = -4.0
 size_flags_horizontal = 3
 
 [node name="Column" type="VBoxContainer" parent="BodyPanel/Column"]
 margin_right = 745.0
-margin_bottom = 697.0
+margin_bottom = 696.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.6
 
@@ -89,7 +92,7 @@ margin_bottom = 379.0
 rect_min_size = Vector2( 0, 125 )
 text = "var max_health : int = 100
 var run_speed : float = 320.0
-var character_name : str = \"Godette\""
+var character_name : String = \"Godette\""
 highlight_current_line = true
 show_line_numbers = true
 highlight_all_occurrences = true
@@ -124,24 +127,19 @@ margin_top = 526.0
 margin_right = 745.0
 margin_bottom = 530.0
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="BodyPanel/Column/Column"]
+[node name="RichTextLabel4" type="Label" parent="BodyPanel/Column/Column"]
 margin_top = 538.0
 margin_right = 745.0
-margin_bottom = 594.0
-rect_min_size = Vector2( 0, 56 )
-bbcode_enabled = true
-bbcode_text = "We [b]cannot[/b] assign a value of a different type to the variable once we defined it:
-"
-text = "We cannot assign a value of a different type to the variable once we defined it:
-"
-scroll_active = false
+margin_bottom = 593.0
+text = "We cannot assign a value of a different type to the variable once we defined it:"
+autowrap = true
 
 [node name="TextEdit4" parent="BodyPanel/Column/Column" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 602.0
+margin_top = 601.0
 margin_right = 745.0
-margin_bottom = 697.0
+margin_bottom = 696.0
 rect_min_size = Vector2( 0, 95 )
 text = "var max_health : int = 100 
 max_health = \"Maximum\" # This will throw an error"
