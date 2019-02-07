@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Components/ColorPalette/ColorSwatch/ColorSwatch.tscn" type="PackedScene" id=1]
+
+
+[node name="ColorPalette" type="MarginContainer"]
+editor/display_folded = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -75.0
+margin_right = 100.0
+margin_bottom = 75.0
+
+[node name="Column" type="VBoxContainer" parent="."]
+margin_right = 200.0
+margin_bottom = 150.0
+
+[node name="Label" type="Label" parent="Column"]
+margin_right = 200.0
+margin_bottom = 14.0
+text = "Palette name"
+
+[node name="Grid" type="GridContainer" parent="Column"]
+margin_top = 18.0
+margin_right = 200.0
+margin_bottom = 82.0
+columns = 6
+
+[node name="ColorSwatch" parent="Column/Grid" instance=ExtResource( 1 )]
+color = Color( 0.0352941, 0.65098, 0.792157, 1 )
+
+[node name="ColorSwatch2" parent="Column/Grid" instance=ExtResource( 1 )]
+margin_left = 68.0
+margin_right = 132.0
+color = Color( 0, 0.27451, 1, 1 )
+
+[node name="Grid2" type="GridContainer" parent="Column"]
+margin_top = 86.0
+margin_right = 200.0
+margin_bottom = 150.0
+columns = 6
+
+[node name="ColorSwatch5" parent="Column/Grid2" instance=ExtResource( 1 )]
+color = Color( 0.172549, 0.713726, 0.219608, 1 )
+
+[node name="ColorSwatch4" parent="Column/Grid2" instance=ExtResource( 1 )]
+margin_left = 68.0
+margin_right = 132.0
+color = Color( 1, 0.607843, 0, 1 )
+
+[node name="ColorSwatch6" parent="Column/Grid2" instance=ExtResource( 1 )]
+margin_left = 136.0
+margin_right = 200.0
+color = Color( 1, 0, 0.305882, 1 )
+

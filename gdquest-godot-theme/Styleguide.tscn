@@ -3,7 +3,7 @@
 [ext_resource path="res://src/theme/gdquest.theme" type="Theme" id=1]
 [ext_resource path="res://src/Components/Title.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/theme/fonts/default_font_bold.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/Components/text_edit/TextEdit.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Components/TextEdit/TextEdit.tscn" type="PackedScene" id=4]
 
 [node name="Styleguide" type="Control"]
 anchor_right = 1.0
@@ -282,6 +282,7 @@ export var comments_color : = Color(\"959595\")
 func _ready() -> void:
 	_add_keywords_highlighting()
 "
+comments_color = Color( 0.584314, 0.584314, 0.584314, 1 )
 
 [node name="Panel2" type="Panel" parent="."]
 margin_left = 880.0
