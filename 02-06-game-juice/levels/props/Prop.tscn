@@ -4,6 +4,7 @@
 
 [sub_resource type="CircleShape2D" id=1]
 
+radius = 30.0
 
 [node name="Prop" type="StaticBody2D"]
 

@@ -6,7 +6,7 @@ onready var player : KinematicBody2D = $Tank
 onready var timer : Timer = $Timer
 
 export var enemy : PackedScene
-export var max_spawn_time : = 4.0
+export var max_spawn_time : = 8.0
 
 
 func _ready() -> void:
@@ -25,5 +25,5 @@ func spawn_enemy() -> void:
 	timer.start()
 
 
-func _on_Timer_timeout():
+func _on_Timer_timeout() -> void:
 	spawn_enemy()

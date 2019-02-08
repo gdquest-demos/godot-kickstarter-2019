@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "ActiveJuices",
+"language": "GDScript",
+"path": "res://FX/ActiveJuices.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://actors/enemies/Enemy.gd"
 } ]
 _global_script_class_icons={
+"ActiveJuices": "",
 "Enemy": ""
 }
 
@@ -24,10 +30,14 @@ config/name="Game Juice"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+ActiveJuices="*res://FX/ActiveJuices.gd"
+
 [display]
 
-window/size/width=1280
-window/size/height=720
+window/size/width=1920
+window/size/height=1080
 window/size/test_width=844
 window/size/test_height=475
 mouse_cursor/custom_image="res://assets/sprites/ui/crosshair060.png"

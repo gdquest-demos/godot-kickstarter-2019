@@ -1,41 +1,43 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://actors/tanks/ammo/Bullet.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/bulletParticle.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/bulletBlue2_outline.png" type="Texture" id=3]
+[ext_resource path="res://FX/Explosion.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sprites/bulletParticle.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/bulletBlue2_outline.png" type="Texture" id=4]
 
-[sub_resource type="Gradient" id=5]
+[sub_resource type="Gradient" id=1]
 
 colors = PoolColorArray( 0.804688, 0.804688, 0.804688, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=6]
+[sub_resource type="GradientTexture" id=2]
 
-gradient = SubResource( 5 )
+gradient = SubResource( 1 )
 
-[sub_resource type="Curve" id=2]
+[sub_resource type="Curve" id=3]
 
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.05229, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=3]
+[sub_resource type="CurveTexture" id=4]
 
-curve = SubResource( 2 )
+curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticlesMaterial" id=5]
 
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
-angular_velocity = 0.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale_curve = SubResource( 3 )
-color_ramp = SubResource( 6 )
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=6]
 
 extents = Vector2( 9, 7 )
 
 [node name="Bullet" type="Area2D"]
+z_index = 3
 script = ExtResource( 1 )
+explosion = ExtResource( 2 )
 move_speed = 750.0
 
 [node name="Particles2D" type="Particles2D" parent="." groups=[
@@ -44,13 +46,13 @@ move_speed = 750.0
 emitting = false
 amount = 15
 local_coords = false
-process_material = SubResource( 4 )
-texture = ExtResource( 2 )
+process_material = SubResource( 5 )
+texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 1.5708
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 

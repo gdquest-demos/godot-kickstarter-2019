@@ -1,16 +1,35 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://actors/tanks/Tank.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/tankBody_blue_outline.png" type="Texture" id=2]
 [ext_resource path="res://actors/tanks/Barrel.gd" type="Script" id=3]
 [ext_resource path="res://actors/tanks/ammo/Bullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/sprites/tankBlue_barrel1_outline.png" type="Texture" id=5]
-[ext_resource path="res://FX/CartridgeExpeller.gd" type="Script" id=6]
-[ext_resource path="res://FX/Cartridge.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/audio/shoot.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sprites/shotOrange.png" type="Texture" id=7]
+[ext_resource path="res://FX/CartridgeExpeller.gd" type="Script" id=8]
+[ext_resource path="res://FX/Cartridge.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
-extents = Vector2( 20.8982, 21.0046 )
+extents = Vector2( 46.5241, 43.1334 )
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "shoot"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("MuzzleFlash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [node name="Tank" type="KinematicBody2D"]
 z_index = 5
@@ -23,10 +42,10 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Barrel" type="Position2D" parent="." groups=[
-"frame_freezer",
+"guns",
 "camera_shaker",
+"frame_freezer",
 ]]
-editor/display_folded = true
 script = ExtResource( 3 )
 bullet = ExtResource( 4 )
 
@@ -41,11 +60,23 @@ position = Vector2( 23.7827, 0 )
 [node name="Timer" type="Timer" parent="Barrel"]
 one_shot = true
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Barrel"]
+stream = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Barrel"]
+anims/shoot = SubResource( 2 )
+
+[node name="MuzzleFlash" type="Sprite" parent="Barrel"]
+visible = false
+position = Vector2( 68.3006, 0 )
+rotation = 1.5708
+texture = ExtResource( 7 )
+
 [node name="CartridgeExpeller" type="Node2D" parent="." groups=[
 "FX",
 ]]
-script = ExtResource( 6 )
-cartridge = ExtResource( 7 )
+script = ExtResource( 8 )
+cartridge = ExtResource( 9 )
 
 [node name="Tween" type="Tween" parent="CartridgeExpeller"]
 

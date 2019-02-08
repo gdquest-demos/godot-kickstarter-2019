@@ -14,8 +14,7 @@ func _ready() -> void:
 	randomize()
 	set_process(false)
 	self.duration = duration
-	for camera_shaker in get_tree().get_nodes_in_group("camera_shaker"):
-			camera_shaker.connect("camera_shake_requested", self, "_on_camera_shake_requested")
+	connect_to_shakers()
 
 
 func _process(delta: float) -> void:
@@ -46,3 +45,8 @@ func set_shake(value: bool) -> void:
 	offset = Vector2()
 	if shake:
 		timer.start()
+
+
+func connect_to_shakers() -> void:
+	for camera_shaker in get_tree().get_nodes_in_group("camera_shaker"):
+		camera_shaker.connect("camera_shake_requested", self, "_on_camera_shake_requested")

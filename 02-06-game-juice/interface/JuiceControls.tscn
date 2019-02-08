@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://interface/JuiceControls.gd" type="Script" id=1]
+[ext_resource path="res://interface/fonts/montserrat_eb_32.tres" type="DynamicFont" id=2]
 
 [sub_resource type="Animation" id=1]
 
@@ -13,8 +14,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( -115, -0.248825, -66.8136, 0.178649, 47.9701, 12.2293, -0.0950871, 91.6281, 0.245548, -236.615 ),
-"times": PoolRealArray( 0, 0.291436 )
+"points": PoolRealArray( -418.8, -0.248825, -66.8136, 0.178649, 47.9701, 27.6, -0.0950871, 91.6281, 0.245548, -236.615 ),
+"times": PoolRealArray( 0, 0.295435 )
 }
 tracks/1/type = "bezier"
 tracks/1/path = NodePath("ControlList:rect_position:y")
@@ -38,8 +39,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 12.2293, -0.249689, -108.441, 0.142013, 61.6771, -114.753, -0.319427, 170.519, 0.249531, -133.207 ),
-"times": PoolRealArray( 0, 0.295552 )
+"points": PoolRealArray( 30, -0.249689, -108.441, 0.0356221, 49.2, -486, -0.436154, 802.8, 0.249531, -133.207 ),
+"times": PoolRealArray( 0.000868833, 0.295403 )
 }
 tracks/1/type = "bezier"
 tracks/1/path = NodePath("ControlList:rect_position:y")
@@ -57,62 +58,130 @@ script = ExtResource( 1 )
 
 [node name="ControlList" type="VBoxContainer" parent="."]
 anchor_bottom = 1.0
-margin_left = -114.753
+margin_left = -418.8
 margin_top = 50.0
-margin_right = -13.7529
+margin_right = -23.8
 margin_bottom = -50.0
-custom_constants/separation = 15
+custom_constants/separation = 10
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CameraShake" type="Button" parent="ControlList"]
-margin_right = 106.0
-margin_bottom = 20.0
+margin_right = 395.0
+margin_bottom = 66.0
+custom_fonts/font = ExtResource( 2 )
 toggle_mode = true
 text = "Camera Shake"
 
 [node name="FrameFreeze" type="Button" parent="ControlList"]
-margin_top = 35.0
-margin_right = 106.0
-margin_bottom = 55.0
+margin_top = 76.0
+margin_right = 395.0
+margin_bottom = 142.0
+custom_fonts/font = ExtResource( 2 )
 toggle_mode = true
 text = "Frame Freeze"
 
 [node name="Tweening" type="Button" parent="ControlList"]
-margin_top = 70.0
-margin_right = 106.0
-margin_bottom = 90.0
+margin_top = 152.0
+margin_right = 395.0
+margin_bottom = 218.0
+custom_fonts/font = ExtResource( 2 )
 toggle_mode = true
 text = "Tweening"
 
 [node name="FX" type="Button" parent="ControlList"]
-margin_top = 105.0
-margin_right = 106.0
-margin_bottom = 125.0
+margin_top = 228.0
+margin_right = 395.0
+margin_bottom = 294.0
+custom_fonts/font = ExtResource( 2 )
 toggle_mode = true
 text = "Visual FX"
 
 [node name="Particles" type="Button" parent="ControlList"]
-margin_top = 140.0
-margin_right = 106.0
-margin_bottom = 160.0
+margin_top = 304.0
+margin_right = 395.0
+margin_bottom = 370.0
+custom_fonts/font = ExtResource( 2 )
 toggle_mode = true
 text = "Particles"
 
 [node name="FastSpawn" type="Button" parent="ControlList"]
-margin_top = 175.0
-margin_right = 106.0
-margin_bottom = 195.0
+margin_top = 380.0
+margin_right = 395.0
+margin_bottom = 446.0
+custom_fonts/font = ExtResource( 2 )
 toggle_mode = true
 text = "Fast Spawn"
 
 [node name="WeakEnemies" type="Button" parent="ControlList"]
-margin_top = 210.0
-margin_right = 106.0
-margin_bottom = 230.0
+margin_top = 456.0
+margin_right = 395.0
+margin_bottom = 522.0
+custom_fonts/font = ExtResource( 2 )
 toggle_mode = true
 text = "Weak Enemies"
+
+[node name="BiggerBullets" type="Button" parent="ControlList"]
+margin_top = 532.0
+margin_right = 395.0
+margin_bottom = 598.0
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = true
+text = "Bigger Bullets"
+
+[node name="RapidFire" type="Button" parent="ControlList"]
+margin_top = 608.0
+margin_right = 395.0
+margin_bottom = 674.0
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = true
+text = "Rapid Fire"
+
+[node name="Spread" type="Button" parent="ControlList"]
+margin_top = 684.0
+margin_right = 395.0
+margin_bottom = 750.0
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = true
+text = "Bullet Spread"
+
+[node name="FireRate" type="HBoxContainer" parent="ControlList"]
+margin_top = 760.0
+margin_right = 395.0
+margin_bottom = 820.0
+custom_constants/separation = 10
+
+[node name="Label" type="Label" parent="ControlList/FireRate"]
+margin_right = 230.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 2 )
+text = "Fire Rate"
+
+[node name="FireRateSlider" type="HSlider" parent="ControlList/FireRate"]
+margin_left = 240.0
+margin_top = 22.0
+margin_right = 395.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 2.0
+max_value = 10.0
+value = 2.0
+
+[node name="Sounds" type="Button" parent="ControlList"]
+margin_top = 830.0
+margin_right = 395.0
+margin_bottom = 896.0
+custom_fonts/font = ExtResource( 2 )
+text = "Sounds"
+
+[node name="Restart" type="Button" parent="ControlList"]
+margin_top = 906.0
+margin_right = 395.0
+margin_bottom = 972.0
+custom_fonts/font = ExtResource( 2 )
+text = "Restart"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/slide_in = SubResource( 1 )
@@ -120,6 +189,15 @@ anims/slide_out = SubResource( 2 )
 
 [connection signal="pressed" from="ControlList/CameraShake" to="." method="_on_CameraShake_pressed"]
 [connection signal="pressed" from="ControlList/FrameFreeze" to="." method="_on_FrameFreeze_pressed"]
+[connection signal="pressed" from="ControlList/Tweening" to="." method="_on_Tweening_pressed"]
 [connection signal="pressed" from="ControlList/FX" to="." method="_on_FX_pressed"]
 [connection signal="pressed" from="ControlList/Particles" to="." method="_on_Particles_pressed"]
 [connection signal="pressed" from="ControlList/FastSpawn" to="." method="_on_FastSpawn_pressed"]
+[connection signal="toggled" from="ControlList/FastSpawn" to="." method="_on_FastSpawn_toggled"]
+[connection signal="pressed" from="ControlList/WeakEnemies" to="." method="_on_WeakEnemies_pressed"]
+[connection signal="pressed" from="ControlList/BiggerBullets" to="." method="_on_BiggerBullets_pressed"]
+[connection signal="pressed" from="ControlList/RapidFire" to="." method="_on_RapidFire_pressed"]
+[connection signal="pressed" from="ControlList/Spread" to="." method="_on_Spread_pressed"]
+[connection signal="value_changed" from="ControlList/FireRate/FireRateSlider" to="." method="_on_FireRateSlider_value_changed"]
+[connection signal="pressed" from="ControlList/Sounds" to="." method="_on_Sounds_pressed"]
+[connection signal="pressed" from="ControlList/Restart" to="." method="_on_Restart_pressed"]
