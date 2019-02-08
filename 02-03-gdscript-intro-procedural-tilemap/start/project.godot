@@ -16,7 +16,6 @@ _global_script_class_icons={
 [application]
 
 config/name="Intro to GDScript: Procedural Tilemap (start)"
-run/main_scene="res://GameWorld.tscn"
 config/icon="res://icon.png"
 
 [display]
