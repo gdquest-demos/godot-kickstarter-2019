@@ -1,12 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_resource type="TileSet" load_steps=2 format=2]
 
-[ext_resource path="res://GameWorld.gd" type="Script" id=1]
-[ext_resource path="res://Assets/TileSet.png" type="Texture" id=2]
+[ext_resource path="res://Assets/TileSet.png" type="Texture" id=1]
 
-[sub_resource type="TileSet" id=1]
+[resource]
 
 0/name = "Outer01"
-0/texture = ExtResource( 2 )
+0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 64, 0, 32, 32 )
@@ -16,7 +15,7 @@
 0/shapes = [  ]
 0/z_index = 0
 1/name = "Outer02"
-1/texture = ExtResource( 2 )
+1/texture = ExtResource( 1 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 96, 0, 32, 32 )
@@ -26,7 +25,7 @@
 1/shapes = [  ]
 1/z_index = 0
 2/name = "Outer03"
-2/texture = ExtResource( 2 )
+2/texture = ExtResource( 1 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 0, 32, 32, 32 )
@@ -36,7 +35,7 @@
 2/shapes = [  ]
 2/z_index = 0
 3/name = "Outer04"
-3/texture = ExtResource( 2 )
+3/texture = ExtResource( 1 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 32, 32, 32, 32 )
@@ -46,7 +45,7 @@
 3/shapes = [  ]
 3/z_index = 0
 4/name = "Outer05"
-4/texture = ExtResource( 2 )
+4/texture = ExtResource( 1 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 64, 32, 32, 32 )
@@ -56,7 +55,7 @@
 4/shapes = [  ]
 4/z_index = 0
 5/name = "Outer06"
-5/texture = ExtResource( 2 )
+5/texture = ExtResource( 1 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 96, 32, 32, 32 )
@@ -66,7 +65,7 @@
 5/shapes = [  ]
 5/z_index = 0
 6/name = "Outer07"
-6/texture = ExtResource( 2 )
+6/texture = ExtResource( 1 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 0, 64, 32, 32 )
@@ -76,7 +75,7 @@
 6/shapes = [  ]
 6/z_index = 0
 7/name = "Outer08"
-7/texture = ExtResource( 2 )
+7/texture = ExtResource( 1 )
 7/tex_offset = Vector2( 0, 0 )
 7/modulate = Color( 1, 1, 1, 1 )
 7/region = Rect2( 32, 64, 32, 32 )
@@ -86,7 +85,7 @@
 7/shapes = [  ]
 7/z_index = 0
 8/name = "Outer09"
-8/texture = ExtResource( 2 )
+8/texture = ExtResource( 1 )
 8/tex_offset = Vector2( 0, 0 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 64, 64, 32, 32 )
@@ -96,7 +95,7 @@
 8/shapes = [  ]
 8/z_index = 0
 9/name = "Outer10"
-9/texture = ExtResource( 2 )
+9/texture = ExtResource( 1 )
 9/tex_offset = Vector2( 0, 0 )
 9/modulate = Color( 1, 1, 1, 1 )
 9/region = Rect2( 96, 64, 32, 32 )
@@ -106,7 +105,7 @@
 9/shapes = [  ]
 9/z_index = 0
 10/name = "Obstacle01"
-10/texture = ExtResource( 2 )
+10/texture = ExtResource( 1 )
 10/tex_offset = Vector2( 0, 0 )
 10/modulate = Color( 1, 1, 1, 1 )
 10/region = Rect2( 128, 0, 32, 32 )
@@ -116,7 +115,7 @@
 10/shapes = [  ]
 10/z_index = 0
 11/name = "Obstacle02"
-11/texture = ExtResource( 2 )
+11/texture = ExtResource( 1 )
 11/tex_offset = Vector2( 0, 0 )
 11/modulate = Color( 1, 1, 1, 1 )
 11/region = Rect2( 160, 0, 32, 32 )
@@ -126,7 +125,7 @@
 11/shapes = [  ]
 11/z_index = 0
 12/name = "Obstacle03"
-12/texture = ExtResource( 2 )
+12/texture = ExtResource( 1 )
 12/tex_offset = Vector2( 0, 0 )
 12/modulate = Color( 1, 1, 1, 1 )
 12/region = Rect2( 128, 32, 32, 32 )
@@ -136,7 +135,7 @@
 12/shapes = [  ]
 12/z_index = 0
 13/name = "Obstacle04"
-13/texture = ExtResource( 2 )
+13/texture = ExtResource( 1 )
 13/tex_offset = Vector2( 0, 0 )
 13/modulate = Color( 1, 1, 1, 1 )
 13/region = Rect2( 160, 32, 32, 32 )
@@ -146,7 +145,7 @@
 13/shapes = [  ]
 13/z_index = 0
 14/name = "Obstacle05"
-14/texture = ExtResource( 2 )
+14/texture = ExtResource( 1 )
 14/tex_offset = Vector2( 0, 0 )
 14/modulate = Color( 1, 1, 1, 1 )
 14/region = Rect2( 128, 64, 32, 32 )
@@ -156,7 +155,7 @@
 14/shapes = [  ]
 14/z_index = 0
 15/name = "Dirt01"
-15/texture = ExtResource( 2 )
+15/texture = ExtResource( 1 )
 15/tex_offset = Vector2( 0, 0 )
 15/modulate = Color( 1, 1, 1, 1 )
 15/region = Rect2( 160, 64, 32, 32 )
@@ -166,7 +165,7 @@
 15/shapes = [  ]
 15/z_index = 0
 16/name = "Dirt02"
-16/texture = ExtResource( 2 )
+16/texture = ExtResource( 1 )
 16/tex_offset = Vector2( 0, 0 )
 16/modulate = Color( 1, 1, 1, 1 )
 16/region = Rect2( 192, 0, 32, 32 )
@@ -176,7 +175,7 @@
 16/shapes = [  ]
 16/z_index = 0
 17/name = "Dirt03"
-17/texture = ExtResource( 2 )
+17/texture = ExtResource( 1 )
 17/tex_offset = Vector2( 0, 0 )
 17/modulate = Color( 1, 1, 1, 1 )
 17/region = Rect2( 224, 0, 32, 32 )
@@ -186,7 +185,7 @@
 17/shapes = [  ]
 17/z_index = 0
 18/name = "Dirt04"
-18/texture = ExtResource( 2 )
+18/texture = ExtResource( 1 )
 18/tex_offset = Vector2( 0, 0 )
 18/modulate = Color( 1, 1, 1, 1 )
 18/region = Rect2( 256, 0, 32, 32 )
@@ -196,7 +195,7 @@
 18/shapes = [  ]
 18/z_index = 0
 19/name = "Dirt05"
-19/texture = ExtResource( 2 )
+19/texture = ExtResource( 1 )
 19/tex_offset = Vector2( 0, 0 )
 19/modulate = Color( 1, 1, 1, 1 )
 19/region = Rect2( 288, 0, 32, 32 )
@@ -206,7 +205,7 @@
 19/shapes = [  ]
 19/z_index = 0
 20/name = "Dirt06"
-20/texture = ExtResource( 2 )
+20/texture = ExtResource( 1 )
 20/tex_offset = Vector2( 0, 0 )
 20/modulate = Color( 1, 1, 1, 1 )
 20/region = Rect2( 192, 32, 32, 32 )
@@ -216,7 +215,7 @@
 20/shapes = [  ]
 20/z_index = 0
 21/name = "Dirt07"
-21/texture = ExtResource( 2 )
+21/texture = ExtResource( 1 )
 21/tex_offset = Vector2( 0, 0 )
 21/modulate = Color( 1, 1, 1, 1 )
 21/region = Rect2( 224, 32, 32, 32 )
@@ -226,7 +225,7 @@
 21/shapes = [  ]
 21/z_index = 0
 22/name = "Dirt08"
-22/texture = ExtResource( 2 )
+22/texture = ExtResource( 1 )
 22/tex_offset = Vector2( 0, 0 )
 22/modulate = Color( 1, 1, 1, 1 )
 22/region = Rect2( 256, 32, 32, 32 )
@@ -236,7 +235,7 @@
 22/shapes = [  ]
 22/z_index = 0
 23/name = "Dirt09"
-23/texture = ExtResource( 2 )
+23/texture = ExtResource( 1 )
 23/tex_offset = Vector2( 0, 0 )
 23/modulate = Color( 1, 1, 1, 1 )
 23/region = Rect2( 288, 32, 32, 32 )
@@ -246,7 +245,7 @@
 23/shapes = [  ]
 23/z_index = 0
 24/name = "Dirt10"
-24/texture = ExtResource( 2 )
+24/texture = ExtResource( 1 )
 24/tex_offset = Vector2( 0, 0 )
 24/modulate = Color( 1, 1, 1, 1 )
 24/region = Rect2( 192, 64, 32, 32 )
@@ -256,7 +255,7 @@
 24/shapes = [  ]
 24/z_index = 0
 25/name = "Dirt11"
-25/texture = ExtResource( 2 )
+25/texture = ExtResource( 1 )
 25/tex_offset = Vector2( 0, 0 )
 25/modulate = Color( 1, 1, 1, 1 )
 25/region = Rect2( 224, 64, 32, 32 )
@@ -266,7 +265,7 @@
 25/shapes = [  ]
 25/z_index = 0
 26/name = "Dirt12"
-26/texture = ExtResource( 2 )
+26/texture = ExtResource( 1 )
 26/tex_offset = Vector2( 0, 0 )
 26/modulate = Color( 1, 1, 1, 1 )
 26/region = Rect2( 256, 64, 32, 32 )
@@ -276,7 +275,7 @@
 26/shapes = [  ]
 26/z_index = 0
 27/name = "Dirt13"
-27/texture = ExtResource( 2 )
+27/texture = ExtResource( 1 )
 27/tex_offset = Vector2( 0, 0 )
 27/modulate = Color( 1, 1, 1, 1 )
 27/region = Rect2( 288, 64, 32, 32 )
@@ -285,38 +284,4 @@
 27/navigation_offset = Vector2( 0, 0 )
 27/shapes = [  ]
 27/z_index = 0
-
-[sub_resource type="StyleBoxFlat" id=2]
-
-bg_color = Color( 0.160784, 0.160784, 0.164706, 0.784314 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[node name="GameWorld" type="Node2D"]
-script = ExtResource( 1 )
-
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 1 )
-cell_size = Vector2( 32, 32 )
-format = 1
-
-[node name="Panel" type="Panel" parent="."]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 276.0
-margin_bottom = 40.0
-custom_styles/panel = SubResource( 2 )
-
-[node name="Label" type="Label" parent="Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Click or press enter to draw a new map"
-align = 1
-valign = 1
 
