@@ -1,6 +1,8 @@
 extends Node
 class_name ActiveJuices
 
+const HEALTH_MODIFIER : = 0.25
+
 var sound : = false
 var tweening : = false
 var particles : = false

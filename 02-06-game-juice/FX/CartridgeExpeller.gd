@@ -10,6 +10,7 @@ var enabled : = false
 
 
 func _ready() -> void:
+	enabled = ActiveJuices.visual_fx
 	randomize()
 
 

@@ -4,7 +4,7 @@ class_name Enemy
 onready var animation_player : AnimationPlayer = $AnimationPlayer
 onready var audio_player : AudioStreamPlayer = $AudioStreamPlayer
 
-export var health : = 100
+export var health : = 100.0
 export var move_speed : = 75
 export var explosion : PackedScene
 
@@ -13,7 +13,7 @@ var player : Node2D
 
 
 func _ready() -> void:
-	health *= 0.25 if ActiveJuices.weak_enemies else 1
+	health *= ActiveJuices.HEALTH_MODIFIER if ActiveJuices.weak_enemies else 1
 
 
 func _physics_process(delta: float) -> void:

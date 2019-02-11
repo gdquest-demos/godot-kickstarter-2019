@@ -38,6 +38,7 @@ ActiveJuices="*res://FX/ActiveJuices.gd"
 
 window/size/width=1920
 window/size/height=1080
+window/size/fullscreen=true
 window/size/test_width=844
 window/size/test_height=475
 mouse_cursor/custom_image="res://assets/sprites/ui/crosshair060.png"

@@ -61,6 +61,8 @@ func _on_RapidFire_pressed() -> void:
 
 func _on_WeakEnemies_pressed() -> void:
 	ActiveJuices.weak_enemies = not ActiveJuices.weak_enemies
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.health *= ActiveJuices.HEALTH_MODIFIER if ActiveJuices.weak_enemies else 1 / ActiveJuices.HEALTH_MODIFIER
 
 
 func _on_Tweening_pressed() -> void:

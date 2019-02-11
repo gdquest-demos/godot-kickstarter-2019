@@ -10,6 +10,7 @@ script = ExtResource( 1 )
 level = ExtResource( 2 )
 
 [node name="Level" parent="." instance=ExtResource( 2 )]
+max_spawn_time = 8.0
 
 [node name="JuiceControls" parent="." instance=ExtResource( 3 )]
 
