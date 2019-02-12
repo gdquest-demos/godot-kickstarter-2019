@@ -1,0 +1,13 @@
+{
+		"id" : "rgb_cmyk",
+		"name" : "RGB & CMYK",
+		"category" : "basic",
+		"colors" : {
+			"01" : "ff0000",
+			"02" : "00ff00",
+			"03" : "0000ff",
+			"04" : "ff00ff",
+			"05" : "00ffff",
+			"06" : "ffff00",
+			}
+}
