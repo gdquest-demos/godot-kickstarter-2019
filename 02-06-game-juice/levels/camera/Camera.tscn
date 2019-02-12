@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://levels/camera/ShakingCamera.gd" type="Script" id=1]
+
+[node name="Camera" type="Camera2D" groups=[
+"camera",
+]]
+editor/display_folded = true
+position = Vector2( 960, 540 )
+current = true
+script = ExtResource( 1 )
+DAMP_EASING = 1.41421
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
