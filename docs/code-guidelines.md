@@ -534,29 +534,40 @@ Using the `match` keyword this way we mitigate some of the negative effects of n
 On the other hand, doing this limits the entry points for triggering behavior that changes the internal state and this is the main benefit.
 
 
-## Godot's own dedicated Observer pattern
+## Events bus: Observer pattern for Godot
 
-_Note_ credits go to Guillaume Bouvier aka. Ombarus for this idea which he presents in [a devlog video](https://www.youtube.com/watch?v=fyh2ZjAFMZM) for one of his projects.
+*Thanks to Ombarus for sharing this design pattern. He presented it in [a devlog video](https://www.youtube.com/watch?v=fyh2ZjAFMZM) on his YouTube channel.*
 
-Maintaining signal connections isn't the easiest especially when declaring connections via code. For the time being Godot doesn't offer any visual cues for signals connected through code as opposed to signals connected with the help of the GUI.
+Maintaining signal connections isn't the easiest, especially when declaring connections via code. Godot 3.1 doesn't offer any visual cues for signals connected through code as opposed to signals connected with the editor.
 
-There are some worth-while advantages for which you might want to connect signals through code:
+There are different advantages to connecting signals through the editor or via code.
 
-- connections can be declared for any nodes, including ones that aren't present in the current scene
-- we're not restricted to `Node` only, as is the case via GUI, since any `Object` can define, emit, and connect to signals, [see Object class docs](https://docs.godotengine.org/en/latest/classes/class_object.html)
+### Connecting signals through the editor's node tab
 
-There are also advantages for connecting to signals via GUI:
+- You can see an icon next to nodes that are connected to another node in the scene tree
+- The code doesn't get cluttered with connection declarations
 
-- the most obvious advantage is that we can see at a glance in the Godot editor which nodes are connected in the scene tree docker while there's the detailed view in the Node docker as well
-- the code doesn't get cluttered with "manual" connection declarations
+### Connecting signals via code
 
-With this in mind this section focuses on an in-code pattern to minimize spaghetti code at the expense of introducing a global dependency. The problem when trying to decouple code is that we lose the ability to easily connect signals across independent systems.
+- You can connect any nodes, including those you create at runtime and those that aren't present in the current scene
+- You can search calls to the `connect()` method globally in the project.
+- Contrary to the editor, you're not limited to using `Node` only: any `Object` can define, emit, and connect signals. See the [Object class's docs](https://docs.godotengine.org/en/latest/classes/class_object.html).
 
-Referring back to [Fig. 1], for example we wouldn't be able to directly connect a signal in a deeply nested node from `DialogSystem` to a nested node in the `Board` tree branch while following the decoupling guidelines. One option in this case is to declare the signal connection between those systems in a script attached to the `Game` node. The problem with this solution is that we can lose track of connections since they're not declared in the scripts attached to the nodes that need these connections themselves and as stated before, Godot GUI doesn't help in showing these in-code connections.
+### Using an Event singleton to avoid spaghetti code
 
-In a complex system we might have hundreds of signals emitted and connected all over the place so to manage this, at the expense of introducing a dependency we can use a dedicated `Events` [singleton (autoloaded script)](https://docs.godotengine.org/en/latest/getting_started/step_by_step/singletons_autoload.html). _Note_ that the name of the script doesn't matter.
+With these guidelines and in our work, we're trying to decouple code to create independent, reusable, and scalable systems. This comes at a cost: we lose the ability to easily connect signals across independent systems. And common to need to connect nodes in GDScript, which tends to lead to spaghetti code.
 
-For example we might have something like this in `Events.gd`:
+The Event singleton is a pattern to reduce the spaghetti effect at the expense of introducing a global dependency.
+
+Referring back to [Fig. 1], we couldn't directly connect a signal in a deeply nested node from `DialogSystem` to a nested node in the `Board` tree branch while following the decoupling guidelines.
+
+One solution is to declare the signal connection between those systems in a script attached to the `Game` node. The problem is that we can lose track of connections since they're not declared in the scripts attached to the nodes that need these connections themselves.
+
+In a complex system, you might have hundreds of signals emitted and connected all over the place. To manage this we can use a dedicated `Events` [singleton (autoloaded script)](https://docs.godotengine.org/en/latest/getting_started/step_by_step/singletons_autoload.html):
+
+*Note: the name of the script doesn't matter.*
+
+Here's an example `Events.gd`:
 
 ```gdscript
 signal party_walk_started(msg)
@@ -573,12 +584,11 @@ signal battle_started(msg)
 signal battle_finished(msg)
 ```
 
-All that this script does is to provide signals that can be emitted and connected to. For example, a "deeply" nested node like `$Game/Party/Godette/Walk` could then emit the appropriate signal directly using the `Events` singleton script: `Events.emit_signal("party_walk_started", {destination = destination})`, `Events.emit_signal("party_walk_finished", {})`. While other deeply nested nodes could connect to these signals: `Events.connect("party_walk_started", self, "_on_Party_walk_started")` etc.
+This Singleton only lists signals that can be emitted and connected to. A "deeply" nested node like `$Game/Party/Godette/Walk` could then emit the appropriate signal directly using the global `Events` node: `Events.emit_signal("party_walk_started", {destination = destination})`, `Events.emit_signal("party_walk_finished", {})`. Other nested nodes could connect to these signals: `Events.connect("party_walk_started", self, "_on_Party_walk_started")` etc.
 
-This way signal connections are confined to the appropriate nodes instead of being managed through the code of some parent node script, like `Game`.
+This way, we can encapsulate signal connections in the related nodes instead of managing them in the code of some parent script, like `Game`.
 
-In the long run, the `Events` global dependency isn't a major problem, if we want to reuse code in other projects that doesn't implement this pattern, we can just do a quick search and replace to get rid of all the `Events.*` declarations.
-
+Having a global `Events` dependency isn't a major issue. If we want to reuse code in other projects that don't implement this pattern, we can do a search and replace to get rid of all the `Events.*` declarations.
 
 [OpenRPG]: https://github.com/GDquest/godot-open-rpg
 [state]: ./imgs/node_state.png
