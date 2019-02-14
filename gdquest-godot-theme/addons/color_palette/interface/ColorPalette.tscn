@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/color_palette/interface/ColorPalette.gd" type="Script" id=1]
+[ext_resource path="res://addons/color_palette/interface/color_swatch/ColorSwatch.tscn" type="PackedScene" id=2]
+
+[node name="ColorPalette" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1497.0
+margin_bottom = -598.0
+script = ExtResource( 1 )
+color_swatch = ExtResource( 2 )
+
+[node name="Column" type="VBoxContainer" parent="."]
+margin_right = 423.0
+margin_bottom = 482.0
+
+[node name="Label" type="Label" parent="Column"]
+margin_right = 423.0
+margin_bottom = 14.0
+text = "Palette name"
+align = 1
+
+[node name="Grid" type="GridContainer" parent="Column"]
+margin_top = 18.0
+margin_right = 423.0
+margin_bottom = 458.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 8
+custom_constants/hseparation = 8
+columns = 6
+
+[node name="OptionButton" type="OptionButton" parent="Column"]
+margin_top = 462.0
+margin_right = 423.0
+margin_bottom = 482.0
+text = "Palettes"
+
+[connection signal="item_selected" from="Column/OptionButton" to="." method="_on_OptionButton_item_selected"]
