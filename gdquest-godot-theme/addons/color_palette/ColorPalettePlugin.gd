@@ -14,15 +14,10 @@ func _enter_tree() -> void:
 	_interface = INTERFACE_SCENE.instance() as ColorPalette
 	_interface.connect("color_picked", self, "set_canvas_items_modulate")
 	_interface.connect("palette_selected", self, "update_palette")
-	
-	add_control_to_dock(EditorPlugin.DOCK_SLOT_LEFT_BR, _interface)
 
 	load_palettes(PATH)
 	update_palette(palettes.keys()[0])
 
-
-func _exit_tree() -> void:
-	remove_control_from_docks(_interface)
 
 func get_interface() -> ColorPalette:
 	return _interface as ColorPalette
