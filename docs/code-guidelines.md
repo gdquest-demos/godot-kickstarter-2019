@@ -18,6 +18,20 @@ There isn’t a straightforward way of transposing these ideas into an object-or
 
 To create modular and composable systems, we have to manage boundaries: the places where different game systems interact with one another. Especially the interaction of the game systems with the user.
 
+## Summary
+
+1. [Code Writing Style](#code-writing-style)
+    1. [Avoid Null](#avoid-null-like-the-plague)
+    1. [Use Static types](#use-static-types)
+    1. [Write self-documenting Code](#write-self-documenting-code-and-use-comments-sparingly)
+        1. [Use comments if they save time or add key explanations](#use-comments-if-they-save-time-or-add-key-explanations)  
+1. [System Design and Interactions](#system-design-and-interactions)
+    1. [Every node and scene should run on its own](#every-node-and-scene-should-run-on-its-own)
+    1. [Use signals to coordinate time-dependent interactions](#use-signals-to-coordinate-time-dependent-interactions)
+    1. [Reinforcing good habits](#reinforcing-good-habit)
+1. [Event Bus: Observer pattern for Godot](#events-bus-observer-pattern-for-godot)
+    1. [Using an Event singleton to avoid spaghetti code](#using-an-event-singleton-to-avoid-spaghetti-code)
+
 ## Code Writing Style
 
 This section shows our programming style by example.
