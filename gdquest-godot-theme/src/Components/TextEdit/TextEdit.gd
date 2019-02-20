@@ -30,7 +30,7 @@ func _add_keywords_highlighting() -> void:
 			for key in property:
 				add_keyword_color(key, member_color)
 	
-	var content : = get_file_content("res://src/Components/text_edit/keywords.json")
+	var content : = get_file_content("res://src/Components/TextEdit/keywords.json")
 	var keywords : Array = parse_json(content)
 	for keyword in keywords:
 		add_keyword_color(keyword, keyword_color)
