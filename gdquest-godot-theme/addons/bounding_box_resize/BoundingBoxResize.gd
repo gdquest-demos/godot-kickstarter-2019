@@ -4,23 +4,26 @@ extends EditorPlugin
 Updates RichTextLabel and TextEdit minimum rect size to fit their content
 """
 
-onready var _editor: = get_editor_interface()
-onready var _selection: = _editor.get_selection()
-onready var _interface: Button
-
 const INTERFACE_SCENE: PackedScene = preload("res://addons/bounding_box_resize/interface/RefreshButton.tscn")
+
+var _editor: = get_editor_interface()
+var _selection: = _editor.get_selection()
+var _interface: Button = Button.new()
 
 func _ready() -> void:
 	_interface = INTERFACE_SCENE.instance()
 	_interface.visible = false
 	_interface.connect("pressed", self, "_on_Button_pressed")
-	add_control_to_container(CONTAINER_CANVAS_EDITOR_MENU, _interface)
+	
+	if not _editor.is_plugin_enabled("gdquest_docker"):
+		add_control_to_container(CONTAINER_CANVAS_EDITOR_MENU, _interface)
 	
 	_selection.connect("selection_changed", self, "_on_EditorSelection_selection_changed")
 
 
 func _exit_tree():
-	remove_control_from_container(CONTAINER_CANVAS_EDITOR_MENU, _interface)
+	if not _editor.is_plugin_enabled("gdquest_docker"):
+		remove_control_from_container(CONTAINER_CANVAS_EDITOR_MENU, _interface)
 
 
 func _on_EditorSelection_selection_changed() -> void:
@@ -39,6 +42,14 @@ func _on_Button_pressed() -> void:
 	var nodes: = _selection.get_selected_nodes()
 	for n in nodes:
 		fit_rect_vertically(n)
+
+
+func get_plugin_name() -> String:
+	return "bounding_box_resize"
+
+
+func get_interface() -> Control:
+	return _interface
 
 
 func fit_rect_vertically(control: Control) -> void:

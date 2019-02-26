@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://addons/gdquest_docker/interface/plugin_checkbox/PluginCheckBox.gd" type="Script" id=1]
-
-[node name="PluginCheckBox" type="CheckBox"]
-anchor_bottom = 1.0
-margin_right = 24.0
-script = ExtResource( 1 )
-

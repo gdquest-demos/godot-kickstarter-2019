@@ -9,31 +9,54 @@ A valid plugin must have the EditorPlugin.get_plugin_name() -> String virtual me
 and also a custom get_interface() -> Control method implemented.
 """
 
-onready var _interface: Docker
-onready var _editor: EditorInterface = get_editor_interface()
-
 const INTERFACE_SCENE: PackedScene = preload("res://addons/gdquest_docker/interface/Docker.tscn")
-const PLUGIN_CHECKBOX: PackedScene = preload("res://addons/gdquest_docker/interface/plugin_checkbox/PluginCheckBox.tscn")
 const ADDONS_FOLDER_PATH: String = "res://addons"
 
+var _interface: Docker = INTERFACE_SCENE.instance()
+var _editor: EditorInterface = get_editor_interface()
+var _selection: EditorSelection = _editor.get_selection()
+var _plugins: Array = []
 
 func _enter_tree() -> void:
-	_interface = INTERFACE_SCENE.instance()
-	add_control_to_dock(EditorPlugin.DOCK_SLOT_LEFT_UL, _interface)
+	add_control_to_dock(EditorPlugin.DOCK_SLOT_LEFT_BR, _interface)
+	_selection.connect("selection_changed", self, "_on_selection_changed")
 
 
 func _exit_tree() -> void:
-	var plugins: = _interface.get_plugins_list()
-
-	for checkbox in plugins.get_children():
-		if not checkbox.pressed:
-			continue
-		_editor.set_plugin_enabled(checkbox.plugin_name, false)
-
 	remove_control_from_docks(_interface)
+
 
 func _ready():
 	load_plugins()
+	_initialize()
+
+
+func _initialize() -> void:
+	for plugin in _plugins:
+		if validate_plugin(plugin):
+			add_widget(get_plugin(plugin).get_interface())
+		else:
+			remove_plugin_from_list(plugin)
+		
+	hook_color_palette()
+	hook_rich_editor()
+
+
+func _on_selection_changed() -> void:
+	if not _editor.is_plugin_enabled("rich_text_editor"):
+		return
+	var widgets: Control = _interface.get_widget_container()
+	
+	if widgets.has_node("RichEditorInterface"):
+		widgets.get_node("RichEditorInterface").queue_free()
+		
+	var plugin: RichTextPlugin = get_plugin("rich_text_editor") as RichTextPlugin
+	
+	if RichTextPlugin.is_rich_text_selection(_selection):
+		plugin.initialize_interface()
+
+func get_plugin_name() -> String:
+	return "gdquest_docker"
 
 
 func load_plugins() -> void:
@@ -53,20 +76,11 @@ func load_plugins() -> void:
 func add_plugin_to_list(plugin_name: String) -> void:
 	if plugin_name == get_plugin_name():
 		return
-
-	var plugin_checkbox: PluginCheckBox = PLUGIN_CHECKBOX.instance()
-	plugin_checkbox.plugin_name = plugin_name
-	plugin_checkbox.connect("toggled", self, "set_plugin_enabled", [plugin_name])
-	_interface.add_plugin_checkbox(plugin_checkbox)
+	_plugins.append(plugin_name)
 
 
 func remove_plugin_from_list(plugin_name: String) -> void:
-	var plugins_list: = _interface.get_plugins_list()
-
-	for c in plugins_list:
-		if c.plugin_name == plugin_name:
-			_interface.remove_plugin_checkbox(c)
-			break
+	_plugins.erase(plugin_name)
 
 
 func add_widget(widget : Control) -> void:
@@ -79,23 +93,44 @@ func remove_widget(widget : Control) -> void:
 	container.remove_child(widget)
 
 
-func set_plugin_enabled(enabled: bool, plugin_name: String) -> void:
-	if not _editor.is_plugin_enabled(plugin_name):
-		if enabled:
-			_editor.set_plugin_enabled(plugin_name, true)
-
+func validate_plugin(plugin_name: String) -> bool:
+	#Plugins must be enabled to be validated
+	var is_enabled: = _editor.is_plugin_enabled(plugin_name)
+	if not is_enabled:
+		_editor.set_plugin_enabled(plugin_name, true)
 	var plugin: = get_plugin(plugin_name)
+		
+	var is_valid: bool = false
+	is_valid = not plugin.get_plugin_name() == ""
+	is_valid = plugin.has_method("get_interface")
+	
+	if not is_enabled and not is_valid:
+		_editor.set_plugin_enabled(plugin_name, false)
+	
+	return is_valid
 
-	if plugin.has_method("get_interface"):
-		if enabled:
-			add_widget(plugin.get_interface())
-		else:
-			remove_widget(plugin.get_interface())
-			_editor.set_plugin_enabled(plugin_name, enabled)
+
+func hook_color_palette() -> void:
+	if not _editor.is_plugin_enabled("color_palette"):
+		return
+	if not _editor.is_plugin_enabled("rich_text_editor"):
+		return
+	
+	var color_palette: ColorPalette = get_plugin("color_palette").get_interface() as ColorPalette
+	var rich_editor: RichTextPlugin = get_plugin("rich_text_editor") as RichTextPlugin
+	
+	if not color_palette.is_connected("color_picked", rich_editor, "_on_ColorPalette_color_picked"):
+		color_palette.connect("color_picked", rich_editor, "_on_ColorPalette_color_picked")
 
 
-func get_plugin_name() -> String:
-	return "gdquest_docker"
+func hook_rich_editor() -> void:
+	if not _editor.is_plugin_enabled("rich_text_editor"):
+		return
+		
+	var rich_editor: RichTextPlugin = get_plugin("rich_text_editor") as RichTextPlugin
+	
+	if not rich_editor.is_connected("text_edit_popped", self, "add_widget"):
+		rich_editor.connect("text_edit_popped", self, "add_widget")
 
 
 """
