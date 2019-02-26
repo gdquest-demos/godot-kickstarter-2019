@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://addons/rich_text_editor/interface/RichEditorInterface.gd" type="Script" id=1]
+
+[sub_resource type="InputEventKey" id=1]
+control = true
+command = true
+pressed = true
+scancode = 66
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[sub_resource type="InputEventKey" id=3]
+control = true
+command = true
+pressed = true
+scancode = 73
+
+[sub_resource type="ShortCut" id=4]
+shortcut = SubResource( 3 )
+
+[sub_resource type="InputEventKey" id=5]
+pressed = true
+scancode = 16777217
+
+[sub_resource type="ShortCut" id=6]
+shortcut = SubResource( 5 )
+
+[node name="RichEditorInterface" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 622.0
+margin_top = 188.0
+margin_right = -622.0
+margin_bottom = -188.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 676.0
+margin_bottom = 30.0
+
+[node name="Bold" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 0 )
+shortcut = SubResource( 2 )
+text = "B"
+
+[node name="Italic" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 34.0
+margin_right = 64.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 0 )
+shortcut = SubResource( 4 )
+text = "I"
+
+[node name="Color" type="ColorPickerButton" parent="VBoxContainer/HBoxContainer"]
+margin_left = 68.0
+margin_right = 102.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 34, 30 )
+
+[node name="Spacing" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_left = 106.0
+margin_right = 652.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+
+[node name="Close" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 656.0
+margin_right = 676.0
+margin_bottom = 30.0
+shortcut = SubResource( 6 )
+text = "X"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
+margin_top = 34.0
+margin_right = 676.0
+margin_bottom = 704.0
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Close" to="." method="queue_free"]
