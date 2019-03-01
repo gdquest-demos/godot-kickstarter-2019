@@ -19,21 +19,7 @@ margin_top = 8.0
 margin_right = 1912.0
 margin_bottom = 1072.0
 
-[node name="Plugins" type="Button" parent="Column"]
-margin_right = 1904.0
-margin_bottom = 20.0
-toggle_mode = true
-text = "Plugins"
-flat = true
-
-[node name="PluginsList" type="VBoxContainer" parent="Column"]
-visible = false
-margin_top = 24.0
-margin_right = 1904.0
-margin_bottom = 24.0
-
 [node name="WidgetContainer" type="ScrollContainer" parent="Column"]
-margin_top = 24.0
 margin_right = 1904.0
 margin_bottom = 1064.0
 size_flags_horizontal = 3
@@ -41,8 +27,7 @@ size_flags_vertical = 3
 
 [node name="List" type="VBoxContainer" parent="Column/WidgetContainer"]
 margin_right = 1904.0
-margin_bottom = 1040.0
+margin_bottom = 1064.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[connection signal="toggled" from="Column/Plugins" to="." method="_on_Plugins_toggled"]
