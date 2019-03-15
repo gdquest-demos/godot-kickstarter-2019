@@ -15,3 +15,6 @@ autoplay = "<BASE>"
 anims/<BASE> = ExtResource( 2 )
 anims/walk = ExtResource( 3 )
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+

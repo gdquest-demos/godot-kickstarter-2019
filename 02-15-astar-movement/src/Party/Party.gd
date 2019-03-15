@@ -14,7 +14,11 @@ the in other Systems like Dialog etc. (to be further explored).
 """
 
 
-func setup(board_size: Vector2) -> void:
+var _cell_size: = Utils.V2_00
+
+
+func setup(board_size: Vector2, cell_size: Vector2) -> void:
+	_cell_size = cell_size
 	for member in get_members():
 		member.setup(board_size)
 
@@ -39,7 +43,7 @@ func get_member(idx: int) -> Node:
 func get_member_by_position(p: Vector2) -> Node:
 	var member: Node = null
 	for m in get_members():
-		if (m.position - p).length() < Utils.ERR:
+		if (m.position - p).length() < (_cell_size/2).length():
 			member = m
 			break
 	return member

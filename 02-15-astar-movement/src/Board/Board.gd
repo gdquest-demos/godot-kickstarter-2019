@@ -15,7 +15,8 @@ onready var size: Vector2 = path_finder.rect.size * path_finder.map.cell_size
 
 enum Feedback { INVALID = -1, ACTOR, OBJECT, FLAG, FORBID, ALLOW }
 
-var _has_feedback_flag = false
+var _feedback_flag_position: = Utils.V2_00
+var _has_feedback_flag: = false
 
 
 func _ready() -> void:
@@ -25,23 +26,23 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouse and not _has_feedback_flag:
-		var at: Vector2 = path_finder.map.world_to_map(get_global_mouse_position())
+	var at: Vector2 = path_finder.map.world_to_map(get_global_mouse_position())
+	if event is InputEventMouse and not _feedback_flag_position == at:
 		var type: int = Feedback.FORBID if at in path_finder.map.obstacles else Feedback.ALLOW
 		_feedback_react(at, type)
 
 
 func _on_signal(msg: Dictionary = {}, which: String = "") -> void:
 	var type: int = Feedback.INVALID
-	var at: = Vector2()
+	var at: = Utils.V2_00
 
 	match msg:
 		{"is_leader": true, "destination": var destination}:
 			at = path_finder.map.world_to_map(destination)
-			type = Feedback.FLAG
 			continue
 		{"is_leader": true, ..}:
 			_has_feedback_flag = which == "started"
+			_feedback_flag_position = at
 			_feedback_react(at, type)
 
 
@@ -52,6 +53,8 @@ func _feedback_react(xy: Vector2, type: int) -> void:
 	feedback.clear()
 	if type != Feedback.INVALID:
 		feedback.set_cellv(xy, type)
+	if _has_feedback_flag:
+		feedback.set_cellv(_feedback_flag_position, Feedback.FLAG)
 
 
 """

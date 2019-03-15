@@ -21,8 +21,8 @@ var _has_encountered_party: = false
 
 func _ready() -> void:
 	connect("input_event", self, "_on_Area_input_event")
-	connect("mouse_entered", Events, "emit_signal", ["encounter_probed", {encounter = self}])
-	connect("mouse_exited", Events, "emit_signal", ["encounter_probed", {encounter = null}])
+	connect("mouse_entered", Events, "emit_signal", ["encounter_probed", {encounter_probed = self}])
+	connect("mouse_exited", Events, "emit_signal", ["encounter_probed", {encounter_probed = null}])
 	Events.connect("party_member_walk_started", self, "_on_signal", ["started"])
 	Events.connect("party_member_walk_finished", self, "_on_signal", ["finished"])
 

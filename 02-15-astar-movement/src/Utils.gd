@@ -4,7 +4,14 @@ General utility library that can be used across multiple projects as an autoload
 """
 
 
-const ERR : = 1e-6
+const ERR: = 1e-6
+const V2_00: = Vector2()
+const CARDINAL_DIRECTIONS: = [
+	Vector2(-1, 0),
+	Vector2(0, -1),
+	Vector2(1, 0),
+	Vector2(0, 1)
+]
 
 """
 Returns a normalized 4-way Vector2 (up, down, left, right) direction.
@@ -13,6 +20,18 @@ static func get_direction(event: InputEvent) -> Vector2:
 	return Vector2(
 			event.get_action_strength("ui_right") - event.get_action_strength("ui_left"),
 			event.get_action_strength("ui_down") - event.get_action_strength("ui_up"))
+
+
+"""
+Returns true if any of the `actions` is detected to be just pressed.
+"""
+static func any_action_just_pressed(actions: Array) -> bool:
+	var out: = false
+	for action in actions:
+		if Input.is_action_just_pressed(action):
+			out = true
+			break
+	return out
 
 
 """
