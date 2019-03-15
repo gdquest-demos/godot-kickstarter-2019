@@ -19,11 +19,9 @@
 [ext_resource path="res://assets/sprites/characters/robi.png" type="Texture" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
-
 extents = Vector2( 40, 40 )
 
 [sub_resource type="Animation" id=2]
-
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Interactive:position")
@@ -63,7 +61,6 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-
 length = 3.0
 loop = true
 tracks/0/type = "value"
@@ -104,7 +101,6 @@ tracks/2/keys = {
 }
 
 [sub_resource type="TileSet" id=4]
-
 0/name = "Actor"
 0/texture = ExtResource( 7 )
 0/tex_offset = Vector2( 0, 0 )

@@ -51,7 +51,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "rect_extents_gizmo" )
+enabled=PoolStringArray(  )
 
 [input]
 
