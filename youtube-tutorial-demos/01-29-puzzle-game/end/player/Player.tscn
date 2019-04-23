@@ -1,0 +1,60 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://player/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/player/player_18.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/player/player_19.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/player/player_21.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/player/player_22.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/player/player_09.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/player/player_10.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/player/player_05.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/player/player_06.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/player/player_07.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "up",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "down",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+extents = Vector2( 23, 26 )
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+

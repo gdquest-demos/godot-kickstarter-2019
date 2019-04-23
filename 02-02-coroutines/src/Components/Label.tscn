@@ -1,9 +1,0 @@
-[gd_scene format=2]
-
-[node name="Label" type="Label"]
-margin_right = 70.0
-margin_bottom = 30.0
-size_flags_vertical = 1
-text = "Label"
-autowrap = true
-

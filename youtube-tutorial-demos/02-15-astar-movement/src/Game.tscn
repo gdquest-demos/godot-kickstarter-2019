@@ -1,0 +1,288 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://src/Game.gd" type="Script" id=1]
+[ext_resource path="res://src/Board/Board.gd" type="Script" id=2]
+[ext_resource path="res://src/Board/PathFinder.gd" type="Script" id=3]
+[ext_resource path="res://assets/tile_sets/grasslands.tres" type="TileSet" id=4]
+[ext_resource path="res://src/Board/Map.gd" type="Script" id=5]
+[ext_resource path="res://src/Board/Encounter.gd" type="Script" id=6]
+[ext_resource path="res://assets/sprites/tile_sets/interactive.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/icons/npc_quest_available.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/dialog_balloon.png" type="Texture" id=9]
+[ext_resource path="res://assets/animations/encounters/base.anim" type="Animation" id=10]
+[ext_resource path="res://assets/animations/encounters/dialog_bubble.anim" type="Animation" id=11]
+[ext_resource path="res://assets/sprites/icons/porcupine.png" type="Texture" id=12]
+[ext_resource path="res://src/Party/Party.gd" type="Script" id=13]
+[ext_resource path="res://src/Party/Member.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/sprites/icons/star.png" type="Texture" id=15]
+[ext_resource path="res://src/Party/Detect.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/sprites/characters/robi.png" type="Texture" id=17]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 40, 40 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Interactive:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 80, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Interactive:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Interactive:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Interactive:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 80, 32 ), Vector2( 80, 32 ), Vector2( 80, 16 ), Vector2( 80, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Interactive:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 1.1 ), Vector2( 1.7, 0.2 ), Vector2( 0.6, 1.4 ), Vector2( 1.2, 0.8 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Interactive:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="TileSet" id=4]
+0/name = "Actor"
+0/texture = ExtResource( 7 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 80, 80 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [  ]
+0/z_index = 0
+1/name = "Object"
+1/texture = ExtResource( 7 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 80, 0, 80, 80 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shapes = [  ]
+1/z_index = 0
+2/name = "Flag"
+2/texture = ExtResource( 7 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 160, 0, 80, 80 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shapes = [  ]
+2/z_index = 0
+3/name = "Forbid"
+3/texture = ExtResource( 7 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 0, 80, 80, 80 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shapes = [  ]
+3/z_index = 0
+4/name = "Allow"
+4/texture = ExtResource( 7 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 80, 80, 80, 80 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shapes = [  ]
+4/z_index = 0
+
+[node name="Game" type="Node2D"]
+z_index = 100
+z_as_relative = false
+script = ExtResource( 1 )
+
+[node name="Board" type="Node2D" parent="."]
+editor/display_folded = true
+show_behind_parent = true
+script = ExtResource( 2 )
+
+[node name="PathFinder" type="Node2D" parent="Board"]
+editor/display_folded = true
+script = ExtResource( 3 )
+
+[node name="Map" type="TileMap" parent="Board/PathFinder"]
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 80, 80 )
+format = 1
+tile_data = PoolIntArray( 0, 4, 0, 1, 4, 0, 2, 4, 0, 3, 8, 0, 4, 8, 0, 5, 4, 0, 6, 8, 0, 7, 8, 0, 8, 8, 0, 9, 8, 0, 10, 8, 0, 11, 4, 0, 12, 4, 0, 13, 4, 0, 14, 4, 0, 15, 4, 0, 16, 8, 0, 17, 4, 0, 18, 8, 0, 19, 8, 0, 20, 8, 0, 21, 8, 0, 22, 8, 0, 23, 4, 0, 24, 4, 0, 25, 4, 0, 26, 8, 0, 27, 4, 0, 28, 8, 0, 29, 4, 0, 65536, 8, 0, 65537, 1, 0, 65538, 8, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 8, 0, 65545, 8, 0, 65546, 1, 0, 65547, 1, 0, 65548, 2, 0, 65549, 1, 0, 65550, 1, 0, 65551, 2, 0, 65552, 8, 0, 65553, 1, 0, 65554, 8, 0, 65555, 8, 0, 65556, 1, 0, 65557, 4, 0, 65558, 1, 0, 65559, 1, 0, 65560, 1, 0, 65561, 8, 0, 65562, 1, 0, 65563, 4, 0, 65564, 1, 0, 65565, 4, 0, 131072, 8, 0, 131073, 9, 4, 131074, 9, 65541, 131075, 1, 0, 131076, 9, 65540, 131077, 9, 5, 131078, 9, 5, 131079, 9, 5, 131080, 9, 5, 131081, 9, 5, 131082, 9, 6, 131083, 2, 0, 131084, 2, 0, 131085, 1, 0, 131086, 1, 0, 131087, 1, 0, 131088, 1, 0, 131089, 2, 0, 131090, 1, 0, 131091, 4, 0, 131092, 1, 0, 131093, 1, 0, 131094, 8, 0, 131095, 9, 0, 131096, 9, 1, 131097, 9, 1, 131098, 9, 2, 131099, 1, 0, 131100, 1, 0, 131101, 4, 0, 196608, 4, 0, 196609, 1, 0, 196610, 9, 65539, 196611, 2, 0, 196612, 9, 131075, 196613, 1, 0, 196614, 8, 0, 196615, 1, 0, 196616, 1, 0, 196617, 2, 0, 196618, 1, 0, 196619, 4, 0, 196620, 1, 0, 196621, 2, 0, 196622, 1, 0, 196623, 1, 0, 196624, 9, 3, 196625, 1, 0, 196626, 3, 0, 196627, 3, 0, 196628, 9, 65540, 196629, 9, 6, 196630, 2, 0, 196631, 9, 65536, 196632, 9, 65537, 196633, 9, 65537, 196634, 9, 65538, 196635, 3, 0, 196636, 4, 0, 196637, 4, 0, 262144, 4, 0, 262145, 3, 0, 262146, 9, 65539, 262147, 3, 0, 262148, 8, 0, 262149, 1, 0, 262150, 2, 0, 262151, 1, 0, 262152, 9, 0, 262153, 9, 1, 262154, 9, 1, 262155, 9, 1, 262156, 9, 1, 262157, 9, 2, 262158, 2, 0, 262159, 2, 0, 262160, 9, 65539, 262161, 1, 0, 262162, 1, 0, 262163, 1, 0, 262164, 9, 131075, 262165, 1, 0, 262166, 2, 0, 262167, 9, 131072, 262168, 9, 131073, 262169, 9, 131073, 262170, 9, 131074, 262171, 1, 0, 262172, 1, 0, 262173, 4, 0, 327680, 8, 0, 327681, 9, 65540, 327682, 9, 131077, 327683, 1, 0, 327684, 2, 0, 327685, 2, 0, 327686, 2, 0, 327687, 1, 0, 327688, 9, 65536, 327689, 9, 65537, 327690, 9, 65537, 327691, 9, 65537, 327692, 9, 65537, 327693, 9, 65538, 327694, 1, 0, 327695, 3, 0, 327696, 9, 65539, 327697, 3, 0, 327698, 9, 3, 327699, 3, 0, 327700, 3, 0, 327701, 1, 0, 327702, 9, 3, 327703, 2, 0, 327704, 2, 0, 327705, 1, 0, 327706, 2, 0, 327707, 2, 0, 327708, 1, 0, 327709, 4, 0, 393216, 4, 0, 393217, 9, 131075, 393218, 1, 0, 393219, 3, 0, 393220, 4, 0, 393221, 4, 0, 393222, 1, 0, 393223, 2, 0, 393224, 9, 65536, 393225, 9, 65537, 393226, 9, 65537, 393227, 9, 65537, 393228, 9, 65537, 393229, 9, 65538, 393230, 3, 0, 393231, 9, 4, 393232, 9, 131077, 393233, 2, 0, 393234, 9, 65539, 393235, 2, 0, 393236, 9, 3, 393237, 1, 0, 393238, 9, 65539, 393239, 2, 0, 393240, 2, 0, 393241, 2, 0, 393242, 9, 3, 393243, 1, 0, 393244, 1, 0, 393245, 4, 0, 458752, 4, 0, 458753, 1, 0, 458754, 2, 0, 458755, 1, 0, 458756, 4, 0, 458757, 3, 0, 458758, 1, 0, 458759, 3, 0, 458760, 9, 131072, 458761, 9, 131073, 458762, 9, 131073, 458763, 9, 131073, 458764, 9, 131073, 458765, 9, 131074, 458766, 2, 0, 458767, 2, 0, 458768, 1, 0, 458769, 2, 0, 458770, 9, 65539, 458771, 2, 0, 458772, 9, 65539, 458773, 1, 0, 458774, 9, 65539, 458775, 8, 0, 458776, 8, 0, 458777, 2, 0, 458778, 9, 65539, 458779, 1, 0, 458780, 3, 0, 458781, 4, 0, 524288, 4, 0, 524289, 3, 0, 524290, 1, 0, 524291, 9, 3, 524292, 4, 0, 524293, 4, 0, 524294, 8, 0, 524295, 2, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 2, 0, 524300, 1, 0, 524301, 2, 0, 524302, 1, 0, 524303, 2, 0, 524304, 2, 0, 524305, 3, 0, 524306, 9, 131075, 524307, 2, 0, 524308, 9, 65539, 524309, 1, 0, 524310, 9, 65539, 524311, 2, 0, 524312, 4, 0, 524313, 2, 0, 524314, 9, 65539, 524315, 2, 0, 524316, 3, 0, 524317, 4, 0, 589824, 4, 0, 589825, 1, 0, 589826, 8, 0, 589827, 9, 131075, 589828, 4, 0, 589829, 1, 0, 589830, 1, 0, 589831, 2, 0, 589832, 2, 0, 589833, 3, 0, 589834, 2, 0, 589835, 1, 0, 589836, 1, 0, 589837, 2, 0, 589838, 9, 0, 589839, 9, 1, 589840, 9, 2, 589841, 1, 0, 589842, 1, 0, 589843, 4, 0, 589844, 9, 131076, 589845, 9, 5, 589846, 9, 131077, 589847, 1, 0, 589848, 4, 0, 589849, 2, 0, 589850, 9, 131076, 589851, 9, 5, 589852, 9, 65541, 589853, 4, 0, 655360, 4, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 3, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 3, 0, 655372, 4, 0, 655373, 3, 0, 655374, 9, 131072, 655375, 9, 131073, 655376, 9, 131074, 655377, 1, 0, 655378, 2, 0, 655379, 8, 0, 655380, 3, 0, 655381, 2, 0, 655382, 4, 0, 655383, 8, 0, 655384, 4, 0, 655385, 3, 0, 655386, 1, 0, 655387, 1, 0, 655388, 9, 65539, 655389, 4, 0, 720896, 4, 0, 720897, 9, 65540, 720898, 9, 6, 720899, 2, 0, 720900, 9, 3, 720901, 1, 0, 720902, 1, 0, 720903, 1, 0, 720904, 3, 0, 720905, 1, 0, 720906, 1, 0, 720907, 4, 0, 720908, 8, 0, 720909, 1, 0, 720910, 1, 0, 720911, 1, 0, 720912, 1, 0, 720913, 2, 0, 720914, 1, 0, 720915, 8, 0, 720916, 3, 0, 720917, 2, 0, 720918, 1, 0, 720919, 1, 0, 720920, 1, 0, 720921, 1, 0, 720922, 2, 0, 720923, 1, 0, 720924, 9, 65539, 720925, 2, 0, 786432, 8, 0, 786433, 9, 65539, 786434, 2, 0, 786435, 4, 0, 786436, 9, 131076, 786437, 9, 5, 786438, 9, 5, 786439, 9, 5, 786440, 9, 5, 786441, 9, 6, 786442, 1, 0, 786443, 1, 0, 786444, 1, 0, 786445, 1, 0, 786446, 3, 0, 786447, 1, 0, 786448, 1, 0, 786449, 8, 0, 786450, 1, 0, 786451, 4, 0, 786452, 1, 0, 786453, 9, 65540, 786454, 9, 5, 786455, 9, 5, 786456, 9, 5, 786457, 9, 5, 786458, 9, 6, 786459, 1, 0, 786460, 9, 131075, 786461, 4, 0, 851968, 8, 0, 851969, 9, 65539, 851970, 2, 0, 851971, 2, 0, 851972, 2, 0, 851973, 2, 0, 851974, 1, 0, 851975, 1, 0, 851976, 1, 0, 851977, 3, 0, 851978, 1, 0, 851979, 2, 0, 851980, 2, 0, 851981, 4, 0, 851982, 3, 0, 851983, 1, 0, 851984, 1, 0, 851985, 1, 0, 851986, 9, 0, 851987, 9, 2, 851988, 1, 0, 851989, 9, 65539, 851990, 2, 0, 851991, 2, 0, 851992, 3, 0, 851993, 2, 0, 851994, 4, 0, 851995, 4, 0, 851996, 4, 0, 851997, 4, 0, 917504, 8, 0, 917505, 9, 131076, 917506, 9, 5, 917507, 9, 5, 917508, 9, 5, 917509, 9, 5, 917510, 9, 5, 917511, 9, 5, 917512, 9, 5, 917513, 9, 5, 917514, 9, 5, 917515, 9, 5, 917516, 9, 5, 917517, 9, 5, 917518, 9, 5, 917519, 9, 6, 917520, 3, 0, 917521, 4, 0, 917522, 9, 65536, 917523, 9, 65538, 917524, 2, 0, 917525, 9, 131076, 917526, 9, 5, 917527, 9, 6, 917528, 3, 0, 917529, 9, 0, 917530, 9, 1, 917531, 9, 1, 917532, 9, 2, 917533, 4, 0, 983040, 4, 0, 983041, 1, 0, 983042, 9, 0, 983043, 9, 2, 983044, 3, 0, 983045, 1, 0, 983046, 2, 0, 983047, 3, 0, 983048, 2, 0, 983049, 2, 0, 983050, 2, 0, 983051, 2, 0, 983052, 2, 0, 983053, 2, 0, 983054, 3, 0, 983055, 2, 0, 983056, 2, 0, 983057, 2, 0, 983058, 9, 131072, 983059, 9, 131074, 983060, 4, 0, 983061, 2, 0, 983062, 3, 0, 983063, 1, 0, 983064, 3, 0, 983065, 9, 65536, 983066, 9, 65537, 983067, 9, 65537, 983068, 9, 65538, 983069, 4, 0, 1048576, 4, 0, 1048577, 1, 0, 1048578, 9, 65536, 1048579, 9, 65537, 1048580, 9, 1, 1048581, 9, 1, 1048582, 9, 2, 1048583, 3, 0, 1048584, 4, 0, 1048585, 2, 0, 1048586, 4, 0, 1048587, 3, 0, 1048588, 4, 0, 1048589, 2, 0, 1048590, 4, 0, 1048591, 2, 0, 1048592, 8, 0, 1048593, 2, 0, 1048594, 3, 0, 1048595, 2, 0, 1048596, 3, 0, 1048597, 2, 0, 1048598, 3, 0, 1048599, 1, 0, 1048600, 4, 0, 1048601, 9, 65536, 1048602, 9, 65537, 1048603, 9, 65537, 1048604, 9, 65538, 1048605, 4, 0, 1114112, 4, 0, 1114113, 1, 0, 1114114, 9, 131072, 1114115, 9, 131073, 1114116, 9, 131073, 1114117, 9, 131073, 1114118, 9, 131074, 1114119, 8, 0, 1114120, 9, 4, 1114121, 9, 5, 1114122, 9, 5, 1114123, 9, 5, 1114124, 9, 5, 1114125, 9, 5, 1114126, 9, 6, 1114127, 4, 0, 1114128, 4, 0, 1114129, 9, 4, 1114130, 9, 5, 1114131, 9, 5, 1114132, 9, 5, 1114133, 9, 5, 1114134, 9, 6, 1114135, 1, 0, 1114136, 2, 0, 1114137, 9, 131072, 1114138, 9, 131073, 1114139, 9, 131073, 1114140, 9, 131074, 1114141, 4, 0, 1179648, 8, 0, 1179649, 4, 0, 1179650, 4, 0, 1179651, 8, 0, 1179652, 4, 0, 1179653, 8, 0, 1179654, 4, 0, 1179655, 8, 0, 1179656, 4, 0, 1179657, 8, 0, 1179658, 8, 0, 1179659, 8, 0, 1179660, 4, 0, 1179661, 8, 0, 1179662, 8, 0, 1179663, 8, 0, 1179664, 4, 0, 1179665, 8, 0, 1179666, 8, 0, 1179667, 4, 0, 1179668, 4, 0, 1179669, 4, 0, 1179670, 4, 0, 1179671, 4, 0, 1179672, 8, 0, 1179673, 8, 0, 1179674, 8, 0, 1179675, 4, 0, 1179676, 8, 0, 1179677, 4, 0 )
+script = ExtResource( 5 )
+
+[node name="Encounters" type="Node2D" parent="Board"]
+editor/display_folded = true
+
+[node name="Quest" type="Area2D" parent="Board/Encounters" groups=[
+"encounters",
+]]
+editor/display_folded = true
+position = Vector2( 720, 720 )
+script = ExtResource( 6 )
+
+[node name="Skin" type="Sprite" parent="Board/Encounters/Quest"]
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 80, 80 )
+
+[node name="Icon" type="Sprite" parent="Board/Encounters/Quest"]
+texture = ExtResource( 8 )
+
+[node name="Interactive" type="Sprite" parent="Board/Encounters/Quest"]
+visible = false
+position = Vector2( 80, 32 )
+z_index = 1
+texture = ExtResource( 9 )
+offset = Vector2( 0, -32 )
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Board/Encounters/Quest"]
+position = Vector2( 40, 40 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Board/Encounters/Quest"]
+anims/<BASE> = ExtResource( 10 )
+anims/dialog_bubble = ExtResource( 11 )
+
+[node name="Combat" type="Area2D" parent="Board/Encounters" groups=[
+"encounters",
+]]
+editor/display_folded = true
+position = Vector2( 1120, 640 )
+script = ExtResource( 6 )
+
+[node name="Skin" type="Sprite" parent="Board/Encounters/Combat"]
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 80, 80 )
+
+[node name="Icon" type="Sprite" parent="Board/Encounters/Combat"]
+scale = Vector2( 0.279395, 0.279395 )
+texture = ExtResource( 12 )
+
+[node name="Interactive" type="Sprite" parent="Board/Encounters/Combat"]
+visible = false
+position = Vector2( 80, 32 )
+z_index = 1
+texture = ExtResource( 9 )
+offset = Vector2( 0, -32 )
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Board/Encounters/Combat"]
+position = Vector2( 40, 40 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Board/Encounters/Combat"]
+anims/<BASE> = SubResource( 2 )
+anims/dialog_bubble = SubResource( 3 )
+
+[node name="Feedback" type="TileMap" parent="Board"]
+position = Vector2( 0, -1 )
+tile_set = SubResource( 4 )
+cell_size = Vector2( 80, 80 )
+format = 1
+
+[node name="Party" type="YSort" parent="."]
+position = Vector2( 0, -1 )
+script = ExtResource( 13 )
+
+[node name="Godette" parent="Party" instance=ExtResource( 14 )]
+position = Vector2( 640, 400 )
+
+[node name="LeaderIcon" type="Sprite" parent="Party/Godette/Board" index="2"]
+position = Vector2( -100, 200 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 15 )
+
+[node name="Camera" type="Camera2D" parent="Party/Godette/Board" index="3"]
+current = true
+limit_left = 0
+limit_top = 0
+smoothing_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Detect" parent="Party/Godette" instance=ExtResource( 16 )]
+
+[node name="Robi1" parent="Party" instance=ExtResource( 14 )]
+position = Vector2( 640, 480 )
+
+[node name="Skin" parent="Party/Robi1/Board" index="1"]
+texture = ExtResource( 17 )
+
+[node name="Robi2" parent="Party" instance=ExtResource( 14 )]
+editor/display_folded = true
+position = Vector2( 720, 480 )
+
+[node name="Skin" parent="Party/Robi2/Board" index="1"]
+texture = ExtResource( 17 )
+
+
+[editable path="Party/Godette"]
+
+[editable path="Party/Robi1"]
+
+[editable path="Party/Robi2"]

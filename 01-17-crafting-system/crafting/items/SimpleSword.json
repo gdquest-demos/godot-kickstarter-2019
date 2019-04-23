@@ -1,8 +1,0 @@
-{
-    "name": "Simple Sword",
-    "scene": "res://crafting/items/SimpleSword.tscn",
-    "recipe": {
-            "res://crafting/items/IronIngot.json": 5,
-            "res://crafting/items/Wood.json": 10
-        }
-}
