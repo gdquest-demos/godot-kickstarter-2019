@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name Player
 
+onready var components : Node = $Components
+
 export var move_speed := 750
 export var jump_force := 1200
 export var gravity := 2000
@@ -8,10 +10,16 @@ export var acceleration := 2.5
 export var deceleration := 7.5
 
 var velocity := Vector2()
+var direction_x := 1
+
+
+func _ready() -> void:
+	for component in $Components.get_children():
+		component.initialize(self)
 
 
 func _physics_process(delta: float) -> void:
-	var direction_x := Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	direction_x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	var desired_x_velocity = direction_x * move_speed
 	var weight = deceleration * delta if desired_x_velocity == 0 else acceleration * delta
 	velocity.x = lerp(velocity.x, desired_x_velocity, weight)

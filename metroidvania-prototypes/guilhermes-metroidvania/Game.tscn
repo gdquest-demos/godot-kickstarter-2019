@@ -35,11 +35,15 @@ format = 1
 tile_data = PoolIntArray( 589820, 0, 0, 589821, 0, 0, 589822, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1020, 280 )
+position = Vector2( 1650, 499.5 )
 
 [node name="OneWayPlatform" parent="." instance=ExtResource( 3 )]
-position = Vector2( 410, 740 )
+position = Vector2( 1280, 720 )
+
+[node name="OneWayPlatform2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 790, 480 )
 
 [node name="FallingSpike" parent="." instance=ExtResource( 4 )]
 position = Vector2( 790, 500 )
+z_index = -1
 
