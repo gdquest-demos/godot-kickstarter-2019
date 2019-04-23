@@ -1,8 +1,8 @@
 extends Node
 class_name Component
 
-var player : Player
+var player
 
 
-func initialize(_player: Player) -> void:
+func initialize(_player) -> void:
 	player = _player

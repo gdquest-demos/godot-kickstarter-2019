@@ -18,6 +18,7 @@ func _ready() -> void:
 	speed = distance / timeout
 	delay_timer.wait_time = delay
 	timeout_timer.wait_time = timeout
+	timeout_timer.connect("timeout", self, "_on_TimeoutTimer_timeout")
 	set_physics_process(false)
 
 
@@ -36,6 +37,10 @@ func _physics_process(delta: float) -> void:
 		player.move_and_slide(Vector2(direction * speed, 0), Vector2.UP)
 	else:
 		self.dashing = false
+
+
+func _on_TimeoutTimer_timeout() -> void:
+	self.dashing = false
 
 
 func dash() -> void:

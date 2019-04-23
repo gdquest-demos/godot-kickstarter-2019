@@ -57,6 +57,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Debugger="*res://utils/Debugger.gd"
+GlobalEvents="*res://GlobalEvents.gd"
 
 [display]
 

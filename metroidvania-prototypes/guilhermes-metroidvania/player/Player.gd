@@ -14,6 +14,7 @@ var direction_x := 1
 
 
 func _ready() -> void:
+	GlobalEvents.connect("component_unlocked", self, "_on_GlobalEvents_component_unlocked")
 	for component in $Components.get_children():
 		component.initialize(self)
 
@@ -30,6 +31,11 @@ func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
+
+
+func _on_GlobalEvents_component_unlocked(component: Component) -> void:
+	components.add_child(component)
+	component.initialize(self)
 
 
 func damage(value: int) -> void:
