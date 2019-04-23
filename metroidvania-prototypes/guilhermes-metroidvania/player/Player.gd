@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Player
 
 export var move_speed := 750
 export var jump_force := 1200
@@ -21,3 +22,8 @@ func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
+
+
+func damage(value: int) -> void:
+	#TODO: Implement damage + animations
+	pass

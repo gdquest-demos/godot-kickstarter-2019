@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/block.png" type="Texture" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://world/OneWayPlatform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://world/FallingSpike.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
@@ -38,4 +39,7 @@ position = Vector2( 1020, 280 )
 
 [node name="OneWayPlatform" parent="." instance=ExtResource( 3 )]
 position = Vector2( 410, 740 )
+
+[node name="FallingSpike" parent="." instance=ExtResource( 4 )]
+position = Vector2( 790, 500 )
 
