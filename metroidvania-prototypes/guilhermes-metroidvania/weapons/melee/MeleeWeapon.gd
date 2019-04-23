@@ -12,7 +12,8 @@ func _ready() -> void:
 func _on_HitBox_body_entered(body: PhysicsBody2D) -> void:
 	if body.is_a_parent_of(self):
 		return
-	#TODO: Damage enemies
+	if body is Enemy:
+		body.damage(damage)
 
 
 func use_weapon() -> void:
