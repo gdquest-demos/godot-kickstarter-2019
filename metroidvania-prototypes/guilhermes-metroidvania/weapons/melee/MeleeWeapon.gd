@@ -14,6 +14,8 @@ func _on_HitBox_body_entered(body: PhysicsBody2D) -> void:
 		return
 	if body is Enemy:
 		body.damage(damage)
+	elif body is Interactive:
+		body.interact()
 
 
 func use_weapon() -> void:

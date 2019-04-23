@@ -14,10 +14,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://unlockables/components/Component.gd"
 }, {
+"base": "StaticBody2D",
+"class": "Door",
+"language": "GDScript",
+"path": "res://world/Door.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://enemy/Enemy.gd"
+}, {
+"base": "StaticBody2D",
+"class": "Interactive",
+"language": "GDScript",
+"path": "res://world/Interactive.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -31,7 +41,9 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Component": "",
+"Door": "",
 "Enemy": "",
+"Interactive": "",
 "Player": "",
 "Weapon": ""
 }
