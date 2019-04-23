@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/block.png" type="Texture" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://weapons/melee/MeleeWeapon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/ranged/KnifeThrower.tscn" type="PackedScene" id=3]
 [ext_resource path="res://world/OneWayPlatform.tscn" type="PackedScene" id=4]
 [ext_resource path="res://world/FallingSpike.tscn" type="PackedScene" id=5]
 [ext_resource path="res://world/DoorTrigger.tscn" type="PackedScene" id=6]
@@ -42,7 +42,7 @@ tile_data = PoolIntArray( 589820, 0, 0, 589821, 0, 0, 589822, 0, 0, 589823, 0, 0
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1650, 499.5 )
 
-[node name="MeleeWeapon" parent="Player" instance=ExtResource( 3 )]
+[node name="KnifeThrower" parent="Player" instance=ExtResource( 3 )]
 
 [node name="OneWayPlatform" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1280, 720 )

@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 60.8276
 
-[node name="MeleeWeapon" instance=ExtResource( 1 )]
+[node name="MeleeWeapon" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="HitBox" type="Area2D" parent="." index="1"]

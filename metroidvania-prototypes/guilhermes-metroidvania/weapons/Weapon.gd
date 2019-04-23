@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name Weapon
 
 onready var timer : Timer = $Timer
