@@ -3,7 +3,7 @@ extends Weapon
 export var knife : PackedScene
 
 func use_weapon() -> void:
-	print("sdsd")
+	.use_weapon()
 	var new_knife := knife.instance() as Knife
 	add_child(new_knife)
 	new_knife.global_position = global_position

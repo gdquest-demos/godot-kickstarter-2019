@@ -19,6 +19,7 @@ func _on_HitBox_body_entered(body: PhysicsBody2D) -> void:
 
 
 func use_weapon() -> void:
+	.use_weapon()
 	hit_box.position = Vector2(attack_range * attack_direction, 0)
 	hit_box.active = true
 	yield(get_tree(), "idle_frame")
