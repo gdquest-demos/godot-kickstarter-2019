@@ -25,8 +25,12 @@ func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
 			yield(timer, "timeout")
 		fallen = true
 		global_position.y += fall_distance
+		collision_shape.disabled = true
+		hide()
 		reset_timer.start()
 
 
 func _on_ResetTimer_timeout() -> void:
 	global_position = initial_position
+	collision_shape.disabled = false
+	show()
