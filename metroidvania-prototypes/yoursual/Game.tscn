@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/block.png" type="Texture" id=1]
 [ext_resource path="res://world/Pit.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=12]
 [ext_resource path="res://weapons/ranged/KnifeThrower.tscn" type="PackedScene" id=13]
 [ext_resource path="res://weapons/melee/MeleeWeapon.tscn" type="PackedScene" id=14]
+[ext_resource path="res://interface/Tutorial.tscn" type="PackedScene" id=15]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
@@ -153,4 +154,6 @@ position = Vector2( 795.295, 693.675 )
 [node name="KnifeThrower" parent="Player" instance=ExtResource( 13 )]
 
 [node name="MeleeWeapon" parent="Player" instance=ExtResource( 14 )]
+
+[node name="Tutorial" parent="." instance=ExtResource( 15 )]
 
