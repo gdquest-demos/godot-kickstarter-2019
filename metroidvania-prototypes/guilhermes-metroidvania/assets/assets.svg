@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.73892961"
-     inkscape:cx="330.3216"
-     inkscape:cy="580.21922"
+     inkscape:zoom="1.4778592"
+     inkscape:cx="481.91441"
+     inkscape:cy="646.60656"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -194,6 +194,17 @@
        x="142.73264"
        y="160.33372"
        ry="7.1787624"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="opacity:1;fill:#ff00cc;stroke:#550044;stroke-width:3.31418514;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect32"
+       width="64.419151"
+       height="5.1524811"
+       x="135.93407"
+       y="119.57933"
+       ry="2.5762405"
+       inkscape:export-filename="/home/guilherme/sword.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
   </g>
