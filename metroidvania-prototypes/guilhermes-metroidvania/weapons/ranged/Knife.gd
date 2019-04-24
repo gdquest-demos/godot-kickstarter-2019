@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 	global_position.x += direction * move_speed * delta
 
 
-func _on_body_entered(body: PhysicsBody2D) -> void:
+func _on_body_entered(body) -> void:
 	if body.is_a_parent_of(self):
 		return
 	if body is Interactive:

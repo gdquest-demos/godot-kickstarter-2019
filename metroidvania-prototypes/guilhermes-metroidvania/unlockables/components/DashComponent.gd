@@ -5,7 +5,7 @@ onready var audio : AudioStreamPlayer = $Audio
 onready var timeout_timer : Timer = $TimeoutTimer
 
 export var delay := 1.25
-export var distance := 200
+export var distance := 350
 export var timeout := 0.1
 
 
