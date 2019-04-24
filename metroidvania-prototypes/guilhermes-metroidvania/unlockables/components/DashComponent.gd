@@ -50,10 +50,6 @@ func dash() -> void:
 	self.dashing = true
 
 
-func initialize(_player: Player) -> void:
-	player = _player
-
-
 func set_dashing(value: bool) -> void:
 	dashing = value
 	set_physics_process(dashing)
