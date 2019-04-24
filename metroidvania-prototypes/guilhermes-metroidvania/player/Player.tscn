@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
+[ext_resource path="res://unlockables/components/DoubleJumpComponent.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 60.0
@@ -19,4 +20,6 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Components" type="Node" parent="."]
+
+[node name="DoubleJumpComponent" parent="Components" instance=ExtResource( 3 )]
 
