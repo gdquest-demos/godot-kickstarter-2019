@@ -53,6 +53,8 @@ func _on_EnemyHitBox_body_exited(body: PhysicsBody2D) -> void:
 
 
 func damage(amount: int) -> void:
+	GlobalEffects.freeze_frame()
+	GlobalEvents.emit_signal("shake_requested")
 	health = max(health - amount, 0)
 	if health == 0:
 		queue_free()

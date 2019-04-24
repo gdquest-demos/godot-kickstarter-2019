@@ -64,6 +64,7 @@ config/icon="res://icon.png"
 
 Debugger="*res://utils/Debugger.gd"
 GlobalEvents="*res://GlobalEvents.gd"
+GlobalEffects="*res://GlobalEffects.gd"
 
 [display]
 
