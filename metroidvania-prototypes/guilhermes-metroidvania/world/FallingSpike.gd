@@ -1,6 +1,8 @@
 extends Node2D
 
+onready var animation_player : AnimationPlayer = $AnimationPlayer
 onready var raycast : RayCast2D = $RayCast2D
+onready var sprite : Sprite = $Sprite
 onready var area : Area2D = $Area2D
 onready var tween : Tween = $Tween
 
@@ -28,6 +30,7 @@ func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
 
 func fall() -> void:
 	fallen = true
+	animation_player.play("shake")
 	tween.interpolate_property(self,
 		"global_position",
 		global_position,
