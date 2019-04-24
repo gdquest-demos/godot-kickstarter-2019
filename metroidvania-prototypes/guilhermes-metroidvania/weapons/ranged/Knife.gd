@@ -22,7 +22,7 @@ func _on_body_entered(body: PhysicsBody2D) -> void:
 	if body is Interactive:
 		body.interact()
 	elif body is Enemy:
-		body.damage()
+		body.damage(damage)
 	queue_free()
 
 
