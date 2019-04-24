@@ -2,6 +2,7 @@ extends StaticBody2D
 
 onready var collision_shape : CollisionShape2D = $CollisionShape2D
 onready var reset_timer : Timer = $ResetTimer
+onready var tween : Tween = $Tween
 onready var timer : Timer = $Timer
 
 export var delay := 0.1
@@ -19,12 +20,20 @@ func _ready() -> void:
 
 
 func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
-	if body is Player and body.global_position.y < global_position.y:
+	if body is Player and body.global_position.y < global_position.y and not fallen:
 		if delay != 0:
 			timer.start()
 			yield(timer, "timeout")
 		fallen = true
-		global_position.y += fall_distance
+		tween.interpolate_property(self,
+			"global_position",
+			global_position,
+			global_position + Vector2.DOWN * fall_distance,
+			0.5,
+			Tween.TRANS_EXPO,
+			Tween.EASE_IN)
+		tween.start()
+		yield(tween, "tween_completed")
 		collision_shape.disabled = true
 		hide()
 		reset_timer.start()

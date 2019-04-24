@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 160, 10 )
 
-[node name="FallingOneWayPlatform" instance=ExtResource( 1 )]
+[node name="FallingOneWayPlatform" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="." index="2"]
@@ -20,6 +20,8 @@ one_shot = true
 
 [node name="ResetTimer" type="Timer" parent="." index="4"]
 one_shot = true
+
+[node name="Tween" type="Tween" parent="." index="5"]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="ResetTimer" to="." method="_on_ResetTimer_timeout"]
