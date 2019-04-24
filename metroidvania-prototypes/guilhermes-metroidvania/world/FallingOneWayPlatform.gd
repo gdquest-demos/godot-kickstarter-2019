@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 onready var collision_shape : CollisionShape2D = $CollisionShape2D
+onready var audio : AudioStreamPlayer2D = $Audio
 onready var reset_timer : Timer = $ResetTimer
 onready var tween : Tween = $Tween
 onready var timer : Timer = $Timer
@@ -33,6 +34,7 @@ func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
 			Tween.TRANS_EXPO,
 			Tween.EASE_IN)
 		tween.start()
+		audio.play()
 		yield(tween, "tween_completed")
 		collision_shape.disabled = true
 		hide()

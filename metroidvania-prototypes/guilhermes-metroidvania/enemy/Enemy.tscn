@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/enemy.png" type="Texture" id=2]
+[ext_resource path="res://assets/sounds/hit.wav" type="AudioStream" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 60.0
@@ -26,4 +27,7 @@ shape = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://world/FallingSpike.gd" type="Script" id=1]
 [ext_resource path="res://assets/spike.png" type="Texture" id=2]
+[ext_resource path="res://assets/sounds/spike.wav" type="AudioStream" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, -64, 32, 64, -32, 64 )
@@ -45,4 +46,7 @@ cast_to = Vector2( 0, 500 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/shake = SubResource( 2 )
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
 

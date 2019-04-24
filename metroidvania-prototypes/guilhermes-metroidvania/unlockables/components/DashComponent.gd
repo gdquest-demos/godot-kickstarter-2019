@@ -1,6 +1,7 @@
 extends Component
 
 onready var delay_timer : Timer = $DelayTimer
+onready var audio : AudioStreamPlayer = $Audio
 onready var timeout_timer : Timer = $TimeoutTimer
 
 export var delay := 1.25
@@ -49,6 +50,7 @@ func dash() -> void:
 	starting_position = player.global_position
 	self.dashing = true
 	GlobalEvents.emit_signal("shake_requested", 0.3)
+	audio.play()
 
 
 func set_dashing(value: bool) -> void:

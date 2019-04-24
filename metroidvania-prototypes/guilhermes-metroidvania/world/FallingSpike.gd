@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var animation_player : AnimationPlayer = $AnimationPlayer
+onready var audio : AudioStreamPlayer2D = $Audio
 onready var raycast : RayCast2D = $RayCast2D
 onready var sprite : Sprite = $Sprite
 onready var area : Area2D = $Area2D
@@ -40,5 +41,7 @@ func fall() -> void:
 		Tween.EASE_IN,
 		fall_delay)
 	tween.start()
+	yield(animation_player, "animation_finished")
+	audio.play()
 	yield(tween, "tween_completed")
 	queue_free()

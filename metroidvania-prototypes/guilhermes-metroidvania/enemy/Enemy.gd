@@ -1,6 +1,7 @@
 extends KinematicBody2D
 class_name Enemy
 
+onready var audio : AudioStreamPlayer2D = $Audio
 onready var hit_box : Area2D = $EnemyHitBox
 onready var timer : Timer = $Timer
 
@@ -56,5 +57,7 @@ func damage(amount: int) -> void:
 	GlobalEffects.freeze_frame()
 	GlobalEvents.emit_signal("shake_requested")
 	health = max(health - amount, 0)
+	audio.play()
 	if health == 0:
+		yield(audio, "finished")
 		queue_free()
