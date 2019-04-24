@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/block.png" type="Texture" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -10,7 +10,8 @@
 [ext_resource path="res://world/Door.tscn" type="PackedScene" id=8]
 [ext_resource path="res://world/ComponentPickup.tscn" type="PackedScene" id=9]
 [ext_resource path="res://unlockables/components/DashComponent.tscn" type="PackedScene" id=10]
-[ext_resource path="res://world/FallingOneWayPlatform.tscn" type="PackedScene" id=11]
+[ext_resource path="res://unlockables/components/DoubleJumpComponent.tscn" type="PackedScene" id=11]
+[ext_resource path="res://world/FallingOneWayPlatform.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
@@ -39,7 +40,7 @@ points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
 tile_set = SubResource( 2 )
 cell_size = Vector2( 128, 128 )
 format = 1
-tile_data = PoolIntArray( 589820, 0, 0, 589821, 0, 0, 589822, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0 )
+tile_data = PoolIntArray( 589803, 0, 0, 589804, 0, 0, 589805, 0, 0, 589806, 0, 0, 589807, 0, 0, 589808, 0, 0, 589809, 0, 0, 589820, 0, 0, 589821, 0, 0, 589822, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1650, 499.5 )
@@ -69,6 +70,19 @@ position = Vector2( -380, -60 )
 position = Vector2( 690, 380 )
 component = ExtResource( 10 )
 
-[node name="FallingOneWayPlatform" parent="." instance=ExtResource( 11 )]
+[node name="ComponentPickup2" parent="." instance=ExtResource( 9 )]
+position = Vector2( -2540, 940 )
+component = ExtResource( 11 )
+
+[node name="FallingOneWayPlatform" parent="." instance=ExtResource( 12 )]
 position = Vector2( 260, 560 )
+
+[node name="FallingOneWayPlatform2" parent="." instance=ExtResource( 12 )]
+position = Vector2( -490, 560 )
+
+[node name="FallingOneWayPlatform3" parent="." instance=ExtResource( 12 )]
+position = Vector2( -1200, 560 )
+
+[node name="FallingOneWayPlatform4" parent="." instance=ExtResource( 12 )]
+position = Vector2( -1890, 560 )
 

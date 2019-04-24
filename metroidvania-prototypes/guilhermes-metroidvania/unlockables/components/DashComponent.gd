@@ -48,6 +48,7 @@ func dash() -> void:
 	timeout_timer.start()
 	starting_position = player.global_position
 	self.dashing = true
+	GlobalEvents.emit_signal("shake_requested", 0.3)
 
 
 func set_dashing(value: bool) -> void:
