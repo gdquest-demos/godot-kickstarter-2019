@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/HookTarget.gd" type="Script" id=1]
+[ext_resource path="res://nodes/Geometry2D.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 500.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3, 3 )
+
+[node name="HookTarget" type="Area2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Geometry2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+disabled = true
+script = ExtResource( 2 )
+color = Color( 1, 0.145098, 0.145098, 1 )
+
+[node name="Selection" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+width = 2.0
+default_color = Color( 1, 0.705882, 0.705882, 1 )
+texture_mode = 0
+

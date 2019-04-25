@@ -1,0 +1,100 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://src/Game.gd" type="Script" id=1]
+[ext_resource path="res://nodes/Geometry2D.gd" type="Script" id=2]
+[ext_resource path="res://src/Player/Player.gd" type="Script" id=3]
+[ext_resource path="res://scenes/Rope.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Rope.gd" type="Script" id=5]
+[ext_resource path="res://src/Player/BehaviorMove.gd" type="Script" id=6]
+[ext_resource path="res://src/Player/BehaviorJump.gd" type="Script" id=7]
+[ext_resource path="res://src/Player/BehaviorHook.gd" type="Script" id=8]
+[ext_resource path="res://scenes/HookTarget.tscn" type="PackedScene" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5000, 20 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 120, 20 )
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+editor/display_folded = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 960, 526.907 )
+shape = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Wall" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 960, 416.61 )
+rotation = 1.5708
+shape = SubResource( 4 )
+script = ExtResource( 2 )
+
+[node name="Player" type="RigidBody2D" parent="."]
+position = Vector2( 324.7, 236.776 )
+collision_mask = 0
+mode = 2
+mass = 50.0
+script = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+smoothing_enabled = true
+
+[node name="Rope" parent="Player" instance=ExtResource( 4 )]
+position = Vector2( 0, -30 )
+script = ExtResource( 5 )
+
+[node name="Body" type="CollisionShape2D" parent="Player"]
+position = Vector2( 0, -20 )
+shape = SubResource( 2 )
+script = ExtResource( 2 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Player"]
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 10 )
+
+[node name="BehaviorMove" type="Node" parent="Player"]
+script = ExtResource( 6 )
+
+[node name="BehaviorJump" type="Node" parent="Player"]
+script = ExtResource( 7 )
+
+[node name="BehaviorHook" type="Node" parent="Player"]
+editor/display_folded = true
+script = ExtResource( 8 )
+
+[node name="Tween" type="Tween" parent="Player/BehaviorHook"]
+
+[node name="HookTarget1" parent="." instance=ExtResource( 9 )]
+position = Vector2( 281.179, 124.439 )
+
+[node name="HookTarget2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 799.653, 112.069 )
+
+[node name="Crate" type="RigidBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 400, 492.96 )
+
+[node name="Geometry2D" type="CollisionShape2D" parent="Crate"]
+shape = SubResource( 3 )
+script = ExtResource( 2 )
+
+[node name="HookTarget3" parent="Crate" instance=ExtResource( 9 )]
+position = Vector2( 0, -10 )
+
+[node name="Hooks" type="Node2D" parent="."]
+position = Vector2( 0, 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
