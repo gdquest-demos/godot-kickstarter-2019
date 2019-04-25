@@ -11,6 +11,6 @@ func _ready() -> void:
 
 func _on_body(body: PhysicsBody2D, which: String) -> void:
 	if body.name == "Player":
-		body.hooks.push_back(self) if which == "enter" else body.hooks.erase(self)
-		body.hook_idx = 0 if body.hooks.size() == 1 else body.hook_idx
+		body.hook_targets.push_back(self) if which == "enter" else body.hook_targets.erase(self)
+		body.hook_target_idx = 0 if body.hook_targets.size() == 1 else body.hook_target_idx
 		selection.visible = false if which == "exit" else selection.visible
