@@ -14,4 +14,11 @@ position = Vector2( 0, -30 )
 shape = SubResource( 1 )
 
 [node name="Hook" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -30 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -160 )
+current = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
 

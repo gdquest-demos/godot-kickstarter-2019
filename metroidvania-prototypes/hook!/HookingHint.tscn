@@ -3,6 +3,5 @@
 [ext_resource path="res://HookingPoint.gd" type="Script" id=1]
 
 [node name="HookingHint" type="Position2D"]
-position = Vector2( 0, 40 )
 script = ExtResource( 1 )
 

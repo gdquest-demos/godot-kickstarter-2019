@@ -8,20 +8,42 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "DrawingUtils",
+"language": "GDScript",
+"path": "res://DrawingUtils.gd"
+}, {
+"base": "Position2D",
+"class": "Hook",
+"language": "GDScript",
+"path": "res://Hook.gd"
+}, {
+"base": "Area2D",
+"class": "HookTarget",
+"language": "GDScript",
+"path": "res://HookTarget.gd"
+} ]
 _global_script_class_icons={
-
+"DrawingUtils": "",
+"Hook": "",
+"HookTarget": ""
 }
 
 [application]
 
-config/name="Metroidvania prototype"
+config/name="Hook! Prototype"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Utils="*res://Utils.gd"
+Settings="*res://Settings.gd"
+Events="*res://Events.gd"
+
+[debug]
+
+gdscript/warnings/enable=false
 
 [display]
 
@@ -54,7 +76,7 @@ jump={
 }
 hook={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":5,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
@@ -66,22 +88,22 @@ sprint={
 }
 aim_left={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":-1.0,"script":null)
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
  ]
 }
 aim_right={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":1.0,"script":null)
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
  ]
 }
 aim_up={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":-1.0,"script":null)
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":-1.0,"script":null)
  ]
 }
 aim_down={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":1.0,"script":null)
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
  ]
 }
 
