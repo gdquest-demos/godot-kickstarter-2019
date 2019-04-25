@@ -1,0 +1,159 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://assets/block.png" type="Texture" id=1]
+[ext_resource path="res://world/Pit.tscn" type="PackedScene" id=2]
+[ext_resource path="res://world/FallingSpike.tscn" type="PackedScene" id=3]
+[ext_resource path="res://world/Door.tscn" type="PackedScene" id=4]
+[ext_resource path="res://world/DoorTrigger.tscn" type="PackedScene" id=5]
+[ext_resource path="res://world/OneWayPlatform.tscn" type="PackedScene" id=6]
+[ext_resource path="res://world/FallingOneWayPlatform.tscn" type="PackedScene" id=7]
+[ext_resource path="res://world/ComponentPickup.tscn" type="PackedScene" id=8]
+[ext_resource path="res://unlockables/components/DashComponent.tscn" type="PackedScene" id=9]
+[ext_resource path="res://unlockables/components/DoubleJumpComponent.tscn" type="PackedScene" id=10]
+[ext_resource path="res://enemy/Enemy.tscn" type="PackedScene" id=11]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=12]
+[ext_resource path="res://weapons/ranged/KnifeThrower.tscn" type="PackedScene" id=13]
+[ext_resource path="res://weapons/melee/MeleeWeapon.tscn" type="PackedScene" id=14]
+[ext_resource path="res://interface/Tutorial.tscn" type="PackedScene" id=15]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
+
+[sub_resource type="TileSet" id=2]
+0/name = "block"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 128, 128 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[node name="Game" type="Node"]
+
+[node name="Map" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Map"]
+tile_set = SubResource( 2 )
+cell_size = Vector2( 128, 128 )
+format = 1
+tile_data = PoolIntArray( -393248, 0, 0, -393247, 0, 0, -393246, 0, 0, -393245, 0, 0, -393244, 0, 0, -393243, 0, 0, -393242, 0, 0, -393241, 0, 0, -393240, 0, 0, -393239, 0, 0, -393238, 0, 0, -393237, 0, 0, -393236, 0, 0, -393235, 0, 0, -393234, 0, 0, -393233, 0, 0, -393232, 0, 0, -393231, 0, 0, -393230, 0, 0, -393229, 0, 0, -393228, 0, 0, -393227, 0, 0, -393226, 0, 0, -393225, 0, 0, -393224, 0, 0, -393223, 0, 0, -393222, 0, 0, -393221, 0, 0, -393220, 0, 0, -393219, 0, 0, -393218, 0, 0, -393217, 0, 0, -458752, 0, 0, -458751, 0, 0, -458750, 0, 0, -458749, 0, 0, -458748, 0, 0, -458747, 0, 0, -458746, 0, 0, -458745, 0, 0, -458744, 0, 0, -458743, 0, 0, -458742, 0, 0, -458741, 0, 0, -458740, 0, 0, -458739, 0, 0, -458738, 0, 0, -458737, 0, 0, -458736, 0, 0, -458735, 0, 0, -458734, 0, 0, -458733, 0, 0, -458732, 0, 0, -458731, 0, 0, -458730, 0, 0, -458729, 0, 0, -458728, 0, 0, -458727, 0, 0, -458726, 0, 0, -458725, 0, 0, -458724, 0, 0, -458723, 0, 0, -458722, 0, 0, -458721, 0, 0, -458720, 0, 0, -458719, 0, 0, -458718, 0, 0, -458717, 0, 0, -458716, 0, 0, -458715, 0, 0, -458714, 0, 0, -458713, 0, 0, -458712, 0, 0, -458711, 0, 0, -458710, 0, 0, -458709, 0, 0, -458708, 0, 0, -458707, 0, 0, -458706, 0, 0, -458705, 0, 0, -458704, 0, 0, -458703, 0, 0, -458702, 0, 0, -458701, 0, 0, -458700, 0, 0, -327712, 0, 0, -393206, 0, 0, -393205, 0, 0, -393204, 0, 0, -393203, 0, 0, -393202, 0, 0, -393201, 0, 0, -393200, 0, 0, -393199, 0, 0, -393198, 0, 0, -393197, 0, 0, -393196, 0, 0, -393195, 0, 0, -393194, 0, 0, -393164, 0, 0, -262176, 0, 0, -327670, 0, 0, -327669, 0, 0, -327668, 0, 0, -327667, 0, 0, -327666, 0, 0, -327665, 0, 0, -327664, 0, 0, -327663, 0, 0, -327662, 0, 0, -327661, 0, 0, -327660, 0, 0, -327659, 0, 0, -327658, 0, 0, -327628, 0, 0, -196640, 0, 0, -262134, 0, 0, -262133, 0, 0, -262132, 0, 0, -262131, 0, 0, -262130, 0, 0, -262129, 0, 0, -262128, 0, 0, -262127, 0, 0, -262126, 0, 0, -262125, 0, 0, -262124, 0, 0, -262123, 0, 0, -262122, 0, 0, -262092, 0, 0, -131104, 0, 0, -196598, 0, 0, -196597, 0, 0, -196596, 0, 0, -196595, 0, 0, -196594, 0, 0, -196593, 0, 0, -196592, 0, 0, -196591, 0, 0, -196590, 0, 0, -196589, 0, 0, -196588, 0, 0, -196587, 0, 0, -196586, 0, 0, -196556, 0, 0, -65568, 0, 0, -131062, 0, 0, -131061, 0, 0, -131060, 0, 0, -131059, 0, 0, -131058, 0, 0, -131057, 0, 0, -131056, 0, 0, -131055, 0, 0, -131054, 0, 0, -131053, 0, 0, -131052, 0, 0, -131051, 0, 0, -131050, 0, 0, -131020, 0, 0, -32, 0, 0, -65526, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65521, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 0, 0, -65516, 0, 0, -65515, 0, 0, -65514, 0, 0, -65484, 0, 0, 65504, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 52, 0, 0, 131040, 0, 0, 131067, 0, 0, 131068, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65588, 0, 0, 196576, 0, 0, 196585, 0, 0, 196586, 0, 0, 196587, 0, 0, 196588, 0, 0, 196589, 0, 0, 196590, 0, 0, 196591, 0, 0, 196592, 0, 0, 196593, 0, 0, 196594, 0, 0, 196595, 0, 0, 196596, 0, 0, 196597, 0, 0, 196598, 0, 0, 196603, 0, 0, 196604, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131124, 0, 0, 262112, 0, 0, 262139, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196660, 0, 0, 327648, 0, 0, 327675, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262157, 0, 0, 262158, 0, 0, 262190, 0, 0, 262191, 0, 0, 262192, 0, 0, 262193, 0, 0, 262194, 0, 0, 262195, 0, 0, 262196, 0, 0, 393184, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327693, 0, 0, 327694, 0, 0, 327726, 0, 0, 327727, 0, 0, 327728, 0, 0, 327729, 0, 0, 327730, 0, 0, 327731, 0, 0, 327732, 0, 0, 458720, 0, 0, 393229, 0, 0, 393230, 0, 0, 393262, 0, 0, 393263, 0, 0, 393264, 0, 0, 393265, 0, 0, 393266, 0, 0, 393267, 0, 0, 393268, 0, 0, 524256, 0, 0, 458765, 0, 0, 458766, 0, 0, 589792, 0, 0, 589800, 0, 0, 589801, 0, 0, 589802, 0, 0, 589803, 0, 0, 589804, 0, 0, 589805, 0, 0, 589806, 0, 0, 589807, 0, 0, 589808, 0, 0, 589809, 0, 0, 589810, 0, 0, 589811, 0, 0, 589812, 0, 0, 589813, 0, 0, 589814, 0, 0, 589815, 0, 0, 589816, 0, 0, 589817, 0, 0, 589818, 0, 0, 589819, 0, 0, 589820, 0, 0, 589821, 0, 0, 589822, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524309, 0, 0, 524310, 0, 0, 655356, 0, 0, 655357, 0, 0, 655358, 0, 0, 655359, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0, 589841, 0, 0, 589842, 0, 0, 589843, 0, 0, 589844, 0, 0, 589845, 0, 0, 589846, 0, 0, 720892, 0, 0, 720893, 0, 0, 720894, 0, 0, 720895, 0, 0, 655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 0, 0, 655374, 0, 0, 655375, 0, 0, 655376, 0, 0, 655377, 0, 0, 655378, 0, 0, 655379, 0, 0, 655380, 0, 0, 655381, 0, 0, 655382, 0, 0, 786428, 0, 0, 786429, 0, 0, 786430, 0, 0, 786431, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 720905, 0, 0, 720906, 0, 0, 720907, 0, 0, 720908, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 720912, 0, 0, 720913, 0, 0, 720914, 0, 0, 720915, 0, 0, 720916, 0, 0, 720917, 0, 0, 720918, 0, 0, 851964, 0, 0, 851965, 0, 0, 851966, 0, 0, 851967, 0, 0, 786432, 0, 0, 786433, 0, 0, 786434, 0, 0, 786435, 0, 0, 786436, 0, 0, 786437, 0, 0, 786438, 0, 0, 786439, 0, 0, 786440, 0, 0, 786441, 0, 0, 786442, 0, 0, 786443, 0, 0, 786444, 0, 0, 786445, 0, 0, 786446, 0, 0, 786447, 0, 0, 786448, 0, 0, 786449, 0, 0, 786450, 0, 0, 786451, 0, 0, 786452, 0, 0, 786453, 0, 0, 786454, 0, 0, 917500, 0, 0, 917501, 0, 0, 917502, 0, 0, 917503, 0, 0, 851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0, 851982, 0, 0, 851983, 0, 0, 851984, 0, 0, 851985, 0, 0, 851986, 0, 0, 851987, 0, 0, 851988, 0, 0, 851989, 0, 0, 851990, 0, 0, 983036, 0, 0, 983037, 0, 0, 983038, 0, 0, 983039, 0, 0, 917504, 0, 0, 917505, 0, 0, 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917518, 0, 0, 917519, 0, 0, 917520, 0, 0, 917521, 0, 0, 917522, 0, 0, 917523, 0, 0, 917524, 0, 0, 917525, 0, 0, 917526, 0, 0, 1048572, 0, 0, 1048573, 0, 0, 1048574, 0, 0, 1048575, 0, 0, 983040, 0, 0, 983041, 0, 0, 983042, 0, 0, 983043, 0, 0, 983044, 0, 0, 983045, 0, 0, 983046, 0, 0, 983047, 0, 0, 983048, 0, 0, 983049, 0, 0, 983050, 0, 0, 983051, 0, 0, 983052, 0, 0, 983053, 0, 0, 983054, 0, 0, 983055, 0, 0, 983056, 0, 0, 983057, 0, 0, 983058, 0, 0, 983059, 0, 0, 983060, 0, 0, 983061, 0, 0, 983062, 0, 0 )
+
+[node name="Obstacles" type="Node2D" parent="Map"]
+editor/display_folded = true
+
+[node name="Pits" type="Node2D" parent="Map/Obstacles"]
+editor/display_folded = true
+
+[node name="Pit" parent="Map/Obstacles/Pits" instance=ExtResource( 2 )]
+position = Vector2( -3520, 1344 )
+scale = Vector2( 1.56, 4.72 )
+
+[node name="Pit2" parent="Map/Obstacles/Pits" instance=ExtResource( 2 )]
+position = Vector2( 4611.84, 1433.47 )
+scale = Vector2( 5.72, 1 )
+
+[node name="Spikes" type="Node2D" parent="Map/Obstacles"]
+editor/display_folded = true
+
+[node name="FallingSpike" parent="Map/Obstacles/Spikes" instance=ExtResource( 3 )]
+position = Vector2( -1196.5, 395 )
+
+[node name="FallingSpike11" parent="Map/Obstacles/Spikes" instance=ExtResource( 3 )]
+position = Vector2( -2092.5, 399 )
+
+[node name="FallingSpike2" parent="Map/Obstacles/Spikes" instance=ExtResource( 3 )]
+position = Vector2( -1344, 391.5 )
+
+[node name="FallingSpike8" parent="Map/Obstacles/Spikes" instance=ExtResource( 3 )]
+position = Vector2( -2240, 395.5 )
+
+[node name="FallingSpike3" parent="Map/Obstacles/Spikes" instance=ExtResource( 3 )]
+position = Vector2( -1472, 391.5 )
+
+[node name="FallingSpike10" parent="Map/Obstacles/Spikes" instance=ExtResource( 3 )]
+position = Vector2( -2368, 395.5 )
+
+[node name="FallingSpike4" parent="Map/Obstacles/Spikes" instance=ExtResource( 3 )]
+position = Vector2( -1600, 391.5 )
+
+[node name="FallingSpike13" parent="Map/Obstacles/Spikes" instance=ExtResource( 3 )]
+position = Vector2( -2496, 395.5 )
+
+[node name="FallingSpike5" parent="Map/Obstacles/Spikes" instance=ExtResource( 3 )]
+position = Vector2( -1728, 395 )
+
+[node name="FallingSpike14" parent="Map/Obstacles/Spikes" instance=ExtResource( 3 )]
+position = Vector2( -2624, 399 )
+
+[node name="FallingSpike6" parent="Map/Obstacles/Spikes" instance=ExtResource( 3 )]
+position = Vector2( -1856, 395 )
+
+[node name="FallingSpike12" parent="Map/Obstacles/Spikes" instance=ExtResource( 3 )]
+position = Vector2( -2752, 399 )
+
+[node name="FallingSpike7" parent="Map/Obstacles/Spikes" instance=ExtResource( 3 )]
+position = Vector2( -1984, 395 )
+
+[node name="FallingSpike9" parent="Map/Obstacles/Spikes" instance=ExtResource( 3 )]
+position = Vector2( -2880, 395 )
+
+[node name="Doors" type="Node2D" parent="Map/Obstacles"]
+editor/display_folded = true
+
+[node name="Door" parent="Map/Obstacles/Doors" instance=ExtResource( 4 )]
+position = Vector2( 80, 890 )
+
+[node name="DoorTrigger" parent="Map/Obstacles/Doors" instance=ExtResource( 5 )]
+position = Vector2( 1070, 945.5 )
+door = NodePath("../Door")
+
+[node name="Platforms" type="Node2D" parent="Map/Obstacles"]
+editor/display_folded = true
+
+[node name="OneWayPlatform2" parent="Map/Obstacles/Platforms" instance=ExtResource( 6 )]
+position = Vector2( -3200, 535.5 )
+
+[node name="OneWayPlatform3" parent="Map/Obstacles/Platforms" instance=ExtResource( 6 )]
+position = Vector2( 3776, 1043 )
+
+[node name="OneWayPlatform4" parent="Map/Obstacles/Platforms" instance=ExtResource( 6 )]
+position = Vector2( 5281.64, 488.209 )
+
+[node name="FallingOneWayPlatform" parent="Map/Obstacles/Platforms" instance=ExtResource( 7 )]
+position = Vector2( -3392, 832 )
+
+[node name="Rewards" type="Node2D" parent="Map"]
+
+[node name="ComponentPickup" parent="Map/Rewards" instance=ExtResource( 8 )]
+position = Vector2( 2069.03, 945.5 )
+component = ExtResource( 9 )
+
+[node name="ComponentPickup2" parent="Map/Rewards" instance=ExtResource( 8 )]
+position = Vector2( 1070, -130 )
+component = ExtResource( 10 )
+
+[node name="Enemies" type="Node2D" parent="Map"]
+editor/display_folded = true
+
+[node name="Enemy" parent="Map/Enemies" instance=ExtResource( 11 )]
+position = Vector2( 576, -130 )
+
+[node name="Player" parent="." instance=ExtResource( 12 )]
+editor/display_folded = true
+position = Vector2( 795.295, 693.675 )
+
+[node name="KnifeThrower" parent="Player" instance=ExtResource( 13 )]
+
+[node name="MeleeWeapon" parent="Player" instance=ExtResource( 14 )]
+
+[node name="Tutorial" parent="." instance=ExtResource( 15 )]
+

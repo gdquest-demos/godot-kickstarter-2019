@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="Weapon" type="Node2D"]
+
+[node name="Timer" type="Timer" parent="."]
+

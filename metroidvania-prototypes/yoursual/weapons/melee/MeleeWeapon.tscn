@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://weapons/Weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://weapons/melee/MeleeWeapon.gd" type="Script" id=2]
+[ext_resource path="res://weapons/melee/HitBox.gd" type="Script" id=3]
+[ext_resource path="res://assets/sword.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 114.018
+
+[node name="MeleeWeapon" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="HitBox" type="Area2D" parent="." index="1"]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="." index="2"]
+
+[node name="SpritePivot" type="Position2D" parent="." index="3"]
+
+[node name="Sprite" type="Sprite" parent="SpritePivot" index="0"]
+rotation = -1.91986
+scale = Vector2( 1, 1 )
+texture = ExtResource( 4 )
+offset = Vector2( 96, 0 )
+
