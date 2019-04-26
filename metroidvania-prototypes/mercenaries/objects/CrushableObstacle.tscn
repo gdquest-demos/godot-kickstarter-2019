@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://geometry_2d.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30, 130 )
+
+[node name="CrushableObstacle" type="StaticBody2D"]
+collision_layer = 3
+collision_mask = 0
+
+[node name="Geometry2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -130 )
+shape = SubResource( 1 )
+script = ExtResource( 1 )
+color = Color( 1, 0.223529, 0.423529, 1 )
+

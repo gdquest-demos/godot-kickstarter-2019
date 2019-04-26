@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/Mercenary.tscn" type="PackedScene" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 30.0
+
+[node name="Circle" instance=ExtResource( 1 )]
+
+[node name="Geometry2D" parent="." index="0"]
+shape = SubResource( 1 )
+color = Color( 1, 0.635294, 0.247059, 1 )
+
+[node name="Gravity" parent="." index="1"]
+kinematic_body2D_path = NodePath("..")
+
+[node name="Jump" parent="." index="2"]
+kinematic_body2D_path = NodePath("..")
+max_jumps = 2
+
+[node name="Walk" parent="." index="3"]
+kinematic_body2D_path = NodePath("..")
+
