@@ -1,0 +1,234 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Game.gd" type="Script" id=1]
+[ext_resource path="res://interface/Interface.gd" type="Script" id=2]
+[ext_resource path="res://levels/Playground.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/Bank.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/MercenaryGuild.gd" type="Script" id=5]
+[ext_resource path="res://objects/Contract.tscn" type="PackedScene" id=6]
+[ext_resource path="res://actors/Rectangle.tscn" type="PackedScene" id=7]
+[ext_resource path="res://actors/Capsule.tscn" type="PackedScene" id=8]
+[ext_resource path="res://actors/Circle.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Coins.gd" type="Script" id=10]
+[ext_resource path="res://objects/Coin.tscn" type="PackedScene" id=11]
+[ext_resource path="res://DiscoveryAreas.gd" type="Script" id=12]
+[ext_resource path="res://objects/DiscoveryArea.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Void.gd" type="Script" id=14]
+
+[sub_resource type="LineShape2D" id=1]
+
+[node name="Game" type="Node"]
+script = ExtResource( 1 )
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="Interface" type="Button" parent="InterfaceLayer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 111.0
+margin_bottom = 40.0
+toggle_mode = true
+text = "Mercenaries"
+script = ExtResource( 2 )
+
+[node name="GridContainer" type="GridContainer" parent="InterfaceLayer/Interface"]
+visible = false
+margin_left = 50.0
+margin_top = 20.0
+margin_right = 240.0
+margin_bottom = 270.0
+columns = 2
+
+[node name="Rectangle" type="Button" parent="InterfaceLayer/Interface/GridContainer"]
+margin_right = 93.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 64 )
+size_flags_horizontal = 3
+text = "Rectangle"
+
+[node name="Capsule" type="Button" parent="InterfaceLayer/Interface/GridContainer"]
+visible = false
+margin_left = 97.0
+margin_right = 190.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 64 )
+size_flags_horizontal = 3
+text = "Capsule"
+
+[node name="Circle" type="Button" parent="InterfaceLayer/Interface/GridContainer"]
+visible = false
+margin_top = 68.0
+margin_right = 93.0
+margin_bottom = 132.0
+rect_min_size = Vector2( 0, 64 )
+size_flags_horizontal = 3
+text = "Circle"
+
+[node name="MoneyLabel" type="Label" parent="InterfaceLayer/Interface"]
+margin_left = 810.0
+margin_right = 900.0
+margin_bottom = 20.0
+text = "Money: 0000"
+
+[node name="Playground" parent="." instance=ExtResource( 3 )]
+
+[node name="Bank" parent="." instance=ExtResource( 4 )]
+
+[node name="MercenaryGuild" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="Contract" parent="MercenaryGuild" instance=ExtResource( 6 )]
+cost = 100
+
+[node name="Rectangle" parent="MercenaryGuild" instance=ExtResource( 7 )]
+position = Vector2( 350, 540 )
+
+[node name="Capsule" parent="MercenaryGuild" instance=ExtResource( 8 )]
+position = Vector2( 190, 229 )
+
+[node name="Circle" parent="MercenaryGuild" instance=ExtResource( 9 )]
+position = Vector2( 1510, 540 )
+
+[node name="Coins" type="Node" parent="."]
+editor/display_folded = true
+script = ExtResource( 10 )
+
+[node name="Coin" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 670, 460 )
+
+[node name="Coin24" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 670, 320 )
+
+[node name="Coin26" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( -140, 140 )
+
+[node name="Coin31" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( -240, 160 )
+
+[node name="Coin33" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( -340, 190 )
+
+[node name="Coin38" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( -490, 280 )
+
+[node name="Coin16" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( -670, 500 )
+
+[node name="Coin30" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( -560, 360 )
+
+[node name="Coin17" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( -760, 590 )
+
+[node name="Coin37" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( -630, 450 )
+
+[node name="Coin18" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( -850, 690 )
+
+[node name="Coin35" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( -720, 550 )
+
+[node name="Coin19" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( -910, 770 )
+
+[node name="Coin36" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( -810, 630 )
+
+[node name="Coin4" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 520, 500 )
+
+[node name="Coin23" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 520, 360 )
+
+[node name="Coin5" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 520, 460 )
+
+[node name="Coin40" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 520, 320 )
+
+[node name="Coin6" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 570, 460 )
+
+[node name="Coin41" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 570, 320 )
+
+[node name="Coin7" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 570, 500 )
+
+[node name="Coin29" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 570, 360 )
+
+[node name="Coin8" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 670, 500 )
+
+[node name="Coin28" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 670, 360 )
+
+[node name="Coin9" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 720, 460 )
+
+[node name="Coin39" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 720, 320 )
+
+[node name="Coin20" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 720, 500 )
+
+[node name="Coin42" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 720, 360 )
+
+[node name="Coin21" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 770, 500 )
+
+[node name="Coin32" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 770, 360 )
+
+[node name="Coin22" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 770, 460 )
+
+[node name="Coin27" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 770, 320 )
+
+[node name="Coin10" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 620, 500 )
+
+[node name="Coin25" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 620, 360 )
+
+[node name="Coin11" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 620, 460 )
+
+[node name="Coin34" parent="Coins" instance=ExtResource( 11 )]
+position = Vector2( 620, 320 )
+
+[node name="DiscoveryAreas" type="Node2D" parent="."]
+script = ExtResource( 12 )
+
+[node name="CapsuleDiscoveryArea" parent="DiscoveryAreas" instance=ExtResource( 13 )]
+position = Vector2( 190, 229 )
+discovered_mercenary = 2
+
+[node name="CircleDiscoveryArea2" parent="DiscoveryAreas" instance=ExtResource( 13 )]
+position = Vector2( 1520, 540 )
+discovered_mercenary = 1
+
+[node name="Void" type="Area2D" parent="."]
+position = Vector2( -240, 1020 )
+script = ExtResource( 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Void"]
+shape = SubResource( 1 )
+
+[node name="Win" type="Label" parent="."]
+margin_left = -1050.0
+margin_top = 760.0
+margin_right = -973.0
+margin_bottom = 774.0
+text = "You won! lol"
+
+[connection signal="mercenary_selected" from="InterfaceLayer/Interface" to="." method="_on_Interface_mercenary_selected"]
+[connection signal="toggled" from="InterfaceLayer/Interface" to="InterfaceLayer/Interface/GridContainer" method="set_visible"]
+[connection signal="money_changed" from="Bank" to="." method="_on_Bank_money_changed"]
+[connection signal="coin_picked" from="Coins" to="." method="_on_Coins_coin_picked"]
+[connection signal="body_entered" from="Void" to="Void" method="_on_body_entered"]

@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://actors/Mercenary.gd" type="Script" id=1]
+[ext_resource path="res://geometry_2d.gd" type="Script" id=2]
+[ext_resource path="res://actors/Gravity.gd" type="Script" id=3]
+[ext_resource path="res://actors/Jump.gd" type="Script" id=4]
+[ext_resource path="res://actors/Walk.gd" type="Script" id=5]
+[ext_resource path="res://objects/PickupArea.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20, 30 )
+
+[node name="Mercenary" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="Geometry2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -30 )
+shape = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Gravity" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="Jump" type="Node" parent="."]
+script = ExtResource( 4 )
+strength = 800.0
+
+[node name="Walk" type="Node" parent="."]
+script = ExtResource( 5 )
+speed = 400.0
+
+[node name="PickupArea" parent="." instance=ExtResource( 6 )]
+collision_layer = 4
+collision_mask = 12
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -60 )
+current = true
+smoothing_enabled = true
+editor_draw_drag_margin = true
+

@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://geometry_2d.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 270, 30 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 160, 30 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 50 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 20, 100 )
+
+[node name="Playground" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Geometry2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 270, 570 )
+shape = SubResource( 1 )
+script = ExtResource( 1 )
+color = Color( 0.231373, 0.172549, 0.141176, 1 )
+
+[node name="Geometry2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 810, 570 )
+shape = SubResource( 1 )
+script = ExtResource( 1 )
+color = Color( 0.231373, 0.172549, 0.141176, 1 )
+
+[node name="Geometry2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 1350, 570 )
+shape = SubResource( 1 )
+script = ExtResource( 1 )
+color = Color( 0.231373, 0.172549, 0.141176, 1 )
+
+[node name="Geometry2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 640, 410 )
+shape = SubResource( 3 )
+script = ExtResource( 1 )
+color = Color( 0.231373, 0.172549, 0.141176, 1 )
+
+[node name="Geometry2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 190, 260 )
+shape = SubResource( 3 )
+script = ExtResource( 1 )
+color = Color( 0.231373, 0.172549, 0.141176, 1 )
+
+[node name="Geometry2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -1070, 850 )
+shape = SubResource( 3 )
+script = ExtResource( 1 )
+color = Color( 0.231373, 0.172549, 0.141176, 1 )
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="Obstacles"]
+position = Vector2( 490, 490 )
+collision_layer = 3
+collision_mask = 0
+
+[node name="Geometry2D" type="CollisionShape2D" parent="Obstacles/Wall"]
+shape = SubResource( 2 )
+script = ExtResource( 1 )
+color = Color( 0.521569, 0.113725, 0.231373, 1 )
+
+[node name="Wall2" type="StaticBody2D" parent="Obstacles"]
+position = Vector2( 790, 490 )
+collision_layer = 3
+collision_mask = 0
+
+[node name="Geometry2D" type="CollisionShape2D" parent="Obstacles/Wall2"]
+shape = SubResource( 2 )
+script = ExtResource( 1 )
+color = Color( 0.521569, 0.113725, 0.231373, 1 )
+
+[node name="Wall3" type="StaticBody2D" parent="Obstacles"]
+position = Vector2( 1320, 490 )
+collision_layer = 3
+collision_mask = 0
+
+[node name="Geometry2D" type="CollisionShape2D" parent="Obstacles/Wall3"]
+position = Vector2( 0, -50 )
+shape = SubResource( 4 )
+script = ExtResource( 1 )
+color = Color( 0.521569, 0.113725, 0.231373, 1 )
+
