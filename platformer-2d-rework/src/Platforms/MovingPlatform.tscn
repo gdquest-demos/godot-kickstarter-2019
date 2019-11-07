@@ -3,12 +3,6 @@
 [ext_resource path="res://src/Platforms/MovingPlatform.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/platforms/moving_platform.png" type="Texture" id=2]
 
-
-
-
-
-
-
 [node name="MovingPlatform" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -19,4 +13,3 @@ texture = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Platform"]
 polygon = PoolVector2Array( -88, -24, 88, -24, 88, 24, -88, 24 )
-

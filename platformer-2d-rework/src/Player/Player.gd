@@ -7,7 +7,7 @@ const GRAVITY_VEC = Vector2(0, 900)
 const FLOOR_NORMAL = Vector2(0, -1)
 const SLOPE_SLIDE_STOP = 25.0
 const WALK_SPEED = 250 # pixels/sec
-const JUMP_SPEED = 480
+const JUMP_SPEED = 520
 const SIDING_CHANGE_SPEED = 10
 const BULLET_VELOCITY = 1000
 const SHOOT_TIME_SHOW_WEAPON = 0.2
@@ -32,7 +32,8 @@ func _physics_process(delta):
 	# Apply gravity
 	linear_vel += delta * GRAVITY_VEC
 	# Move and slide
-	linear_vel = move_and_slide(linear_vel, FLOOR_NORMAL, SLOPE_SLIDE_STOP)
+	linear_vel = move_and_slide(linear_vel, FLOOR_NORMAL, true,
+	 4, 1, false)
 	# Detect if we are on floor - only works if called *after* move_and_slide
 	var on_floor = is_on_floor()
 
@@ -76,6 +77,7 @@ func _physics_process(delta):
 			sprite.scale.x = 1
 			new_anim = "run"
 	else:
+		#print("off floor")
 		# We want the character to immediately change facing side when the player
 		# tries to change direction, during air control.
 		# This allows for example the player to shoot quickly left then right.
