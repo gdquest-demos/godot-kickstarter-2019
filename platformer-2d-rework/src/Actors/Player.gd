@@ -20,7 +20,7 @@ var anim = ""
 # cache the sprite here for fast access (we will set scale to flip it often)
 onready var sprite = $Sprite
 # cache bullet for fast access
-var Bullet = preload("res://src/Player/Bullet/Bullet.tscn")
+var Bullet = preload("res://src/Objects/Bullet.tscn")
 
 
 func _physics_process(delta):

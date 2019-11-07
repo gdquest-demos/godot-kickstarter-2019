@@ -12,17 +12,17 @@ _global_script_classes=[ {
 "base": "RigidBody2D",
 "class": "Bullet",
 "language": "GDScript",
-"path": "res://src/Player/Bullet/Bullet.gd"
+"path": "res://src/Objects/Bullet.gd"
 }, {
 "base": "Area2D",
 "class": "Coin",
 "language": "GDScript",
-"path": "res://src/Coin/Coin.gd"
+"path": "res://src/Objects/Coin.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://src/Enemy/Enemy.gd"
+"path": "res://src/Actors/Enemy.gd"
 }, {
 "base": "Node2D",
 "class": "MovingPlatform",
@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://src/Player/Player.gd"
+"path": "res://src/Actors/Player.gd"
 } ]
 _global_script_class_icons={
 "Bullet": "",

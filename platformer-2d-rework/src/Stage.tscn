@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/art/tileset/tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://src/Coin/Coin.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Platforms/MovingPlatform.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Platforms/OneWayPlatform.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/Enemy/Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/ParallaxBackground.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/audio/music/music.ogg" type="AudioStream" id=8]
 
@@ -14,161 +13,57 @@
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 format = 1
-tile_data = PoolIntArray( 589851, 536870915, 0, 655387, 536870915, 0, 720921, 536870926, 0, 720923, 536870915, 0, 786457, 536870923, 0, 786459, 536870915, 0, 917502, 0, 0, 917503, 0, 0, 851968, 0, 0, 851969, 3, 0, 851993, 536870924, 0, 851995, 536870915, 0, 917505, 3, 0, 917526, 536870912, 0, 917527, 536870912, 0, 917528, 536870912, 0, 917529, 536870925, 0, 917530, 536870912, 0, 983041, 3, 0, 983056, 5, 0, 983057, 536870917, 0, 983058, 536870917, 0, 983062, 9, 0, 1048577, 3, 0, 1048579, 536870926, 0, 1048597, 536870914, 0, 1114114, 536870913, 0, 1114115, 536870925, 0, 1114116, 0, 0, 1114117, 2, 0, 1114123, 536870926, 0, 1114126, 536870918, 0, 1114127, 5, 0, 1114128, 6, 0, 1114132, 536870914, 0, 1179650, 536870921, 0, 1179651, 536870920, 0, 1179652, 536870922, 0, 1179654, 2, 0, 1179658, 536870913, 0, 1179659, 536870925, 0, 1179660, 1, 0, 1179667, 536870914, 0, 1179669, 536870915, 0, 1245188, 536870921, 0, 1245189, 536870922, 0, 1245191, 2, 0, 1245194, 536870915, 0, 1245195, 7, 0, 1245196, 3, 0, 1245202, 536870914, 0, 1245205, 536870915, 0, 1310725, 536870921, 0, 1310726, 536870922, 0, 1310728, 536870912, 0, 1310729, 536870912, 0, 1310730, 536870916, 0, 1310731, 7, 0, 1310732, 3, 0, 1310733, 0, 0, 1310734, 0, 0, 1310735, 0, 0, 1310736, 0, 0, 1310737, 0, 0, 1310738, 0, 0, 1310739, 0, 0, 1310740, 0, 0, 1376262, 536870921, 0, 1376263, 8, 0, 1376264, 8, 0, 1376265, 8, 0, 1376266, 8, 0, 1376267, 8, 0, 1376268, 9, 0 )
+tile_data = PoolIntArray( -131044, 536870915, 0, -65508, 536870915, 0, 28, 536870915, 0, 131063, 3, 0, 65564, 536870915, 0, 196599, 3, 0, 131100, 536870915, 0, 262135, 3, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196626, 0, 0, 196627, 0, 0, 196628, 0, 0, 196629, 0, 0, 196630, 0, 0, 196631, 0, 0, 196632, 0, 0, 196633, 0, 0, 196634, 0, 0, 196635, 0, 0, 196636, 536870915, 0, 327671, 3, 0, 262149, 5, 0, 262150, 5, 0, 262172, 536870915, 0, 393207, 3, 0, 393210, 0, 0, 327682, 5, 0, 327683, 5, 0, 327708, 536870915, 0, 458743, 3, 0, 458744, 0, 0, 458745, 0, 0, 458746, 0, 0, 393244, 536870915, 0, 524279, 3, 0, 524282, 3, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 2, 0, 458780, 536870915, 0, 589818, 3, 0, 524294, 536870912, 0, 524295, 536870912, 0, 524296, 536870912, 0, 524297, 536870912, 0, 524298, 536870912, 0, 524299, 536870912, 0, 524300, 536870912, 0, 524301, 536870912, 0, 524302, 2, 0, 524316, 536870915, 0, 655354, 3, 0, 589839, 0, 0, 589852, 536870915, 0, 720890, 3, 0, 655388, 536870915, 0, 786426, 3, 0, 720921, 536870926, 0, 720924, 536870915, 0, 851962, 3, 0, 786454, 536870917, 0, 786455, 536870917, 0, 786457, 536870923, 0, 786460, 536870915, 0, 917498, 3, 0, 917499, 0, 0, 917500, 0, 0, 917501, 0, 0, 917502, 0, 0, 917503, 0, 0, 851968, 0, 0, 851969, 3, 0, 851993, 536870924, 0, 851996, 536870915, 0, 917505, 3, 0, 917526, 536870912, 0, 917527, 536870912, 0, 917528, 536870912, 0, 917529, 536870925, 0, 917530, 536870912, 0, 917531, 536870915, 0, 917532, 536870915, 0, 983041, 3, 0, 983056, 5, 0, 983057, 536870917, 0, 983058, 536870917, 0, 983062, 9, 0, 1048577, 3, 0, 1048579, 536870926, 0, 1048598, 3, 0, 1114114, 536870913, 0, 1114115, 536870925, 0, 1114116, 0, 0, 1114117, 2, 0, 1114123, 536870926, 0, 1114126, 536870918, 0, 1114127, 5, 0, 1114128, 6, 0, 1114133, 536870914, 0, 1179650, 536870921, 0, 1179651, 536870920, 0, 1179652, 536870922, 0, 1179654, 2, 0, 1179658, 536870913, 0, 1179659, 536870925, 0, 1179660, 1, 0, 1179668, 536870914, 0, 1245188, 536870921, 0, 1245189, 536870922, 0, 1245191, 2, 0, 1245194, 536870915, 0, 1245195, 7, 0, 1245196, 3, 0, 1245203, 536870914, 0, 1310725, 536870921, 0, 1310726, 536870922, 0, 1310728, 536870912, 0, 1310729, 536870912, 0, 1310730, 536870916, 0, 1310731, 7, 0, 1310732, 3, 0, 1310733, 0, 0, 1310734, 0, 0, 1310735, 0, 0, 1310736, 0, 0, 1310737, 0, 0, 1310738, 0, 0, 1376262, 536870921, 0, 1376263, 8, 0, 1376264, 8, 0, 1376265, 8, 0, 1376266, 8, 0, 1376267, 8, 0, 1376268, 9, 0 )
 
 [node name="Coins" type="Node" parent="."]
 
-[node name="Coin11" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 1169.44, 677.369 )
+[node name="Coin" parent="Coins" instance=ExtResource( 4 )]
+position = Vector2( -452.325, 346.352 )
 
-[node name="Coin12" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 1233.44, 677.369 )
+[node name="Coin2" parent="Coins" instance=ExtResource( 4 )]
+position = Vector2( -454.91, 290.78 )
 
-[node name="Coin13" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 924.453, 566.264 )
+[node name="Coin3" parent="Coins" instance=ExtResource( 4 )]
+position = Vector2( -407.092, 290.78 )
 
-[node name="Coin14" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 988.453, 566.264 )
+[node name="Coin4" parent="Coins" instance=ExtResource( 4 )]
+position = Vector2( -401.923, 351.521 )
 
-[node name="Coin15" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 983.872, 336.653 )
+[node name="Coin5" parent="Coins" instance=ExtResource( 4 )]
+position = Vector2( -263.641, 793.507 )
 
-[node name="Coin16" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 1047.87, 336.653 )
+[node name="Coin6" parent="Coins" instance=ExtResource( 4 )]
+position = Vector2( -186.099, 793.507 )
 
-[node name="Coin17" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 1111.87, 336.653 )
-
-[node name="Coin18" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 1111.87, 272.653 )
-
-[node name="Coin19" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 1047.87, 272.653 )
-
-[node name="Coin20" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 983.872, 272.653 )
-
-[node name="Coin21" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 3726.65, 1102.79 )
-
-[node name="Coin22" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 89.5989, 481.217 )
-
-[node name="Coin23" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 3735.94, 1095.49 )
-
-[node name="Coin24" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 3743.9, 1084.22 )
-
-[node name="Coin25" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 3745.23, 1072.28 )
-
-[node name="Coin26" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 3733.95, 1063.65 )
-
-[node name="Coin27" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 3725.99, 1072.94 )
-
-[node name="Coin28" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 88.272, 448.71 )
-
-[node name="Coin29" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 79.6476, 457.334 )
-
-[node name="Coin30" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 82.9647, 468.612 )
-
-[node name="Coin31" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 2159.07, 1356.49 )
-
-[node name="Coin32" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 2223.07, 1356.49 )
-
-[node name="Coin33" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 2287.07, 1356.49 )
-
-[node name="Coin34" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 2287.07, 1292.49 )
-
-[node name="Coin35" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 2223.07, 1292.49 )
-
-[node name="Coin36" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 2159.07, 1292.49 )
-
-[node name="Coin37" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 4172.75, 605.058 )
-
-[node name="Coin38" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 4236.75, 605.058 )
-
-[node name="Coin39" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 4300.75, 605.058 )
-
-[node name="Coin40" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 4300.75, 541.058 )
-
-[node name="Coin41" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 4236.75, 541.058 )
-
-[node name="Coin42" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 4172.75, 541.058 )
+[node name="Coin7" parent="Coins" instance=ExtResource( 4 )]
+position = Vector2( -107.266, 790.922 )
 
 [node name="Props" type="Node" parent="."]
 
 [node name="MovingPlatform" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( 737.73, 906.969 )
+position = Vector2( 1164.21, 700.465 )
 motion = Vector2( 16, 0 )
 
-[node name="OneWayPlatform2" parent="Props" instance=ExtResource( 4 )]
-position = Vector2( 1190.78, 754.282 )
-
-[node name="OneWayPlatform3" parent="Props" instance=ExtResource( 4 )]
-position = Vector2( 953.762, 638.622 )
-
-[node name="OneWayPlatform4" parent="Props" instance=ExtResource( 4 )]
-position = Vector2( 1256.76, 638.622 )
-
-[node name="OneWayPlatform5" parent="Props" instance=ExtResource( 4 )]
-position = Vector2( 1039.29, 409.746 )
-
-[node name="OneWayPlatform6" parent="Props" instance=ExtResource( 4 )]
-position = Vector2( 1192.93, 520.298 )
-
-[node name="OneWayPlatform7" parent="Props" instance=ExtResource( 4 )]
-position = Vector2( 2784.9, 1655.71 )
-
-[node name="OneWayPlatform8" parent="Props" instance=ExtResource( 4 )]
-position = Vector2( 2976.23, 1555 )
-
-[node name="OneWayPlatform9" parent="Props" instance=ExtResource( 4 )]
-position = Vector2( 3122.25, 1469.41 )
-
-[node name="OneWayPlatform10" parent="Props" instance=ExtResource( 4 )]
-position = Vector2( 3200.29, 1353.6 )
-
-[node name="OneWayPlatform11" parent="Props" instance=ExtResource( 4 )]
-position = Vector2( 3200.29, 1237.8 )
+[node name="MovingPlatform2" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -128.964, 355.315 )
+motion = Vector2( 16, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 251.684, 1045.6 )
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Enemy6" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 3080.34, 1807.61 )
+[node name="Enemy" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 614.317, 478.279 )
 
-[node name="Enemy8" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 1264.06, 571.713 )
+[node name="Enemy2" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 678.756, 151.789 )
 
-[node name="Enemy9" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 3590.85, 1114.86 )
+[node name="Enemy3" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 1288.78, 158.949 )
 
-[node name="Enemy10" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 3546.2, 1356.19 )
-
-[node name="Enemy11" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 2215.3, 1429.39 )
+[node name="Enemy4" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 1535.08, 151.789 )
 
 [node name="ParallaxBg" parent="." instance=ExtResource( 7 )]
 
@@ -179,8 +74,11 @@ margin_right = 358.0
 margin_bottom = -10.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-text = "This is a simple demo on how to make a platformer game with Godot.\"This version uses physics and the 2D physics engine for motion and collision.\"\"The demo also shows the benefits of using the scene system, where coins,\"enemies and the player are edited separatedly and instanced in the stage.\"\"To edit the base tiles for the  tileset, open the tileset_edit.tscn file and follow \"instructions.\""
+text = "This is a simple demo on how to make a platformer game with Godot. This version uses physics and the 2D physics engine for motion and collision. The demo also shows the benefits of using the scene system, where coins, enemies and the player are edited separatedly and instanced in the stage."
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )

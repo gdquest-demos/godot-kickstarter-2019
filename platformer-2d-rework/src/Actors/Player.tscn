@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/player/robot_demo.png" type="Texture" id=2]
 [ext_resource path="res://assets/audio/sfx/jump.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/sfx/shoot.wav" type="AudioStream" id=4]
@@ -215,8 +215,6 @@ anims/standing_weapon_ready = SubResource( 10 )
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
-limit_left = 0
-limit_top = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.291992, -0.835023 )
