@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/art/enemy/enemy.png" type="Texture" id=4]
 [ext_resource path="res://src/Actors/Enemy.gd" type="Script" id=5]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "explode"
 length = 5.0
@@ -161,7 +160,11 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 
 [node name="Enemy" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource( 5 )
+speed = Vector2( 150, 500 )
+gravity = 1800.0
 
 [node name="Enabler" type="VisibilityEnabler2D" parent="."]
 position = Vector2( 16.2569, 11.0034 )
@@ -187,29 +190,18 @@ shape = SubResource( 5 )
 [node name="DetectFloorLeft" type="RayCast2D" parent="."]
 position = Vector2( -33.2868, -9.34363 )
 enabled = true
-cast_to = Vector2( 0, 45 )
-
-[node name="DetectWallLeft" type="RayCast2D" parent="."]
-position = Vector2( -12.1361, -0.739977 )
-rotation = 1.5708
-enabled = true
-cast_to = Vector2( 0, 20 )
-
-[node name="DetectWallRight" type="RayCast2D" parent="."]
-position = Vector2( 3.2788, -0.381488 )
-rotation = -1.5708
-enabled = true
-cast_to = Vector2( 0, 20 )
+cast_to = Vector2( 0, 70 )
+collision_mask = 4
 
 [node name="DetectFloorRight" type="RayCast2D" parent="."]
 position = Vector2( 29.1987, -9.34363 )
 enabled = true
-cast_to = Vector2( 0, 45 )
+cast_to = Vector2( 0, 70 )
+collision_mask = 4
 
 [node name="Explosion" type="Particles2D" parent="."]
 self_modulate = Color( 1, 1, 1, 0.12 )
 material = SubResource( 6 )
-emitting = false
 amount = 32
 lifetime = 0.5
 one_shot = true

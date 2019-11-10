@@ -186,7 +186,10 @@ tracks/0/keys = {
 height = 44.4787
 
 [node name="Player" type="KinematicBody2D"]
+collision_mask = 4
 script = ExtResource( 1 )
+speed = Vector2( 400, 700 )
+gravity = 1800.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -202,6 +205,7 @@ rotation = -1.45648
 position = Vector2( 30.6589, 6.13176 )
 
 [node name="Anim" type="AnimationPlayer" parent="."]
+playback_speed = 2.6
 anims/crouch = SubResource( 1 )
 anims/falling = SubResource( 2 )
 anims/falling_weapon = SubResource( 3 )
