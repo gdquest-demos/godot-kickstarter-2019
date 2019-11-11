@@ -2,6 +2,7 @@ extends Actor
 
 class_name Player
 
+onready var ray: RayCast2D = $PlatformDetector
 onready var sprite: Sprite = $Sprite
 onready var sound_shoot: AudioStreamPlayer2D = $SoundShoot
 onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -17,16 +18,16 @@ var Bullet = preload("res://src/Objects/Bullet.tscn")
 
 
 func _physics_process(delta):
-	
 	_shoot_time += delta
 
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
 	
 	var direction: = get_direction()
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
-	var snap: Vector2 = Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
+	var is_snapping: Vector2 = Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
+	var is_on_platform: = ray.is_colliding()
 	_velocity = move_and_slide_with_snap(
-		_velocity, snap, FLOOR_NORMAL, true, 4,  0.885398, false
+		_velocity, is_snapping, FLOOR_NORMAL, not is_on_platform, 4,  0.9, false
 	)
 
 	### Shooting

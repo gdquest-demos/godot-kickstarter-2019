@@ -121,6 +121,10 @@ spawn={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_4="platforms"
+
 [physics]
 
 2d/default_gravity=700

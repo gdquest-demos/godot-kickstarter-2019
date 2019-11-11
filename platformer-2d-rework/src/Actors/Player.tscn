@@ -191,11 +191,16 @@ script = ExtResource( 1 )
 speed = Vector2( 400, 700 )
 gravity = 1800.0
 
+[node name="PlatformDetector" type="RayCast2D" parent="."]
+position = Vector2( 0, 29.9245 )
+enabled = true
+cast_to = Vector2( 0, 4 )
+collision_mask = 8
+
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 16
-frame = 21
 
 [node name="GunPosition" type="Position2D" parent="Sprite"]
 position = Vector2( 30.6589, 6.13176 )
