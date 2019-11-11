@@ -2,13 +2,16 @@ extends Actor
 
 class_name Player
 
+onready var sprite: Sprite = $Sprite
+onready var sound_shoot: AudioStreamPlayer2D = $SoundShoot
+onready var animation_player: AnimationPlayer = $AnimationPlayer
+onready var gun_position: Position2D = $Sprite/GunPosition
+
 const BULLET_VELOCITY := 1000.0
 const SHOOT_TIME_SHOW_WEAPON := 0.2
 
 var _current_animation := ""
 var _shoot_time := 99.0 # time since last shot
-
-onready var sprite = $Sprite
 
 var Bullet = preload("res://src/Objects/Bullet.tscn")
 
@@ -26,20 +29,17 @@ func _physics_process(delta):
 		_velocity, snap, FLOOR_NORMAL, true, 4,  0.885398, false
 	)
 
-	# Shooting
-	# TODO: Move this to a separate Gun scene?
+	### Shooting
 	if Input.is_action_just_pressed("shoot"):
 		var bullet = Bullet.instance()
-		bullet.position = ($Sprite/BulletShoot as Position2D).global_position # use node for shoot position
+		bullet.position = gun_position.global_position # use node for shoot position
 		bullet.linear_velocity = Vector2(sprite.scale.x * BULLET_VELOCITY, 0)
 		bullet.add_collision_exception_with(self) # don't want player to collide with bullet
 		get_parent().add_child(bullet) # don't want bullet to move with me, so add it as child of parent
-		($SoundShoot as AudioStreamPlayer2D).play()
+		sound_shoot.play()
 		_shoot_time = 0
 
-	### ANIMATION ###
-	# TODO: Handle animations/sprites with StateMachine?
-
+	### Animation
 	var new_animation = "idle"
 	
 	if abs(direction.x) > 0:
@@ -60,7 +60,7 @@ func _physics_process(delta):
 
 	if new_animation != _current_animation:
 		_current_animation = new_animation
-		($Anim as AnimationPlayer).play(new_animation)
+		animation_player.play(new_animation)
 
 
 func get_direction() -> Vector2:

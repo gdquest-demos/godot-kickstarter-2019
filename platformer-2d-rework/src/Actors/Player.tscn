@@ -186,7 +186,7 @@ tracks/0/keys = {
 height = 44.4787
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 4
+collision_mask = 7
 script = ExtResource( 1 )
 speed = Vector2( 400, 700 )
 gravity = 1800.0
@@ -195,16 +195,12 @@ gravity = 1800.0
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 16
-frame = 22
+frame = 21
 
-[node name="Smoke" type="Node2D" parent="Sprite"]
-position = Vector2( 20.7312, 3.21187 )
-rotation = -1.45648
-
-[node name="BulletShoot" type="Position2D" parent="Sprite"]
+[node name="GunPosition" type="Position2D" parent="Sprite"]
 position = Vector2( 30.6589, 6.13176 )
 
-[node name="Anim" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 2.6
 anims/crouch = SubResource( 1 )
 anims/falling = SubResource( 2 )

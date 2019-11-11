@@ -2,10 +2,10 @@ extends Area2D
 
 class_name Coin
 
+onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var taken = false
 
 func _on_coin_body_enter(body):
-	if not taken and body is Player:
-		($Anim as AnimationPlayer).play("taken")
-		taken = true
+	if body is Player:
+		animation_player.play("taken")
+		set_deferred("monitoring", false)

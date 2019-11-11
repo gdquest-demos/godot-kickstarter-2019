@@ -22,7 +22,7 @@ color = Color( 1, 1, 1, 0.705882 )
 [sub_resource type="CircleShape2D" id=5]
 
 [sub_resource type="Animation" id=6]
-length = 1.5
+length = 0.5
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -30,7 +30,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1.31 ),
+"times": PoolRealArray( 0.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -44,7 +44,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -89,7 +89,7 @@ shape = SubResource( 5 )
 one_shot = true
 autostart = true
 
-[node name="Anim" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/shutdown = SubResource( 6 )
 [connection signal="body_entered" from="." to="." method="_on_bullet_body_enter"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

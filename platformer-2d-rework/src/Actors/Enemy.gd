@@ -2,21 +2,22 @@ extends Actor
 
 class_name Enemy
 
-const STATE_WALKING = 0
-const STATE_KILLED = 1
+onready var sprite: Sprite = $Sprite
+onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var anim = ""
+onready var DetectFloorLeft: RayCast2D = $DetectFloorLeft
+onready var DetectFloorRight: RayCast2D = $DetectFloorRight
 
-# state machine
-var state = STATE_WALKING
+enum State {WALKING, DEAD}
 
-onready var DetectFloorLeft = $DetectFloorLeft
-onready var DetectFloorRight = $DetectFloorRight
+var state = State.WALKING
 
-onready var sprite = $Sprite
+var _current_animation := ""
+
 
 func _ready():
 	_velocity.x = -speed.x
+
 
 func _physics_process(delta):
 	
@@ -26,19 +27,18 @@ func _physics_process(delta):
 	
 	sprite.scale.x = 1 if _velocity.x > 0 else -1
 	
-	# TODO: Add separate StateMachine?
-	
-	var new_anim = "idle"
+	var new_animation = "idle"
 
-	if state == STATE_WALKING:
-		new_anim = "walk"
+	if state == State.WALKING:
+		new_animation = "walk"
 	else:
 		_velocity = Vector2.ZERO
-		new_anim = "explode"
+		new_animation = "explode"
 
-	if anim != new_anim:
-		anim = new_anim
-		($Anim as AnimationPlayer).play(anim)
-	
+	if _current_animation != new_animation:
+		_current_animation = new_animation
+		animation_player.play(_current_animation)
+
+
 func hit_by_bullet():
-	state = STATE_KILLED
+	state = State.DEAD

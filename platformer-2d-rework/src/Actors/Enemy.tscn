@@ -108,6 +108,18 @@ tracks/7/keys = {
 "method": "queue_free"
 } ]
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath(".:collision_layer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
 [sub_resource type="Animation" id=2]
 length = 6.75
@@ -166,12 +178,7 @@ script = ExtResource( 5 )
 speed = Vector2( 150, 500 )
 gravity = 1800.0
 
-[node name="Enabler" type="VisibilityEnabler2D" parent="."]
-position = Vector2( 16.2569, 11.0034 )
-scale = Vector2( 23.5056, 10.8629 )
-pause_particles = false
-
-[node name="Anim" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/explode = SubResource( 1 )
 anims/idle = SubResource( 2 )
 anims/walk = SubResource( 3 )
@@ -183,18 +190,17 @@ flip_h = true
 hframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.00525069, -0.727495 )
 rotation = -1.5708
 shape = SubResource( 5 )
 
 [node name="DetectFloorLeft" type="RayCast2D" parent="."]
-position = Vector2( -33.2868, -9.34363 )
+position = Vector2( -32, -10 )
 enabled = true
 cast_to = Vector2( 0, 70 )
 collision_mask = 4
 
 [node name="DetectFloorRight" type="RayCast2D" parent="."]
-position = Vector2( 29.1987, -9.34363 )
+position = Vector2( 32, -10 )
 enabled = true
 cast_to = Vector2( 0, 70 )
 collision_mask = 4

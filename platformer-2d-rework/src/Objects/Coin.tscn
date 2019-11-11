@@ -109,18 +109,19 @@ scale = 0.2
 color_ramp = SubResource( 5 )
 
 [node name="Coin" type="Area2D"]
+collision_layer = 0
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 4
 
-[node name="Anim" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "spin"
 anims/spin = SubResource( 1 )
 anims/taken = SubResource( 2 )
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
@@ -128,7 +129,6 @@ stream = ExtResource( 3 )
 
 [node name="Particles" type="Particles2D" parent="."]
 material = SubResource( 4 )
-emitting = false
 lifetime = 2.0
 explosiveness = 1.0
 draw_order = 65793
