@@ -1,67 +1,59 @@
 extends Actor
-
 class_name Player
 
-onready var ray: RayCast2D = $PlatformDetector
+
+onready var platform_detector: RayCast2D = $PlatformDetector
 onready var sprite: Sprite = $Sprite
-onready var sound_shoot: AudioStreamPlayer2D = $SoundShoot
 onready var animation_player: AnimationPlayer = $AnimationPlayer
-onready var gun_position: Position2D = $Sprite/GunPosition
-
-const BULLET_VELOCITY := 1000.0
-const SHOOT_TIME_SHOW_WEAPON := 0.2
-
-var _current_animation := ""
-var _shoot_time := 99.0 # time since last shot
-
-var Bullet = preload("res://src/Objects/Bullet.tscn")
+onready var shoot_timer: = $ShootAnimation
+onready var gun: Gun = $Sprite/Gun
 
 
-func _physics_process(delta):
-	_shoot_time += delta
+"""
+Physics process is a built-in loop in Godot.
+If you define _physics_process on a node, Godot will call it every frame.
+
+We use separate functions to calculate the direction and velocity to make this one easier to read.
+At a glance, you can see that the physics process loop:
+	1. Calculates the move direction.
+	2. Calculates the move velocity.
+	3. Moves the character.
+	4. Updates the sprite direction.
+	5. Shoots bullets.
+	6. Updates the animation.
+
+Splitting the physics process logic into functions not only makes it easier to read, it help to change or improve the code later on:
+	- If you need to change a calculation, you can use Go To -> Function (Ctrl Alt F) to quickly jump to the corresponding function.
+	- If you split the character into a state machine or more advanced pattern, you can easily move individual functions.
+"""
+func _physics_process(delta: float) -> void:
+	var direction: = get_direction()
 
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
-	
-	var direction: = get_direction()
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
-	var is_snapping: Vector2 = Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
-	var is_on_platform: = ray.is_colliding()
+
+	var is_snapping: = Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
+	var is_on_platform: = platform_detector.is_colliding()
 	_velocity = move_and_slide_with_snap(
 		_velocity, is_snapping, FLOOR_NORMAL, not is_on_platform, 4,  0.9, false
 	)
 
-	### Shooting
-	if Input.is_action_just_pressed("shoot"):
-		var bullet = Bullet.instance()
-		bullet.position = gun_position.global_position # use node for shoot position
-		bullet.linear_velocity = Vector2(sprite.scale.x * BULLET_VELOCITY, 0)
-		bullet.add_collision_exception_with(self) # don't want player to collide with bullet
-		get_parent().add_child(bullet) # don't want bullet to move with me, so add it as child of parent
-		sound_shoot.play()
-		_shoot_time = 0
-
-	### Animation
-	var new_animation = "idle"
-	
-	if abs(direction.x) > 0:
+	# When the character’s direction changes, we want to to scale the Sprite accordingly to flip it. This will make Robi face left or right depending on the direction you move.
+	if direction.x != 0:
 		sprite.scale.x = direction.x
+
+	# We use the sprite's scale to store Robi’s look direction which allows us in turn to shoot bullets forward.
+	# There are many situations like these where you can reuse existing properties instead of creating new variables.
+	var is_shooting: = false
+	if Input.is_action_just_pressed("shoot"):
+		is_shooting = gun.shoot(sprite.scale.x)
+
 	
-	if is_on_floor():
-		if abs(_velocity.x) > 0:
-			new_animation = "run"
-	else:
-		
-		if _velocity.y > 0:
-			new_animation = "falling"
-		else:
-			new_animation = "jumping"
-
-	if _shoot_time < SHOOT_TIME_SHOW_WEAPON:
-		new_animation += "_weapon"
-
-	if new_animation != _current_animation:
-		_current_animation = new_animation
-		animation_player.play(new_animation)
+	var animation: = get_new_animation(is_shooting)
+	if animation != animation_player.current_animation and shoot_timer.is_stopped():
+		if is_shooting:
+			shoot_timer.start()
+		animation_player.play(animation)
 
 
 func get_direction() -> Vector2:
@@ -71,6 +63,10 @@ func get_direction() -> Vector2:
 	)
 
 
+"""
+This function calculates a new velocity whenever you need it.
+It allows you to interrupt jumps.
+"""
 func calculate_move_velocity(
 		linear_velocity: Vector2,
 		direction: Vector2,
@@ -83,5 +79,15 @@ func calculate_move_velocity(
 		velocity.y = speed.y * direction.y
 	if is_jump_interrupted:
 		velocity.y = 0.0
-	
 	return velocity
+
+
+func get_new_animation(is_shooting: bool = false) -> String:
+	var animation_new: = ""
+	if is_on_floor():
+		animation_new = "run" if abs(_velocity.x) > 0 else "idle"
+	else:
+		animation_new = "falling" if _velocity.y > 0 else "jumping"
+	if is_shooting:
+		animation_new += "_weapon"
+	return animation_new
