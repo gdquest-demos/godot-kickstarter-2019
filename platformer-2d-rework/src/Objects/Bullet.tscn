@@ -22,7 +22,8 @@ color = Color( 1, 1, 1, 0.705882 )
 [sub_resource type="CircleShape2D" id=5]
 
 [sub_resource type="Animation" id=6]
-length = 0.5
+resource_name = "destroy"
+length = 0.3
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -30,7 +31,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.5 ),
+"times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -44,7 +45,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -56,7 +57,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -64,7 +65,8 @@ tracks/2/keys = {
 
 [node name="Bullet" type="RigidBody2D"]
 material = SubResource( 1 )
-collision_mask = 6
+collision_layer = 0
+collision_mask = 26
 continuous_cd = 2
 contacts_reported = 1
 contact_monitor = true
@@ -90,6 +92,6 @@ one_shot = true
 autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/shutdown = SubResource( 6 )
-[connection signal="body_entered" from="." to="." method="_on_bullet_body_enter"]
+anims/destroy = SubResource( 6 )
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

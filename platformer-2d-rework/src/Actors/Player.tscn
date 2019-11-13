@@ -187,7 +187,7 @@ tracks/0/keys = {
 height = 44.4787
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 7
+collision_mask = 30
 script = ExtResource( 1 )
 speed = Vector2( 400, 700 )
 gravity = 1800.0
@@ -207,7 +207,7 @@ collision_mask = 8
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 16
-frame = 26
+frame = 22
 
 [node name="Gun" type="Position2D" parent="Sprite"]
 position = Vector2( 30.6589, 6.13176 )

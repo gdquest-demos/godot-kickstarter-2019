@@ -22,7 +22,8 @@ At a glance, you can see that the physics process loop:
 	5. Shoots bullets.
 	6. Updates the animation.
 
-Splitting the physics process logic into functions not only makes it easier to read, it help to change or improve the code later on:
+Splitting the physics process logic into functions not only makes it easier to read, it help to 
+change or improve the code later on:
 	- If you need to change a calculation, you can use Go To -> Function (Ctrl Alt F) to quickly jump to the corresponding function.
 	- If you split the character into a state machine or more advanced pattern, you can easily move individual functions.
 """

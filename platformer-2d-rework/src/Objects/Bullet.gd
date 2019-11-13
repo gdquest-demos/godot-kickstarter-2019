@@ -1,14 +1,17 @@
 extends RigidBody2D
-
 class_name Bullet
+
 
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
-func _on_bullet_body_enter(body):
-	if body.has_method("hit_by_bullet"):
-		body.call("hit_by_bullet")
-
-
 func _on_Timer_timeout():
-	animation_player.play("shutdown")
+	destroy()
+
+func destroy() -> void:
+	animation_player.play("destroy")
+
+
+func _on_body_entered(body: PhysicsBody2D):
+	if body is Enemy:
+		body.destroy()

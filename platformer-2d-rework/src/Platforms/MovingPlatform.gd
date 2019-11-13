@@ -1,19 +1,17 @@
-extends Node2D
+extends KinematicBody2D
 
 class_name MovingPlatform
 
-onready var platform: KinematicBody2D = $Platform
 
-export var motion = Vector2()
-export var cycle = 1.0
-
-var accum = 0.0
-
+func _ready():
+	$AnimationPlayer.play("move")
+	#$AnimationPlayer = $AnimationPlayer.get_animation("move").duplicate()
 
 func _physics_process(delta):
-	accum += delta * (1.0 / cycle) * PI * 2.0
-	accum = fmod(accum, PI * 2.0)
-	var d = sin(accum)
-	var xf = Transform2D()
-	xf[2] = motion * d
-	platform.transform = xf
+	#accum += delta * (1.0 / cycle) * PI * 2.0
+	#accum = fmod(accum, PI * 2.0)
+	#var d = sin(accum)
+	#var xf = Transform2D()
+	#xf[2] = motion * d
+	#platform.transform = xf
+	pass
