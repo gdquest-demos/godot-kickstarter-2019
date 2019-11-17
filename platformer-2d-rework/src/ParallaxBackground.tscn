@@ -7,17 +7,7 @@
 [ext_resource path="res://assets/art/background/distant_platforms_2.png" type="Texture" id=5]
 [ext_resource path="res://assets/art/background/distant_platforms_1.png" type="Texture" id=6]
 
-
-
-
-
-
-
-
-
-
-
-[node name="ParallaxBg" type="ParallaxBackground"]
+[node name="ParallaxBackground" type="ParallaxBackground"]
 scroll_base_scale = Vector2( 0.7, 0 )
 
 [node name="Sky" type="ParallaxLayer" parent="."]
@@ -62,22 +52,22 @@ position = Vector2( 674, 70 )
 texture = ExtResource( 4 )
 centered = false
 
-[node name="Mount2" type="ParallaxLayer" parent="."]
+[node name="MountainsFar" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.2, 1 )
 motion_mirroring = Vector2( 800, 0 )
 
-[node name="Sprite" type="Sprite" parent="Mount2"]
+[node name="Sprite" type="Sprite" parent="MountainsFar"]
 position = Vector2( 0, 225 )
 texture = ExtResource( 5 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 800, 256 )
 
-[node name="Mount1" type="ParallaxLayer" parent="."]
+[node name="MountainsClose" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.4, 1 )
 motion_mirroring = Vector2( 800, 0 )
 
-[node name="Sprite" type="Sprite" parent="Mount1"]
+[node name="Sprite" type="Sprite" parent="MountainsClose"]
 position = Vector2( 0, 225 )
 texture = ExtResource( 6 )
 centered = false

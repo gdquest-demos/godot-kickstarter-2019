@@ -1,17 +1,8 @@
-extends KinematicBody2D
-
+extends Node2D
 class_name MovingPlatform
 
+onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-func _ready():
-	$AnimationPlayer.play("move")
-	#$AnimationPlayer = $AnimationPlayer.get_animation("move").duplicate()
 
-func _physics_process(delta):
-	#accum += delta * (1.0 / cycle) * PI * 2.0
-	#accum = fmod(accum, PI * 2.0)
-	#var d = sin(accum)
-	#var xf = Transform2D()
-	#xf[2] = motion * d
-	#platform.transform = xf
-	pass
+func _ready() -> void:
+	animation_player.play("move")

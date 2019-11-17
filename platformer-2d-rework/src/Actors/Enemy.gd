@@ -16,7 +16,7 @@ var _state = State.WALKING
 This function is called when the scene enters the scene tree.
 We can initialize variables here.
 """
-func _ready():
+func _ready() -> void:
 	_velocity.x = speed.x
 
 """
@@ -33,7 +33,7 @@ Splitting the physics process logic into functions not only makes it easier to r
 	- If you need to change a calculation, you can use Go To -> Function (Ctrl Alt F) to quickly jump to the corresponding function.
 	- If you split the character into a state machine or more advanced pattern, you can easily move individual functions.
 """
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	_velocity = calculate_move_velocity(_velocity)
 	
 	# We only update the y value of _velocity as we want to handle the horizontal movement ourselves.
@@ -48,7 +48,7 @@ func _physics_process(delta):
 		animation_player.play(animation)
 
 
-func destroy():
+func destroy() -> void:
 	_state = State.DEAD
 	_velocity = Vector2.ZERO
 

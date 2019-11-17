@@ -29,7 +29,7 @@ change or improve the code later on:
 """
 func _physics_process(delta: float) -> void:
 	var direction: = get_direction()
-
+	
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 
@@ -86,7 +86,7 @@ func calculate_move_velocity(
 func get_new_animation(is_shooting: bool = false) -> String:
 	var animation_new: = ""
 	if is_on_floor():
-		animation_new = "run" if abs(_velocity.x) > 0 else "idle"
+		animation_new = "run" if abs(_velocity.x) > 0.1 else "idle"
 	else:
 		animation_new = "falling" if _velocity.y > 0 else "jumping"
 	if is_shooting:

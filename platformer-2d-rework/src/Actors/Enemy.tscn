@@ -226,6 +226,7 @@ shape = SubResource( 5 )
 [node name="Explosion" type="Particles2D" parent="."]
 self_modulate = Color( 1, 1, 1, 0.12 )
 material = SubResource( 6 )
+emitting = false
 amount = 32
 lifetime = 0.5
 one_shot = true
