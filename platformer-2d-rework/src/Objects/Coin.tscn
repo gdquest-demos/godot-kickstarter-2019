@@ -53,9 +53,9 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.01 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
+"update": 2,
 "values": [ true ]
 }
 tracks/4/type = "value"
@@ -99,10 +99,47 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 2, 1, 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 2,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 2,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 2,
+"values": [ true ]
+}
 
 [sub_resource type="CircleShape2D" id=3]
 
 [node name="Coin" type="Area2D"]
+monitorable = false
 collision_layer = 0
 script = ExtResource( 4 )
 
@@ -121,4 +158,4 @@ shape = SubResource( 3 )
 
 [node name="Pickup" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered" flags=6]

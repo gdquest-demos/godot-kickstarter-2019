@@ -1,6 +1,7 @@
 extends Node2D
 class_name MovingPlatform
 
+
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
