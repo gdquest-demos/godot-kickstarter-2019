@@ -29,9 +29,12 @@ At a glance, you can see that the physics process loop:
 	3. Updates the sprite direction.
 	4. Updates the animation.
 
-Splitting the physics process logic into functions not only makes it easier to read, it help to change or improve the code later on:
-	- If you need to change a calculation, you can use Go To -> Function (Ctrl Alt F) to quickly jump to the corresponding function.
-	- If you split the character into a state machine or more advanced pattern, you can easily move individual functions.
+Splitting the physics process logic into functions not only makes it easier to read, it help to 
+change or improve the code later on:
+	- If you need to change a calculation, you can use Go To -> Function (Ctrl Alt F) to quickly 
+	  jump to the corresponding function.
+	- If you split the character into a state machine or more advanced pattern, you can easily move 
+	  individual functions.
 """
 func _physics_process(delta: float) -> void:
 	_velocity = calculate_move_velocity(_velocity)
@@ -41,7 +44,6 @@ func _physics_process(delta: float) -> void:
 	
 	# We flip the Sprite depending on which way the enemy is moving.
 	sprite.scale.x = 1 if _velocity.x > 0 else -1
-	
 	
 	var animation: = get_new_animation()
 	if animation != animation_player.current_animation:
