@@ -5,7 +5,7 @@ class_name Player
 onready var platform_detector: RayCast2D = $PlatformDetector
 onready var sprite: Sprite = $Sprite
 onready var animation_player: AnimationPlayer = $AnimationPlayer
-onready var shoot_timer: = $ShootAnimation
+onready var shoot_timer: Timer = $ShootAnimation
 onready var gun: Gun = $Sprite/Gun
 
 
@@ -24,8 +24,10 @@ At a glance, you can see that the physics process loop:
 
 Splitting the physics process logic into functions not only makes it easier to read, it help to 
 change or improve the code later on:
-	- If you need to change a calculation, you can use Go To -> Function (Ctrl Alt F) to quickly jump to the corresponding function.
-	- If you split the character into a state machine or more advanced pattern, you can easily move individual functions.
+	- If you need to change a calculation, you can use Go To -> Function (Ctrl Alt F) to quickly 
+	  jump to the corresponding function.
+	- If you split the character into a state machine or more advanced pattern, you can easily move 
+	  individual functions.
 """
 func _physics_process(delta: float) -> void:
 	var direction: = get_direction()
@@ -39,16 +41,18 @@ func _physics_process(delta: float) -> void:
 		_velocity, is_snapping, FLOOR_NORMAL, not is_on_platform, 4,  0.9, false
 	)
 
-	# When the character’s direction changes, we want to to scale the Sprite accordingly to flip it. This will make Robi face left or right depending on the direction you move.
+	# When the character’s direction changes, we want to to scale the Sprite accordingly to flip it.
+	# This will make Robi face left or right depending on the direction you move.
 	if direction.x != 0:
 		sprite.scale.x = direction.x
 
-	# We use the sprite's scale to store Robi’s look direction which allows us in turn to shoot bullets forward.
-	# There are many situations like these where you can reuse existing properties instead of creating new variables.
+	# We use the sprite's scale to store Robi’s look direction which allows us to shoot 
+	# bullets forward.
+	# There are many situations like these where you can reuse existing properties instead of 
+	# creating new variables.
 	var is_shooting: = false
 	if Input.is_action_just_pressed("shoot"):
 		is_shooting = gun.shoot(sprite.scale.x)
-
 	
 	var animation: = get_new_animation(is_shooting)
 	if animation != animation_player.current_animation and shoot_timer.is_stopped():
