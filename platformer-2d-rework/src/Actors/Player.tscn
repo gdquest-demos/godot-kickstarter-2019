@@ -200,7 +200,7 @@ one_shot = true
 [node name="PlatformDetector" type="RayCast2D" parent="."]
 position = Vector2( 0, 29.9245 )
 enabled = true
-cast_to = Vector2( 0, 4 )
+cast_to = Vector2( 0, 6 )
 collision_mask = 8
 
 [node name="Sprite" type="Sprite" parent="."]
