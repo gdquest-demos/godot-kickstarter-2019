@@ -1,9 +1,7 @@
 extends Node2D
 
-"""
-Creates an instance of a mercenary inside a reference node's hierachy
-at the current position of the spawner.
-"""
+# Creates an instance of a mercenary inside a reference node's hierachy
+# at the current position of the spawner.
 
 export (PackedScene) var mercenary_scene: PackedScene = preload("res://actors/Mercenary.tscn")
 export (NodePath) var instance_parent: NodePath = ".."

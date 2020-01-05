@@ -1,9 +1,7 @@
 tool
 extends TextEdit
-"""
-Adds syntax highlighting for common GDScript keywords on
-top of TextEdit's defaults
-"""
+# Adds syntax highlighting for common GDScript keywords on
+# top of TextEdit's defaults
 
 
 export var class_color : = Color(0.6, 0.6, 1.0)

@@ -46,11 +46,9 @@ func _ready() -> void:
 		_prepend_number_to_titles()
 
 
-"""
-Stores an ordered list of children that are slides
-connects to them to redraw helper lines when moving or resizing
-the slides
-"""
+# Stores an ordered list of children that are slides
+# connects to them to redraw helper lines when moving or resizing
+# the slides
 func _reset_slides() -> void:
 	for slide in _slide_nodes:
 		slide.disconnect('item_rect_changed', self, 'update')
@@ -64,11 +62,9 @@ func _reset_slides() -> void:
 	_slide_current = _slide_nodes[index_active]
 
 
-"""
-Finds title nodes and prepends 1., 2., etc.
-to their text property
-Only on _ready
-"""
+# Finds title nodes and prepends 1., 2., etc.
+# to their text property
+# Only on _ready
 func _prepend_number_to_titles() -> void:
 	var index : = 1
 	for slide in _slide_nodes:
@@ -79,9 +75,7 @@ func _prepend_number_to_titles() -> void:
 		index += 1
 
 
-"""
-Draws a line connecting the slides' center, to indicate the move order
-"""
+# Draws a line connecting the slides' center, to indicate the move order
 func _draw() -> void:
 	if not Engine.editor_hint:
 		return

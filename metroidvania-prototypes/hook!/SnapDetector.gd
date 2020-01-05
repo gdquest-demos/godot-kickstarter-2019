@@ -1,5 +1,5 @@
 extends Area2D
-"""Detects and returns the best snapping target for the hook"""
+# Detects and returns the best snapping target for the hook
 
 onready var hint: = $HookingHint
 onready var ray: RayCast2D = $RayCast2D

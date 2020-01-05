@@ -1,11 +1,9 @@
 extends Behavior
-"""
-Walk behavior that linearly moves `root_node` at the speed of the walk animation.
+# Walk behavior that linearly moves `root_node` at the speed of the walk animation.
 
-It also detects for encounters at the end of the walk. Only the leader node should have the
-Detect scene attached as a Node. This is done in the `setup(detect, remote_transofrm)` function
-from Member script.
-"""
+# # It also detects for encounters at the end of the walk. Only the leader node should have the
+# Detect scene attached as a Node. This is done in the `setup(detect, remote_transofrm)` function
+# from Member script.
 
 
 onready var tween: Tween = $Tween
@@ -64,11 +62,9 @@ func run(msg: Dictionary = {}) -> void:
 	tween.start()
 
 
-"""
-Checks the four cardinal directions for Encounters.
+# Checks the four cardinal directions for Encounters.
 
-Returns the Encounter if it could find it.
-"""
+# # Returns the Encounter if it could find it.
 func which_encounter() -> Area2D:
 	var out: = null
 	if root_node.is_leader:

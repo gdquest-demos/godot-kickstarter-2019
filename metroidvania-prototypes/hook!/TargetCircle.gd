@@ -1,6 +1,6 @@
 tool
 extends DrawingUtils
-"""Draws a circle outline to indicate where the player is aiming the hook"""
+# Draws a circle outline to indicate where the player is aiming the hook
 
 
 export var offset: = Vector2(50.0, 0) setget set_offset

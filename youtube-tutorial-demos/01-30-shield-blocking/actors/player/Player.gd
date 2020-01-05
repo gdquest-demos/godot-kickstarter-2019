@@ -36,9 +36,7 @@ func _physics_process(delta: float) -> void:
 
 
 func update_animation() -> void:
-	"""
-	Plays the correct animation based on the player's state
-	"""
+	# Plays the correct animation based on the player's state
 	var animation : = "idle"
 	if not is_on_floor():
 		animation = "jump"
@@ -54,9 +52,7 @@ func update_animation() -> void:
 
 
 func take_damage(attacker: Node2D, knock_back_force: Vector2 = Vector2()) -> void:
-	"""
-	Checks if the player can take damage and plays correct animations
-	"""
+	# Checks if the player can take damage and plays correct animations
 	if blocking and is_shield_facing(attacker.global_position):
 		return
 	knock_back(knock_back_force)

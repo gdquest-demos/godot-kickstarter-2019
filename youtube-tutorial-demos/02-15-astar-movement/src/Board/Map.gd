@@ -1,9 +1,7 @@
 extends TileMap
-"""
-Visual representation of the Board/World.
+# Visual representation of the Board/World.
 
-It only stores data, it doesn't do anything. It's used by PathFinder.
-"""
+# # It only stores data, it doesn't do anything. It's used by PathFinder.
 
 
 var tiles_dict: = {} setget, get_tiles_dict

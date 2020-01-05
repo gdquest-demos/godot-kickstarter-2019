@@ -20,19 +20,15 @@ func _ready() -> void:
 
 
 func generate() -> void:
-	"""
-	Randomly generates a rarity level and specifications, then assigns 
-	them to this item
-	"""
+	# Randomly generates a rarity level and specifications, then assigns 
+	# them to this item
 	rarity = generate_rarity()
 	specs = generate_specs()
 	animated_sprite.play(rarity.rarity_name.to_lower())	
 
 
 func generate_rarity() -> Resource:
-	"""
-	Randomly generates and returns a Rarity Resource
-	"""
+	# Randomly generates and returns a Rarity Resource
 	var rarity_index : = 0
 	var rarer_chance : = 1.0
 	var roll : = randf()
@@ -47,9 +43,7 @@ func generate_rarity() -> Resource:
 
 
 func generate_specs() -> Array:
-	"""
-	Returns an array of generated item properties/specifications
-	"""
+	# Returns an array of generated item properties/specifications
 	var new_specs : = []
 	for spec in possible_specs:
 		if not spec.mandatory or randf() > spec.chance:

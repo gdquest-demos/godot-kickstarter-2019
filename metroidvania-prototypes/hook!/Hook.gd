@@ -1,9 +1,7 @@
 extends Position2D
 class_name Hook
-"""
-throws a raycast that can interact with Hookable bodies and calculate a pull vector towards those bodies
-The raycast is updated manually for greater precision with where the player is aiming
-"""
+# throws a raycast that can interact with Hookable bodies and calculate a pull vector towards those bodies
+# The raycast is updated manually for greater precision with where the player is aiming
 
 signal hooked_onto_target(pull_force)
 

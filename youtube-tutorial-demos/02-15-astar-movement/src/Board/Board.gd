@@ -1,11 +1,9 @@
 extends Node2D
-"""
-Uses the underlying PathFinder (AStar) to find routes.
+# Uses the underlying PathFinder (AStar) to find routes.
 
-This is a visual representation of the world, using TileMaps. It also offers visual feedback to
-the player for accessible vs obstacle tiles, interactive encounters, and Party destination flag
-when Party is given order to walk.
-"""
+# # This is a visual representation of the world, using TileMaps. It also offers visual feedback to
+# the player for accessible vs obstacle tiles, interactive encounters, and Party destination flag
+# when Party is given order to walk.
 
 
 onready var feedback: TileMap = $Feedback
@@ -46,9 +44,7 @@ func _on_signal(msg: Dictionary = {}, which: String = "") -> void:
 			_feedback_react(at, type)
 
 
-"""
-Given the `type`, refresh the Feedback texture at position `xy`.
-"""
+# Given the `type`, refresh the Feedback texture at position `xy`.
 func _feedback_react(xy: Vector2, type: int) -> void:
 	feedback.clear()
 	if type != Feedback.INVALID:
@@ -57,11 +53,9 @@ func _feedback_react(xy: Vector2, type: int) -> void:
 		feedback.set_cellv(_feedback_flag_position, Feedback.FLAG)
 
 
-"""
-Tries to find a valid route starting at `from` (inclusive) and finishing at `to` (inclusive).
+# Tries to find a valid route starting at `from` (inclusive) and finishing at `to` (inclusive).
 
-Returns an Vector2 Array of points in global pixel coordinates.
-"""
+# # Returns an Vector2 Array of points in global pixel coordinates.
 func get_point_path(from: Vector2, to: Vector2) -> Array:
 	from = path_finder.map.world_to_map(from)
 	to = path_finder.map.world_to_map(to)

@@ -1,9 +1,7 @@
 extends Position2D
 
-"""
-A dummy mercenary that shall only replicate a reference mercenary's
-appearence
-"""
+# A dummy mercenary that shall only replicate a reference mercenary's
+# appearence
 
 export (PackedScene) var mercenary_scene: PackedScene = preload("res://actors/Mercenary.tscn")
 

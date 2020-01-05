@@ -1,9 +1,7 @@
 extends Behavior
-"""
-Bump behavior.
+# Bump behavior.
 
-All it does is play a "bump" animation.
-"""
+# # All it does is play a "bump" animation.
 
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 

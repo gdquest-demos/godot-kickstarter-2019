@@ -33,17 +33,13 @@ func push(velocity: Vector2) -> void:
 
 
 func calculate_destination(direction: Vector2) -> Vector2:
-	"""
-	Returns the global position from our position towards direction, snapped to the grid
-	"""
+	# Returns the global position from our position towards direction, snapped to the grid
 	var tile_map_position = tile_map.world_to_map(global_position) + direction
 	return tile_map.map_to_world(tile_map_position)
 
 
 func can_move(move_to: Vector2) -> bool:
-	"""
-	Returns if the box can be moved to `move_to` without causing a collision
-	"""
+	# Returns if the box can be moved to `move_to` without causing a collision
 	var future_transform : = Transform2D(transform)
 	future_transform.origin = move_to
 	return not test_move(future_transform, Vector2())

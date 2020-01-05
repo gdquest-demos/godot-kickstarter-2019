@@ -1,8 +1,6 @@
 extends Node
 
-"""
-Manage the costs of a mercenary
-"""
+# Manage the costs of a mercenary
 
 export (int) var cost := 10
 

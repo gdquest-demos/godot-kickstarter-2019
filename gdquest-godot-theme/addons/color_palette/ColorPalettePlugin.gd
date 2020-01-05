@@ -1,8 +1,6 @@
 tool
 extends EditorPlugin
-"""
-Enable the use of palettes to set CanvasItem's modulate from an easily accessible dock
-"""
+# Enable the use of palettes to set CanvasItem's modulate from an easily accessible dock
 onready var _interface: ColorPalette setget , get_interface
 
 const PATH: = "res://addons/color_palette/palettes/"

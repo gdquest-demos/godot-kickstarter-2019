@@ -1,9 +1,7 @@
 extends Position2D
 class_name Gun
-"""
-Represents a weapon that spawns and shoots bullets.
-The Cooldown timer controls the cooldown duration between shots.
-"""
+# Represents a weapon that spawns and shoots bullets.
+# The Cooldown timer controls the cooldown duration between shots.
 
 
 onready var sound_shoot: AudioStreamPlayer2D = $Shoot

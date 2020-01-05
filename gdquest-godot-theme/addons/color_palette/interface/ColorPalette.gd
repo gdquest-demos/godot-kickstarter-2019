@@ -1,9 +1,7 @@
 tool
 extends MarginContainer
 class_name ColorPalette
-"""
-An interface to display color palettes as sequence of buttons
-"""
+# An interface to display color palettes as sequence of buttons
 
 signal palette_selected(palette_name)
 signal color_picked(hex_color)

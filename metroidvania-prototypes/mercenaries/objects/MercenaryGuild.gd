@@ -1,8 +1,6 @@
 extends Node
 
-"""
-Manage the control over a given mercenary
-"""
+# Manage the control over a given mercenary
 
 onready var current_mercenary: Mercenary = $Rectangle
 

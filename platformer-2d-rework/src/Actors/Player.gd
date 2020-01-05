@@ -9,26 +9,24 @@ onready var shoot_timer: Timer = $ShootAnimation
 onready var gun: Gun = $Sprite/Gun
 
 
-"""
-Physics process is a built-in loop in Godot.
-If you define _physics_process on a node, Godot will call it every frame.
+# Physics process is a built-in loop in Godot.
+# If you define _physics_process on a node, Godot will call it every frame.
 
-We use separate functions to calculate the direction and velocity to make this one easier to read.
-At a glance, you can see that the physics process loop:
-	1. Calculates the move direction.
-	2. Calculates the move velocity.
-	3. Moves the character.
-	4. Updates the sprite direction.
-	5. Shoots bullets.
-	6. Updates the animation.
+# # We use separate functions to calculate the direction and velocity to make this one easier to read.
+# At a glance, you can see that the physics process loop:
+	# 1. Calculates the move direction.
+	# 2. Calculates the move velocity.
+	# 3. Moves the character.
+	# 4. Updates the sprite direction.
+	# 5. Shoots bullets.
+	# 6. Updates the animation.
 
-Splitting the physics process logic into functions not only makes it easier to read, it help to 
-change or improve the code later on:
-	- If you need to change a calculation, you can use Go To -> Function (Ctrl Alt F) to quickly 
-	  jump to the corresponding function.
-	- If you split the character into a state machine or more advanced pattern, you can easily move 
-	  individual functions.
-"""
+# # Splitting the physics process logic into functions not only makes it easier to read, it help to 
+# change or improve the code later on:
+	# - If you need to change a calculation, you can use Go To -> Function (Ctrl Alt F) to quickly 
+	  # jump to the corresponding function.
+	# - If you split the character into a state machine or more advanced pattern, you can easily move 
+	  # individual functions.
 func _physics_process(delta: float) -> void:
 	var direction: = get_direction()
 	
@@ -68,10 +66,8 @@ func get_direction() -> Vector2:
 	)
 
 
-"""
-This function calculates a new velocity whenever you need it.
-It allows you to interrupt jumps.
-"""
+# This function calculates a new velocity whenever you need it.
+# It allows you to interrupt jumps.
 func calculate_move_velocity(
 		linear_velocity: Vector2,
 		direction: Vector2,

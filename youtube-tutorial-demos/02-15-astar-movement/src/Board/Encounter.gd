@@ -1,17 +1,15 @@
 extends Area2D
-"""
-An object with which the Party (Player) can interact on the Board.
+# An object with which the Party (Player) can interact on the Board.
 
-It doesn't do anything other than play an animation when Party leader is adjacent to it
-and send signals to other systems. Its purpose is to be detected by the Party leader.
+# # It doesn't do anything other than play an animation when Party leader is adjacent to it
+# and send signals to other systems. Its purpose is to be detected by the Party leader.
 
-Check Party, Member & Walk behavior scripts for more information on being Detected.
+# # Check Party, Member & Walk behavior scripts for more information on being Detected.
 
-Notes
------
-For future proof, this Node is added to "encounters" group. This is used when trying to detect
-encounters in Members' Walk behavior to potentially distinguish from other Area2D object types.
-"""
+# # Notes
+# -----
+# For future proof, this Node is added to "encounters" group. This is used when trying to detect
+# encounters in Members' Walk behavior to potentially distinguish from other Area2D object types.
 
 
 onready var animation_player: AnimationPlayer = $AnimationPlayer

@@ -1,8 +1,6 @@
 extends CanvasItem
-"""
-Drawing utilities for tool scripts in the viewport or in-game visual debugging
-Use sprites, SVG shapes, or meshes instead of drawing from the code whenever possible
-"""
+# Drawing utilities for tool scripts in the viewport or in-game visual debugging
+# Use sprites, SVG shapes, or meshes instead of drawing from the code whenever possible
 
 const DEFAULT_POINTS_COUNT : = 32
 

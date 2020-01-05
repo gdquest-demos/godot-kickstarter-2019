@@ -1,17 +1,15 @@
 extends YSort
-"""
-This can be thought of as the player object.
+# This can be thought of as the player object.
 
-It has multiple Members (child nodes) that it manages. The leader Member (child node with index
-position of 0) is special. He has the Detect node which is a four RayCast2D system pointing
-South, West, North & East as expected. Apart from that the leader also gets the RemoteTransform
-which is used with the Camera. This has to be done to simplify Camera movement when cycling
-through Member positions. Without it, it would be a bit tricky to make the Camera move smoothly.
+# # It has multiple Members (child nodes) that it manages. The leader Member (child node with index
+# position of 0) is special. He has the Detect node which is a four RayCast2D system pointing
+# South, West, North & East as expected. Apart from that the leader also gets the RemoteTransform
+# which is used with the Camera. This has to be done to simplify Camera movement when cycling
+# through Member positions. Without it, it would be a bit tricky to make the Camera move smoothly.
 
-The Detect scene is used by the Walk behavior to verify adjacent encounters. It does this so we
-have a way of identifying which encounter the Party... encounters. This tirggers some changes in
-the in other Systems like Dialog etc. (to be further explored).
-"""
+# # The Detect scene is used by the Walk behavior to verify adjacent encounters. It does this so we
+# have a way of identifying which encounter the Party... encounters. This tirggers some changes in
+# the in other Systems like Dialog etc. (to be further explored).
 
 
 var _cell_size: = Utils.V2_00

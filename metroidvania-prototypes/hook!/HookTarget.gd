@@ -1,6 +1,6 @@
 extends Area2D
 class_name HookTarget
-"""Point the hook can pull onto"""
+# Point the hook can pull onto
 
 onready var timer: Timer = $Timer
 

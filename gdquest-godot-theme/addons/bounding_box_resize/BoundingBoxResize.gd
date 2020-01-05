@@ -1,8 +1,6 @@
 tool
 extends EditorPlugin
-"""
-Updates RichTextLabel and TextEdit minimum rect size to fit their content
-"""
+# Updates RichTextLabel and TextEdit minimum rect size to fit their content
 
 onready var _editor: = get_editor_interface()
 onready var _selection: = _editor.get_selection()
@@ -69,12 +67,10 @@ func fit_rect_vertically(control: Control) -> void:
 	undo.commit_action()
 
 
-"""
-Note that this is generalized because Control is the unique common
-ancestor between RichTextLabel and TextEdit, so to prevent any other
-node to go through this function we must have an assertion on their
-text property
-"""
+# Note that this is generalized because Control is the unique common
+# ancestor between RichTextLabel and TextEdit, so to prevent any other
+# node to go through this function we must have an assertion on their
+# text property
 func get_content_size(control: Control) -> Vector2:
 	if not control.has_method("get_text"):
 		return control.rect_size
@@ -117,9 +113,7 @@ func get_longest_line_width(lines: PoolStringArray, font: Font) -> float:
 	return larger_line_width
 
 
-"""
-Returns an offset to compensate scrollbars
-"""
+# Returns an offset to compensate scrollbars
 func get_padding(control: Control) -> Vector2:
 	var padding: = Vector2(0, 0)
 

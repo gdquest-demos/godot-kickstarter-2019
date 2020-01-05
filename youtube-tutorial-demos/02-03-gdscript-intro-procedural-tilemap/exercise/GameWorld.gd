@@ -1,9 +1,7 @@
 extends Node2D
 class_name GameWorld
-"""
-Procedurally generates a tile based world map with a fixed outer perimeter.
-Use Right Mouse Click or Enter/Space to trigger regeneration.
-"""
+# Procedurally generates a tile based world map with a fixed outer perimeter.
+# Use Right Mouse Click or Enter/Space to trigger regeneration.
 
 signal started
 signal finished

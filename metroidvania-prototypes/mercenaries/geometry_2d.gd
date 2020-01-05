@@ -1,13 +1,11 @@
 # Geometry2D
 # author: Henrique "Pigdev" Campos
-"""
-Draws a Shape2D using CollisionShape2D's editor plugin's handles
----
-Notes
+# Draws a Shape2D using CollisionShape2D's editor plugin's handles
+# ---
+# Notes
 
-Don't use it as direct child of CollisionBody2D classes unless you intent
-to use it as its CollisionShape2D.
-"""
+# # Don't use it as direct child of CollisionBody2D classes unless you intent
+# to use it as its CollisionShape2D.
 
 tool
 extends CollisionShape2D

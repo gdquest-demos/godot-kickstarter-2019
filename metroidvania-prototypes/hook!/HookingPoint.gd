@@ -1,6 +1,6 @@
 tool
 extends DrawingUtils
-"""Draws a target to indicate if and where the player can hook"""
+# Draws a target to indicate if and where the player can hook
 
 export var color_hook: Color = COLOR_BLUE_LIGHT
 export var color_cooldown: Color = COLOR_ERROR

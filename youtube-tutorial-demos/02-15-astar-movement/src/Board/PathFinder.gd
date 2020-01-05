@@ -1,7 +1,5 @@
 extends Node2D
-"""
-Sets up the AStar algorithm for calculating possible path results with `get_point_path(from, to)`
-"""
+# Sets up the AStar algorithm for calculating possible path results with `get_point_path(from, to)`
 
 
 onready var map: TileMap = $Map
@@ -61,12 +59,10 @@ func get_point_path(from: Vector2, to: Vector2) -> PoolVector2Array:
 	return out
 
 
-"""
-The PathFinder defines the possible directions available for the player: South, West, North, East
-with the help of this getter function.
+# The PathFinder defines the possible directions available for the player: South, West, North, East
+# with the help of this getter function.
 
-Returns a Vector2 Array of possible directions.
-"""
+# # Returns a Vector2 Array of possible directions.
 func get_possible_directions() -> Array:
 	if possible_directions.size() != 0:
 		return possible_directions

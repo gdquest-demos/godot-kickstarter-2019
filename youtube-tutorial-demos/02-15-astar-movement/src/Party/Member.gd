@@ -1,11 +1,9 @@
 extends Actor
-"""
-This is a Party Member, part of the Player Party "pack".
+# This is a Party Member, part of the Player Party "pack".
 
-It extends actor so it can use Behaviors. By default it has a Walk behavior apart from the NoOp
-behavior which all Actors have. The Party leader (that is. the child node of Party with index
-position 0) also has a Bump behavior. This is configured in `setup`.
-"""
+# # It extends actor so it can use Behaviors. By default it has a Walk behavior apart from the NoOp
+# behavior which all Actors have. The Party leader (that is. the child node of Party with index
+# position 0) also has a Bump behavior. This is configured in `setup`.
 
 
 onready var is_leader: = get_index() == 0
@@ -18,11 +16,9 @@ const SKIN: = preload("res://assets/sprites/characters/godette.png")
 var is_walking: = false
 
 
-"""
-Boilerplate for setting up appropriate node relationships with leader. It also claculates proper
-sprite placement on map so they allign to the "ground". The leader gets to have a star sprite
-visible: LeaderIcon, so it's distinguished on the Board.
-"""
+# Boilerplate for setting up appropriate node relationships with leader. It also claculates proper
+# sprite placement on map so they allign to the "ground". The leader gets to have a star sprite
+# visible: LeaderIcon, so it's distinguished on the Board.
 func setup(board_size: Vector2) -> void:
 	board_skin.offset.y = 0.5 * (SKIN.get_height() - board_skin.texture.get_height())
 	if is_leader:

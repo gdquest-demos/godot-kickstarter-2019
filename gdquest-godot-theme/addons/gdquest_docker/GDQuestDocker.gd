@@ -1,13 +1,11 @@
 tool
 extends EditorPlugin
-"""
-A container for plugins' widgets that provides an easy access to enable/disable valid plugins
+# A container for plugins' widgets that provides an easy access to enable/disable valid plugins
 
-Notes
----
-A valid plugin must have the EditorPlugin.get_plugin_name() -> String virtual method implemented
-and also a custom get_interface() -> Control method implemented.
-"""
+# # Notes
+# ---
+# A valid plugin must have the EditorPlugin.get_plugin_name() -> String virtual method implemented
+# and also a custom get_interface() -> Control method implemented.
 
 const INTERFACE_SCENE: PackedScene = preload("res://addons/gdquest_docker/interface/Docker.tscn")
 const ADDONS_FOLDER_PATH: String = "res://addons"
@@ -133,19 +131,15 @@ func hook_rich_editor() -> void:
 		rich_editor.connect("text_edit_popped", self, "add_widget")
 
 
-"""
-Currently is not possible to get the plugin's node directly in the Editor,
-i.e. to simply EditorInterface.get_plugin(String plugin_name) -> EditorPlugin
-So these two methods are used as a workaround to find an EditorPlugin's Node
-"""
+# Currently is not possible to get the plugin's node directly in the Editor,
+# i.e. to simply EditorInterface.get_plugin(String plugin_name) -> EditorPlugin
+# So these two methods are used as a workaround to find an EditorPlugin's Node
 func get_plugins_list() -> Array:
 	var plugins: Array = []
 
-	"""
-	Since is uncertain what is the actual Node's name in the parent,
-	we presume that an EditorPlugin is valid when it implements the
-	get_plugin_name virtual method, otherwise we ignore it
-	"""
+	# Since is uncertain what is the actual Node's name in the parent,
+	# we presume that an EditorPlugin is valid when it implements the
+	# get_plugin_name virtual method, otherwise we ignore it
 	for n in get_parent().get_children():
 		if not n.has_method("get_plugin_name"):
 			continue
