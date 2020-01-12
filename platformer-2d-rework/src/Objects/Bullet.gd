@@ -2,13 +2,13 @@ extends RigidBody2D
 class_name Bullet
 
 
-onready var animation_player: AnimationPlayer = $AnimationPlayer
+onready var animation_player = $AnimationPlayer
 
 
-func destroy() -> void:
+func destroy():
 	animation_player.play("destroy")
 
 
-func _on_body_entered(body: PhysicsBody2D):
+func _on_body_entered(body):
 	if body is Enemy:
 		body.destroy()

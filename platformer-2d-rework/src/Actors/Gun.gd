@@ -4,17 +4,17 @@ class_name Gun
 # The Cooldown timer controls the cooldown duration between shots.
 
 
-onready var sound_shoot: AudioStreamPlayer2D = $Shoot
-onready var timer: Timer = $Cooldown
+onready var sound_shoot = $Shoot
+onready var timer = $Cooldown
 
 const Bullet = preload("res://src/Objects/Bullet.tscn")
-const BULLET_VELOCITY: = 1000.0
+const BULLET_VELOCITY = 1000.0
 
 
-func shoot(direction: int = 1) -> bool:
+func shoot(direction = 1):
 	if not timer.is_stopped():
 		return false
-	var bullet: = Bullet.instance()
+	var bullet = Bullet.instance()
 	bullet.global_position = global_position
 	bullet.linear_velocity = Vector2(direction * BULLET_VELOCITY, 0)
 	

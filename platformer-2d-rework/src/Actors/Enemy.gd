@@ -2,11 +2,11 @@ extends Actor
 class_name Enemy
 
 
-onready var platform_detector: RayCast2D = $PlatformDetector
-onready var floor_detector_left: RayCast2D = $FloorDetectorLeft
-onready var floor_detector_right: RayCast2D = $FloorDetectorRight
-onready var sprite: Sprite = $Sprite
-onready var animation_player: AnimationPlayer = $AnimationPlayer
+onready var platform_detector = $PlatformDetector
+onready var floor_detector_left = $FloorDetectorLeft
+onready var floor_detector_right = $FloorDetectorRight
+onready var sprite = $Sprite
+onready var animation_player = $AnimationPlayer
 
 enum State {WALKING, DEAD}
 
@@ -14,7 +14,7 @@ var _state = State.WALKING
 
 # This function is called when the scene enters the scene tree.
 # We can initialize variables here.
-func _ready() -> void:
+func _ready():
 	_velocity.x = speed.x
 
 # Physics process is a built-in loop in Godot.
@@ -32,7 +32,7 @@ func _ready() -> void:
 	  # jump to the corresponding function.
 	# - If you split the character into a state machine or more advanced pattern, you can easily move 
 	  # individual functions.
-func _physics_process(delta: float) -> void:
+func _physics_process(delta):
 	_velocity = calculate_move_velocity(_velocity)
 	
 	# We only update the y value of _velocity as we want to handle the horizontal movement ourselves.
@@ -41,12 +41,12 @@ func _physics_process(delta: float) -> void:
 	# We flip the Sprite depending on which way the enemy is moving.
 	sprite.scale.x = 1 if _velocity.x > 0 else -1
 	
-	var animation: = get_new_animation()
+	var animation = get_new_animation()
 	if animation != animation_player.current_animation:
 		animation_player.play(animation)
 
 
-func destroy() -> void:
+func destroy():
 	_state = State.DEAD
 	_velocity = Vector2.ZERO
 
@@ -54,9 +54,9 @@ func destroy() -> void:
 # This function calculates a new velocity whenever you need it.
 # If the enemy encounters a wall or an edge, the horizontal velocity is flipped.
 func calculate_move_velocity(
-		linear_velocity: Vector2
-	) -> Vector2:
-	var velocity: = linear_velocity
+		linear_velocity 
+	):
+	var velocity = linear_velocity
 	
 	if not floor_detector_left.is_colliding():
 		velocity.x = speed.x
@@ -69,8 +69,8 @@ func calculate_move_velocity(
 	return velocity
 
 
-func get_new_animation() -> String:
-	var animation_new: = ""
+func get_new_animation():
+	var animation_new = ""
 	if _state == State.WALKING:
 		animation_new = "walk" if abs(_velocity.x) > 0 else "idle"
 	else:
