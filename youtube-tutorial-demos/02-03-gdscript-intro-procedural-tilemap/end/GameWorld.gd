@@ -13,7 +13,7 @@ export var perimeter_size := Vector2(1, 1)
 export(float, 0 , 1) var ground_probability := 0.1
 
 # Public variables
-var size := inner_size + 2 * perimeter_size
+onready var size := inner_size + 2 * perimeter_size
 
 # Private variables
 onready var _tile_map : TileMap = $TileMap

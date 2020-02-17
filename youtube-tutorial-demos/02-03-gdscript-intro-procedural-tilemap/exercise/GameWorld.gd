@@ -15,7 +15,7 @@ export var inner_size : = Vector2(10, 8)
 export var perimeter_size : = Vector2(1, 1)
 export(float, 0 , 1) var obstacle_probability : = 0.1
 
-var size : = inner_size + 2 * perimeter_size
+onready var size : = inner_size + 2 * perimeter_size
 
 func _ready() -> void:
 	initialize()
